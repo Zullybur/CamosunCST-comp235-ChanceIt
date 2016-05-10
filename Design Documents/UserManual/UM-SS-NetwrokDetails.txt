@@ -1,0 +1,12 @@
+Network Play Mode
+------------------------------------
+
+Enter Server Information:
+
+Port:
+**user input**
+
+Address:
+**user input**
+
+------------------------------------

@@ -1,0 +1,21 @@
+Current Round: 2
+------------------------------------
+First roll: 5
+Round score: 6
+
+Last roll: 1 + 5 = 6
+ -------    -------
+|       |  | o   o |
+|   o   |  |   o   |
+|       |  | o   o |
+ -------    -------
+
+Your score: 40
+Opponenet score: 34
+------------------------------------
+(R)oll
+(S)top
+(P)robability
+
+(H)elp
+(F)orfeit

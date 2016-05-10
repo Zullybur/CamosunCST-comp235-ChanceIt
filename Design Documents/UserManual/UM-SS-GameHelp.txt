@@ -1,0 +1,18 @@
+Game Help
+------------------------------------
+
+(R)oll          Rolls the dice and gets the sum
+
+(S)top          Ends the current turn and adds
+                the points earned to the total
+
+(P)robability   Displays the probability of
+                re-rolling the first roll
+
+(H)elp          Displays this help menu
+
+(F)orfeit       Forfeit the current game and
+                return to the main menu
+
+------------------------------------
+Press Enter to return to the Main Menu.

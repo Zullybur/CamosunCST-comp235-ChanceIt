@@ -1,0 +1,12 @@
+Network Play Mode
+------------------------------------
+
+Who should control the game?
+
+(H)uman Player
+(C)omputer player
+
+(P)revious Menu
+(E)xit
+
+------------------------------------

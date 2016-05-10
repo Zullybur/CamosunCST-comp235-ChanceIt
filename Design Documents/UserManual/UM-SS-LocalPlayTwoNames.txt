@@ -1,0 +1,10 @@
+Local Play Mode
+------------------------------------
+
+Player1 - enter name:
+**user input**
+
+Player2 - enter name:
+**user input**
+
+------------------------------------

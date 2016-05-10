@@ -1,0 +1,23 @@
+               _______.
+    ______    | .   . |\
+   /     /\   |   .   |.\
+  /  '  /  \  | .   . |.'|
+ /_____/. . \ |_______|.'|
+ \ . . \    /  \ ' .   \'|
+  \ . . \  /    \____'__\|
+   \_____\/
+
+   Welcome to Chance It!
+
+Created By: CMMS Systems
+
+What would you like to do?
+------------------------------------
+(L)ocal Play Mode
+(N)etwork Play Mode
+
+(V)iew High Scores
+(R)ules
+
+(E)xit
+------------------------------------

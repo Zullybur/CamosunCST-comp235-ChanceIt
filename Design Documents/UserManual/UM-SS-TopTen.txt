@@ -1,0 +1,14 @@
+Top Ten Scores
+------------------------------------
+1  | YYYY-MM-DD | Name       | 65403
+2  | YYYY-MM-DD | Name2      | 1239
+3  | YYYY-MM-DD | Name2      | 1238
+4  | YYYY-MM-DD | Name2      | 1237
+5  | YYYY-MM-DD | Name2      | 1236
+6  | YYYY-MM-DD | Name2      | 124
+7  | YYYY-MM-DD | Name2      | 123
+8  | YYYY-MM-DD | Name2      | 122
+9  | YYYY-MM-DD | Name2      | 12
+10 | YYYY-MM-DD | Name2      | 5
+-----------------------------------
+Press Enter to return to the Main Menu.
