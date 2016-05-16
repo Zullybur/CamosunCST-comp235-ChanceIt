@@ -4,5 +4,5 @@
 * @Return an int of the turn score
 * @Cleanup N/A
 */
-int turn()
+int localTurn()
 
