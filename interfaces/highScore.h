@@ -12,8 +12,10 @@
 /*Pre-condition: a file for highscore exists
  *Post-condition: The highscore has been amended with new information
  *Clean up: N/A
- *Param info
+ *Param  name takes in the name of the player
+ *Param  date   takes in the date of the game play
+ *Param score   takes in the player’s score 
  *returns N/A
  */
 
- void amendHighScore(char info);
+ void amendHighScore(char* name, char* date, unsigned score);
