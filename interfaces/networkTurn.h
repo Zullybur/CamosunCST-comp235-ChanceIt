@@ -1,7 +1,6 @@
-/** Recieves data from the network player
-* Pre: N/A
-* Post: N/A
-* @Return an int of the turn score
-* @Cleanup N/A
-*/
-int recieveTurn()
+// Recieves data from the network player
+// Pre: N/A
+// Post: N/A
+// Cleanup N/A
+// Return an unsigned of the turn score
+unsigned networkTurn();
