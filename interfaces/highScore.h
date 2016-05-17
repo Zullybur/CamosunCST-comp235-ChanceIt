@@ -1,7 +1,3 @@
-
-
- void amendHighScore(char* name, char* date, unsigned score);
-=======
 // Pre: a file for highscore exists
 // Post: The highscore was displayed on screen
 // Clean up: N/A
