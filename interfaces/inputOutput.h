@@ -1,69 +1,56 @@
-#include<stdio.h>
+// Pre: N/A
+// Post: The screen was-Updated to display new information
+// Clean-Up: N/A
+// Param name is the player's name
+// Param userSelection is the user's choice
+// Returns N/A
+void displayGamePlay(char* name, int userSelection); 
 
-/*Pre-condition: N/A
- *Post-condition: The screen was updated to display new information
- *Clean up: N/A
- *Param name, userSelection 
- *returns N/A
- */
-void dispGamePlay(char *name, int userSelection); 
+// Pre: A highscore file exists
+// Post: The highscore was displayed on the screen
+// Clean-Up: N/A
+// Param N/A
+// Returns N/A
+void displayHighScore();
 
-/*Pre-condition: A highscore file exists
- *Post-condition: The highscore was displayed on the screen
- *Clean up: N/A
- *Param N/A
- *returns N/A
- */
-void dispHighScore()
+// Pre: N/A
+// Post: The main menu was displayed on the screen
+// Clean-Up: N/A
+// Param N/A
+// Returns N/A
+void displayMainMenu();
 
-/*Pre-condition: N/A
- *Post-condition: The main menu was displayed on the screen
- *Clean up: N/A
- *Param N/A
- *returns N/A
- */
-void dispMainMenu()
+// Pre: N/A
+// Post: The help menu was displayed on the screen
+// Clean-Up: N/A
+// Param N/A
+// Returns N/A
+void displayHelpMenu();
 
-/*Pre-condition: N/A
- *Post-condition: The help menu was displayed on the screen
- *Clean up: N/A
- *Param N/A
- *returns N/A
- */
-void dispHelpMenu()
+// Pre: N/A
+// Post: The Network Play Mode was displayed on screen
+// Clean-Up: N/A
+// Param N/A
+// Returns N/A
+void displayNetworkPlayMode();
 
-/*Pre-condition: N/A
- *Post-condition: The Network Play Mode was displayed on screen
- *Clean up: N/A
- *Param N/A
- *returns N/A
- */
-void dispNetworkPlayMode()
+// Pre: N/A
+// Post: The prompt for network information was displayed on screen
+// Clean-Up: N/A
+// Param N/A
+// Returns N/A
+void displayNetWorkPlayInput();
 
-/*Pre-condition: N/A
- *Post-condition: The prompt for Network information was displayed on screen
- *Clean up: N/A
- *Param N/A
- *returns N/A
- */
-void dispNetWorkPlayInput()
+// Pre: N/A
+// Post: The Local Play mode was displayed on screen
+// Clean-Up: N/A
+// Param N/A
+// Returns N/A
+void displayLocalPlayMode();
 
-/*Pre-condition: N/A
- *Post-condition: The local Play Mode was displayed on screen
- *Clean up: N/A
- *Param N/A
- *returns N/A
- */
-void dispLocalPlayMode()
-
-/*Pre-condition: N/A
- *Post-condition: The menu for game help was displayed on screen
- *Clean up: N/A
- *Param N/A
- *returns N/A
- */
-void dispInGameHelpMenu()
-
-
-
-
+// Pre: N/A
+// Post: The menu for in-game help was displayed on screen
+// Clean-Up: N/A
+// Param N/A
+// Returns N/A
+void displayInGameHelpMenu();

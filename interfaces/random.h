@@ -1,14 +1,14 @@
-// Generate a randomized double value between the given parameters
-// Pre: randomInit has been called, and min < max
-// Post: N/A
-// Returns: a double in the set [min, max]
-double getRandomDouble(double min, double max);
-
 // Generate a randomized integer value between the given parameters
 // Pre: randomInit has been called once, and min < max
 // Post: N/A
 // Returns: an integer in the set [min,max]
 int getRandomInt(int min, int max);
+
+// Generate a randomized double value between the given parameters
+// Pre: randomInit has been called, and min < max
+// Post: N/A
+// Returns: a double in the set [min, max]
+double getRandomDouble(double min, double max);
 
 // Generate a random double value as a percent of 1
 // Pre: randomInit has been called once

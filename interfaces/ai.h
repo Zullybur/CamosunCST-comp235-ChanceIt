@@ -1,7 +1,8 @@
-/** Sets turn values to 0, and returns the score after it's completed
+/** 
+* Determines the computer player's decision to roll or stop.
 * Pre: N/A
-* Post: turn count is updated
-* @Return an int of the turn score
+* Post: N/A
+* @Return 0 for stop, or 1 for roll again
 * @Cleanup N/A
 */
-int AIturn()
+unsigned getDecision(unsigned round, unsigned turnNumber, unsigned turnScore, unsigned p1Score, unsigned p2Score, unsigned probability);
