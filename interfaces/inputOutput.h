@@ -14,7 +14,7 @@ void dispGamePlay(char *name, int userSelection);
  *Param N/A
  *returns N/A
  */
-void dispHighScore()
+void dispHighScore();
 
 /*Pre-condition: N/A
  *Post-condition: The main menu was displayed on the screen
@@ -22,7 +22,7 @@ void dispHighScore()
  *Param N/A
  *returns N/A
  */
-void dispMainMenu()
+void dispMainMenu();
 
 /*Pre-condition: N/A
  *Post-condition: The help menu was displayed on the screen
@@ -30,31 +30,33 @@ void dispMainMenu()
  *Param N/A
  *returns N/A
  */
-void dispHelpMenu()
+void dispHelpMenu();
 
 /*Pre-condition: N/A
  *Post-condition: The Network Play Mode was displayed on screen
  *Clean up: N/A
- *Param N/A
+ *Param name player's name for screen display
+ *Param name player's score 
  *returns N/A
  */
-void dispNetworkPlayMode()
+void dispNetworkPlayMode(char *name, unsigned score)
 
 /*Pre-condition: N/A
  *Post-condition: The prompt for Network information was displayed on screen
  *Clean up: N/A
  *Param N/A
- *returns N/A
+ *returns IPaddress and port to connect to the network protocol 
  */
-void dispNetWorkPlayInput()
+char dispNetWorkPlayInput()
 
 /*Pre-condition: N/A
- *Post-condition: The local Play Mode was displayed on screen
+ *Post-condition: The Local Play Mode was displayed on screen
  *Clean up: N/A
- *Param N/A
+ *Param name player's name is displayed during play mode
+ *Param score score is displayed on screen
  *returns N/A
  */
-void dispLocalPlayMode()
+void dispLocalPlayMode(char* name, unsigned score)
 
 /*Pre-condition: N/A
  *Post-condition: The menu for game help was displayed on screen
@@ -63,7 +65,3 @@ void dispLocalPlayMode()
  *returns N/A
  */
 void dispInGameHelpMenu()
-
-
-
-
