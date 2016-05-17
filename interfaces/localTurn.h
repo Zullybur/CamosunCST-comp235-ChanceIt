@@ -1,8 +1,6 @@
-/** Sets turn values to 0, and returns the score after it's completed
-* Pre: N/A
-* Post: turn count is updated
-* @Return an int of the turn score
-* @Cleanup N/A
-*/
-int localTurn()
-
+// Completes a single full turn and calculates the score.
+// Pre: N/A
+// Post: N/A
+// Clean-Up: N/A
+// Returns: the final turn score
+unsigned localTurn();
