@@ -28,17 +28,20 @@ do {
   // input loop
   do {
     response = getChar();
-    
+
     switch (response) {
+      // keep playing
+      case "s":
+        break;
       // forfeit the game
-      case response == "f":
+      case "f":
         return turnScore;
       // get the probability
-      case response == "p":
+      case "p":
         getProbability();
         break;
       // get help/commands
-      case response == "h":
+      case "h":
         getHelp();
         break;
       // undesired input, ask again
