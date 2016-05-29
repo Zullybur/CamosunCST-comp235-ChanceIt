@@ -1,4 +1,7 @@
 #include "../interfaces/computerPlayer.h"
+#define RISK_REDUCTION_LIMITER 1.5
+#define RISK_MULTIPLIER 2
+#define MAX_ROLL_THRESHOLD 10
 
 // Determines the computer player's decision to roll or stop.
 // Pre: N/A
@@ -13,21 +16,28 @@ unsigned getDecision(unsigned roundNumber, unsigned turnNumber,
     -- 
     -- is turn number the number of rolls this turn
     ******************/
-
-    // risk threshold
-    //      -- score gap
-    // related to the probability
-    // return 0 or 1
-
     int scoreGap = p1Score - p2Score + turnScore;
 
-    int riskThreshold  = (int)(abs(1 - probability) * 10);
+
     /**** e.g. ****
     probability is .735245r345
-    threshold = 3
+    threshold = (1-.735...) * 10 = 3
     ***************/
-    if ((turnNumber < riskThreshold) ||
-        ((scoreGap < 0) && (turnNumber < riskThreshold * 2)))
+    int riskThreshold  = (int)((1 - probability) * MAX_ROLL_THRESHOLD);
+
+    double riskReductionMultiplier = (roundNumber > 9) ? 1.5 : 1
+    
+    // Take more risk if we are losing
+    if (scoreGap < 0)
+    {
+        riskThreshold *= RISK_MULTIPLIER;
+    // Take less risk if we are ahead significantly
+    } else if (scoreGap > p1Score * RISK_REDUCTION_LIMITER) {
+        riskThreshold /= (RISK_MULTIPLIER * riskReductionMultiplier);
+    }
+
+    // Return the roll recision based on risk threshold vs how many rolls have been made
+    if (turnNumber < riskThreshold)
     {
         return 1;
     }
