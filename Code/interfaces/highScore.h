@@ -2,7 +2,7 @@
 // Post: The highscore was displayed on screen
 // Clean up: N/A
 // Param N/A
-// returns N/A
+// Returns N/A
  void getHighScore();
 
 // Pre: a file for highscore exists
