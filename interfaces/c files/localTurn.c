@@ -1,3 +1,7 @@
+#include "localTurn.h";
+#include "probability.h";
+#include "inputOutput.h";
+
 // values passed via game module
 char* name
 char* opponentName
@@ -11,9 +15,8 @@ unsigned die1;
 unsigned die2;
 char response;
 
-// while we are not going to (f)orefit
-if (response != "f") {
-  // initial roll
+do {
+  // roll and calcualte
   die1 = roll();
   die2 = roll();
   firstRoll = die1 + die2;
@@ -22,23 +25,28 @@ if (response != "f") {
   displayTurn(name, firstRoll, roundCoutner, roundScore, die1, die2, turnScore,
               opponentName, opponentScore);
   
-  response = getChar();
-  roundCoutner++;
-
-  // consecutive rolls while we're not (s)topping
-  while (response != "s") {
-    die1 = roll();
-    die2 = roll();
-    roundScore = die1 + die2;
-    turnScore += roundScore;
-    
-    displayTurn(name, firstRoll, roundCoutner, roundScore, die1, die2, turnScore,
-                opponentName, opponentScore);
-    
+  // input loop
+  do {
     response = getChar();
-    roundCoutner++;
-  }
-}
+    
+    switch (response) {
+      // forfeit the game
+      case response == "f":
+        return turnScore;
+      // get the probability
+      case response == "p":
+        getProbability();
+        break;
+      // get help/commands
+      case response == "h":
+        getHelp();
+        break;
+      // undesired input, ask again
+      default:
+        continue;
+    }
+  } while (response != "s")
 
-// finish turn
-return turnScore;
+  // increment and continue if applicable
+  roundCoutner++;
+} while (response == "s");
