@@ -15,4 +15,4 @@ Game Help
                 return to the main menu
 
 ------------------------------------
-Press Enter to return to the Main Menu.
+Press Enter to return to the Game.
