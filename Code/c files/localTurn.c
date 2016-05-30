@@ -6,12 +6,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-unsigned localTurn(unsigned player, char* playerName, char* opponentName,
+int localTurn(unsigned player, char* playerName, char* opponentName,
                   unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
-
-  // values passed via game module
-  unsigned playerGrandScore = p1Score;
-  unsigned opponentGrandScore = p2Score;
 
   // local turn variables
   unsigned roundCounter = 1;
@@ -39,20 +35,20 @@ unsigned localTurn(unsigned player, char* playerName, char* opponentName,
       return turnScore;
     }
 
-    displayTurn(playerName, playerGrandScore, firstRoll, roundCounter, roundScore,
-                die1, die2, turnScore, opponentName, opponentGrandScore);
+    displayTurn(playerName, p1Score, firstRoll, roundCounter, roundScore,
+                die1, die2, turnScore, opponentName, p2Score);
     
     // input loop
     do {
-      if (player == 0) {
+      if (player == 1) {
         response = getInput();
       }
-      else if (player == 1) {
+      else if (player == 0) {
         prob = displayProbability();
         response = getDecision(roundCounter, turnCounter, 
                               turnScore, p1Score, p2Score, prob);
       } else {
-        return 0;
+        return -2;
       }
 
       switch (response) {
@@ -61,8 +57,7 @@ unsigned localTurn(unsigned player, char* playerName, char* opponentName,
           break;
         // forfeit the game
         case 'f':
-          displayGameOver();
-          return turnScore;
+          return -1;
         // get the probability
         case 'p':
           prob = getProbability(firstRoll);
