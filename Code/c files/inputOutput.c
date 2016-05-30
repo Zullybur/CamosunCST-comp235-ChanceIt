@@ -5,27 +5,26 @@
 #include "inputOutput.h"
 
 
-#define PRINT_LIM1		18
+#define PRINT_LIM1	18
 #define MAX_NAME_LEN 	16
 #define MAX_LINE_LEN 	50
 //#define MAX_RESP_LEN 	1
-#define MAX_IP_LEN 		45
+#define MAX_IP_LEN 	45
 #define MAX_PORT_LEN 	5
 
-void displayLocalPlayGetName(char* player1, char* player2, unsigned twoPlayer)
+void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 {
 	char strName1[MAX_NAME_LEN], strName2[MAX_NAME_LEN];
 	unsigned i;
 	
 	printf("Local Play Mode \n -----------------------------\n");
 	printf("Player 1 - enter name: \n");
-	fgets(strName1,MAX_NAME_LEN,stdin);
-
+	scanf("%s", strName1);
  
-	if (twoPlayer)
+	if (opponentHuman)
 	{
 	printf("Player 2 - enter name: \n");
-	fgets(strName2,MAX_NAME_LEN,stdin);
+	scanf("%s",strName2);
 	printf("\n -----------------------------\n");
 	}
 	
@@ -36,7 +35,7 @@ void displayLocalPlayGetName(char* player1, char* player2, unsigned twoPlayer)
 	
 	//NULL terminate first array
 	
-	if(twoPlayer)
+	if(opponentHuman)
 	{
 		for(i = 0 ; i < strlen(strName1); i++)
 		{
@@ -70,8 +69,8 @@ void displayRules()
 		fgets(buff,MAX_LINE_LEN,(FILE*)fp);
 		printf("%s", buff);
 	}
-		
-	fgets(response,MAX_RESP_LEN,stdin);
+	
+	response = getch();	
 	system("clear");
 	
 	//if (response == "\n")
