@@ -62,7 +62,7 @@ unsigned displayLocalSelectOpponent();
 // Param: player2 is a pointer to player 2's name
 // Param: For twoPlayer param, pass 0 for singleplayer 
 // Returns: N/A
-void displayLocalPlayGetName(char* player1, char* player2,unsigned numPlayers);
+void displayLocalPlayGetName(char* player1, char* player2, unsigned numPlayers);
 
 // Pre: N/A
 // Post: The menu for in-game help was displayed on screen
