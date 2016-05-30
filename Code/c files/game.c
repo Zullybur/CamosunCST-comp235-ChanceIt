@@ -75,6 +75,7 @@ static void playLocal()
         return;
     }
     
+    
         // Request IO to display play mode select
             // If M, save state Multi-player
             // If S, save state Multi-player

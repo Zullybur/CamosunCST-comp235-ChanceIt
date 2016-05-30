@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <getCon.h>
+#include "getCon.h"
 #include "inputOutput.h"
+
+
 #define PRINT_LIM1		18
-#define MAX_NAME_LEN 	8
+#define MAX_NAME_LEN 	16
 #define MAX_LINE_LEN 	50
-#define MAX_RESP_LEN 	1
+//#define MAX_RESP_LEN 	1
 #define MAX_IP_LEN 		45
 #define MAX_PORT_LEN 	5
 
@@ -61,7 +63,7 @@ void displayRules()
 	}
 
 	char response;
-	getch_(response);
+	response = getch();
 		
 	while(feof(fp) == 0)
 	{
@@ -69,7 +71,7 @@ void displayRules()
 		printf("%s", buff);
 	}
 		
-	getch_(response);
+	fgets(response,MAX_RESP_LEN,stdin);
 	system("clear");
 	
 	//if (response == "\n")
@@ -104,13 +106,11 @@ unsigned displayMainMenu()
 	while (1 == 1)
 	{
 		char response;
-		getch_(response);
+		response = getch();
 		unsigned retVal = 0;
 
 		//POSSIBLE ERROR WITH VALIDATION
-		char respVal = response;
-		
-		switch(respVal){
+		switch(response){
 			case 'L':
 			case 'l':
 				system("clear");
@@ -160,14 +160,12 @@ unsigned displayLocalSelectOpponent()
 	
 	while(1 == 1)
 	{
-		char response[MAX_RESP_LEN];
-		fgets(response,MAX_RESP_LEN,stdin);
+		char response;
+		response = getch();
 		unsigned retVal = 0;
 
 		//POSSIBLE ERROR WITH VALIDATION
-		char respVal = response[0];
-		
-		switch(respVal){
+		switch(response){
 			case 'S':
 			case 's':
 				system("clear");
@@ -212,13 +210,10 @@ unsigned displayNetworkSelectMode()
 	while (1 == 1)
 	{
 		char response;
-		getch_(response);
+		response = getch();
 		unsigned retVal;
-
-		//POSSIBLE ERROR WITH VALIDATION
-		char respVal = response;
 		
-		switch(respVal){
+		switch(response){
 			case 'H':
 			case 'h':
 				system("clear");
@@ -262,7 +257,7 @@ void displayInGameHelpMenu() //Work in progress
 	}	
 	
 	char response;
-	getch_(response);
+	response = getch();
 	fclose(fp);
 }
 
@@ -312,14 +307,14 @@ unsigned displayTurn(char* name, unsigned firstRoll, unsigned round, unsigned ro
 	while (1 == 1)
 	{
 		char response;
-		getch_(response);
+		response = getch();
 		unsigned retVal;
 		
 		//POSSIBLE ERROR WITH VALIDATION
 		//charAt[0] then cast to an integer to use in the switch statement
-		char respVal = response;
+		//char respVal = response;
 		
-		switch(respVal){
+		switch(response){
 			case 'R':
 			case 'r':
 				system("clear");
