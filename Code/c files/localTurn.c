@@ -39,8 +39,8 @@ unsigned localTurn(unsigned player, char* playerName, char* opponentName,
       return turnScore;
     }
 
-    displayTurn(playerName, firstRoll, roundCounter, roundScore, die1, die2, turnScore,
-                opponentName, opponentGrandScore);
+    displayTurn(playerName, playerGrandScore, firstRoll, roundCounter, roundScore,
+                die1, die2, turnScore, opponentName, opponentGrandScore);
     
     // input loop
     do {
