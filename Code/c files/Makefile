@@ -1,2 +1,2 @@
-game.o:   game.c inputOutput.h localTurn.h
-     gcc -c game.c
+game.o: game.c ../interfaces/inputOutput.h ../interfaces/localTurn.h
+	gcc -c game.c
