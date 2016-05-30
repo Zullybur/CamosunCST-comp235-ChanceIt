@@ -1,4 +1,4 @@
-#include "probability.h"
+#include "../interfaces/probability.h"
 
 double getProbability(int sum){
 	double result = 0;
