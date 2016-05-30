@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 int localTurn(unsigned player, char* playerName, char* opponentName,
-                  unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
+              unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
 
   // local turn variables
   unsigned roundCounter = 1;
@@ -47,7 +47,7 @@ int localTurn(unsigned player, char* playerName, char* opponentName,
       // if player is human, display roll screen
       else if (player == 1) {
         response = displayTurn(playerName, p1Score, firstRoll, roundCounter, roundScore,
-                die1, die2, turnScore, opponentName, p2Score);
+                              die1, die2, turnScore, opponentName, p2Score);
       } else {
         return -2;
       }
