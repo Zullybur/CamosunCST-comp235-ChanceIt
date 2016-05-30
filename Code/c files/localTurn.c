@@ -40,10 +40,10 @@ int localTurn(unsigned player, char* playerName, char* opponentName,
     
     // input loop
     do {
-      if (player == 0) {
+      if (player == 1) {
         response = getInput();
       }
-      else if (player == 1) {
+      else if (player == 0) {
         prob = displayProbability();
         response = getDecision(roundCounter, turnCounter, 
                               turnScore, p1Score, p2Score, prob);
