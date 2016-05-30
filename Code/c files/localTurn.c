@@ -16,14 +16,14 @@ int localTurn(unsigned player, char* playerName, char* opponentName,
   unsigned turnScore;
   unsigned die1;
   unsigned die2;
-  char response;
+  unsigned response;
   double prob;
 
   do {
     // roll and calcualte
     die1 = rollDie();
     die2 = rollDie();
-    if (roundCounter == 1) {
+    if (roundCounter == 1 && turnCounter == 1) {
       firstRoll = die1 + die2;
     }
     roundScore = die1 + die2;
@@ -35,36 +35,37 @@ int localTurn(unsigned player, char* playerName, char* opponentName,
       return turnScore;
     }
 
-    displayTurn(playerName, p1Score, firstRoll, roundCounter, roundScore,
-                die1, die2, turnScore, opponentName, p2Score);
-    
-    // input loop
+    // display/input loop
     do {
-      if (player == 1) {
-        response = getInput();
-      }
-      else if (player == 0) {
+      // if player is AI, just assign values
+      if (player == 0) {
         prob = displayProbability();
         response = getDecision(roundCounter, turnCounter, 
                               turnScore, p1Score, p2Score, prob);
+        break;
+      } 
+      // if player is human, display roll screen
+      else if (player == 1) {
+        response = displayTurn(playerName, p1Score, firstRoll, roundCounter, roundScore,
+                die1, die2, turnScore, opponentName, p2Score);
       } else {
         return -2;
       }
 
       switch (response) {
         // keep playing
-        case 'r':
+        case 1:
           break;
         // forfeit the game
-        case 'f':
+        case 2:
           return -1;
         // get the probability
-        case 'p':
+        case 3:
           prob = getProbability(firstRoll);
           displayProbability(prob);
           break;
         // get help/commands
-        case 'h':
+        case 4:
           displayInGameHelpMenu();
           break;
         // undesired input, ask again
@@ -75,7 +76,7 @@ int localTurn(unsigned player, char* playerName, char* opponentName,
 
     // increment and continue if applicable
     roundCounter++;
-  } while (response == 'r');
+  } while (response == 1);
 
   // finish turn
   return turnScore;
