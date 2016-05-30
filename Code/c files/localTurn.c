@@ -48,7 +48,7 @@ int localTurn(unsigned player, char* playerName, char* opponentName,
         response = getDecision(roundCounter, turnCounter, 
                               turnScore, p1Score, p2Score, prob);
       } else {
-        return 0;
+        return -2;
       }
 
       switch (response) {
