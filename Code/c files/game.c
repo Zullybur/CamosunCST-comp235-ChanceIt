@@ -70,22 +70,11 @@ static void playLocal()
     
     // Play Mode Select
     LocalPlayInput result = (LocalPlayInput)displayLocalSelectOpponent();
-    switch (result)
-        {
-            case PREVIOUS_MENU:
-                return;
-            case SINGLE_PLAYER:
-                playLocal();
-                break;
-            case MULTIPLAYER:
-                playNetwork();
-                break;
-            case EXIT_GAME:
-                sys.exit(0);
-            default:
-                printf("Sanity check failed - game:gameInit:displayMainMenu:switch\n");
-                sys.exit(1);
-        }
+    if (result == PREVIOUS_MENU)
+    {
+        return;
+    }
+    
         // Request IO to display play mode select
             // If M, save state Multi-player
             // If S, save state Multi-player

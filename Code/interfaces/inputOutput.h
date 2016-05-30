@@ -28,7 +28,7 @@ void displayRules();
 void displayHighScore();
 
 // Pre: N/A
-// Post: The main menu was displayed on the screen and the user selected a game		type
+// Post: The main menu was displayed on the screen and the user selected a game	type
 // Clean-Up: N/A
 // Param N/A
 // Returns: 1 for local play, 2 for network play 
