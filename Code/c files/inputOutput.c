@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <getCon.h>
 #include "inputOutput.h"
 #define PRINT_LIM1		18
 #define MAX_NAME_LEN 	8
 #define MAX_LINE_LEN 	50
 #define MAX_RESP_LEN 	1
-#define MAX_IP_LEN 	45
+#define MAX_IP_LEN 		45
 #define MAX_PORT_LEN 	5
 
 void displayLocalPlayGetName(char* player1, char* player2, unsigned twoPlayer)

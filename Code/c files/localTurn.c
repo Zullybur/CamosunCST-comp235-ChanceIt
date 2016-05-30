@@ -1,15 +1,17 @@
-#include "../localTurn.h"
-#include "../probability.h"
-#include "../inputOutput.h"
-#include "../dice.h"
+#include "../interfaces/localTurn.h"
+#include "../interfaces/probability.h"
+#include "../interfaces/inputOutput.h"
+#include "../interfaces/dice.h"
+#include "../interfaces/computerplayer.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-unsigned localTurn() {
+unsigned localTurn(unsigned player, char* playerName, char* opponentName,
+                  unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
+
   // values passed via game module
-  char* name;
-  char* opponentName;
-  unsigned opponentScore;
+  unsigned playerGrandScore = p1Score;
+  unsigned opponentGrandScore = p2Score;
 
   // local turn variables
   unsigned roundCounter = 1;
@@ -19,6 +21,7 @@ unsigned localTurn() {
   unsigned die1;
   unsigned die2;
   char response;
+  double prob;
 
   do {
     // roll and calcualte
@@ -36,16 +39,25 @@ unsigned localTurn() {
       return turnScore;
     }
 
-    displayTurn(name, firstRoll, roundCounter, roundScore, die1, die2, turnScore,
-                opponentName, opponentScore);
+    displayTurn(playerName, playerGrandScore, firstRoll, roundCounter, roundScore,
+                die1, die2, turnScore, opponentName, opponentGrandScore);
     
     // input loop
     do {
-      response = getInput();
+      if (player == 0) {
+        response = getInput();
+      }
+      else if (player == 1) {
+        prob = displayProbability();
+        response = getDecision(roundCounter, turnCounter, 
+                              turnScore, p1Score, p2Score, prob);
+      } else {
+        return 0;
+      }
 
       switch (response) {
         // keep playing
-        case 's':
+        case 'r':
           break;
         // forfeit the game
         case 'f':
@@ -53,7 +65,8 @@ unsigned localTurn() {
           return turnScore;
         // get the probability
         case 'p':
-          getProbability(firstRoll);
+          prob = getProbability(firstRoll);
+          displayProbability(prob);
           break;
         // get help/commands
         case 'h':
@@ -67,7 +80,7 @@ unsigned localTurn() {
 
     // increment and continue if applicable
     roundCounter++;
-  } while (response == 's');
+  } while (response == 'r');
 
   // finish turn
   return turnScore;
