@@ -2,59 +2,34 @@
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/localTurn.h"
 
-enum typedef
-    {
-        UNASSIGNED,
-        PLAY_LOCAL,
-        PLAY_NETWORK,
-        SHOW_RULES,
-        HIGH_SCORES,
-        EXIT_GAME
-    } MainMenuInput;
+#define OPPONENT_ERROR "The selected opponent type was invalid."
+#define MAX_NAME_LENGTH 16
+#define ROUNDS 20
 
-enum typedef
-    {
-        PREVIOUS_MENU,
-        SINGLE_PLAYER,
-        MULTIPLAYER
-    } LocalPlayInput;
 // Initiate a new game of Chance-It
 // Pre: randomInit() has been called once
 // Post: N/A
 // Clean-Up: N/A
 // Param: player is a pointer to an unsigned variable
 // Return: the winning score of the game
-unsigned gameInit()
+void gameInit(_Bool opponentLocal, _Bool opponentHuman)
 {
-    // Main Menu Game Loop
-    while (true)
+    // Prepare persistent arrays for player names
+    char player1[MAX_NAME_LENGTH];
+    char player2[MAX_NAME_LENGTH];
+    // Run local vs network game
+    switch (opponentLocal)
     {
-        // Request IO to display main menu
-        MainMenuInput result = (MainMenuInput)displayMainMenu();
-        switch (result)
-        {
-            case PLAY_LOCAL:
-                playLocal();
-                break;
-            case PLAY_NETWORK:
-                playNetwork();
-                break;
-            case SHOW_RULES:
-                displayRules();
-                break;
-            case HIGH_SCORES:
-                displayHighScore();
-                break;
-            case EXIT_GAME:
-                sys.exit(0);
-            default:
-                printf("Sanity check failed - game:gameInit:displayMainMenu:switch\n");
-                sys.exit(1);
-        }
-
-        
-
-        // While turns < 20, run turns
+        case 0:
+            playNetwork();
+            break;
+        case 1:
+            playLocal(opponentHuman, player1, player2);
+            break;
+        case default:
+            printf("%s\n", OPPONENT_ERROR);
+    }
+    // While turns < 20, run turns
             // If F, break
 
         // Display win/lose page
@@ -65,21 +40,21 @@ unsigned gameInit()
 
 }
 
-static void playLocal()
+static void playLocal(_Bool opponentHuman, char* player1, char* player2)
 {
-    
-    // Play Mode Select
-    LocalPlayInput result = (LocalPlayInput)displayLocalSelectOpponent();
-    if (result == PREVIOUS_MENU)
+    unsigned p1Score = 0;
+    unsigned p2Score = 0;
+
+    // Get Player Names
+    void displayLocalPlayGetName(player1, player2, opponentHuman);
+    // Run <ROUNDS> turns
+    for (unsigned i = 0; i < ROUNDS; i++)
     {
-        return;
+        // Call first player's turn
+        localTurn()
+        // Call second player's turn
     }
     
-    
-        // Request IO to display play mode select
-            // If M, save state Multi-player
-            // If S, save state Multi-player
-            // Get player names
 }
 
 static void playNetwork()
