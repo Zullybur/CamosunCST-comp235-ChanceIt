@@ -3,7 +3,7 @@
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/localTurn.h"
 
-#define MAX_NAME_LENGTH 16
+#define MAX_NAME_LENGTH 17
 #define ROUNDS 20
 
 static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
@@ -72,6 +72,7 @@ void gameInit(_Bool opponentRemote, _Bool humanFactor)
     // Prepare persistent arrays for player names
     char player1Name[MAX_NAME_LENGTH];
     char player2Name[MAX_NAME_LENGTH];
+
     // Get Player Names
     if(opponentRemote)
     {
