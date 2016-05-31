@@ -23,7 +23,7 @@ void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 	printf("--------------------\n");
 	printf("%s like the noble Kenny Rogers, you knew to fold em' rather than hold em'\n", playerName);
 	printf("Your score for the round is %u.\n\n",score);
-	printf("%s, hopefully you can show a modicum of judgement on your turn.\n");
+	printf("%s, hopefully you can show a modicum of judgement on your turn.\n",opponentName);
 	printf("Press the any key to continue...\n");
 	printf("--------------------\n");
 
@@ -40,7 +40,7 @@ void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
 	printf("--------------------\n");
 	printf("%s like Icarus, your hubris has cost you dearly.\n", playerName);
 	printf("You have re-rolled your first roll:  %u \n\n",firstRoll);
-	printf("Your score for the round is ZERO. Do not pass go, do not collect $200.\n");
+	printf("Your score for the round is ZERO. Do not pass go, do not collect $200.\n\n");
 	printf("It is now %s's turn. Do not repeat the mistakes of your opponent.\n",opponentName);
 	printf("Press any key to continue...\n");
 	printf("--------------------\n");
