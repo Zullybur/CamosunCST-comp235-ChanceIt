@@ -29,5 +29,5 @@ double getProbability(int sum){
 		default: 
 			break;
 	}
-	return result/36;
+	return (result/36*100);
 }
