@@ -296,7 +296,7 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
                               unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer, unsigned turnCounter)
 {
 	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
-    printf("Current Round: %u \n", turnCounter);
+    printf("Current Round: %u/20 \n", turnCounter);
 	printf("Current Roll: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
