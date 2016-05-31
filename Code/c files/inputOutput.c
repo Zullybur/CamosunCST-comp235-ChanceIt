@@ -6,6 +6,7 @@
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/probability.h"
 
+#define FILEPATH	"../../Design Documents/UserManual/"
 #define PRINT_LIM1	18
 #define MAX_NAME_LEN 	16
 #define MAX_LINE_LEN 	50
@@ -52,7 +53,8 @@ void displayRules()
 	FILE *fp;
 	unsigned i = 0;
 	
-	fp = fopen("../Design Documents/UserManual/rules.txt", "r");
+	char fileP[] = FILEPATH "rules.txt";
+	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 
 		
@@ -94,7 +96,8 @@ unsigned displayMainMenu()
 {
 
 	FILE *fp;
-	fp = fopen("../Design Documents/UserManual/UM-SS-MainPage.txt", "r");
+	char fileP[] = FILEPATH "UM-SS-MainPage.txt";
+	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 	
 	while(feof(fp) == 0)
@@ -149,7 +152,8 @@ unsigned displayMainMenu()
 unsigned displayLocalSelectOpponent()
 {
 	FILE *fp;
-	fp = fopen("../Design Documents/UserManual/UM-SS-LocalPlay.txt", "r");
+	char fileP[] = FILEPATH "UM-SS-LocalPlay.txt";
+	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 	
 	while(feof(fp) == 0)
@@ -198,7 +202,8 @@ unsigned displayLocalSelectOpponent()
 unsigned displayNetworkSelectMode()
 {
 	FILE *fp;
-	fp = fopen("../Design Documents/UserManual/UM-SS-NetworkPlay.txt", "r");
+	char fileP[] = FILEPATH "UM-SS-NetworkPlay.txt";
+	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 
 	while(feof(fp) == 0)
@@ -247,7 +252,8 @@ unsigned displayNetworkSelectMode()
 void displayInGameHelpMenu() //Work in progress
 {
 	FILE *fp;
-	fp = fopen("../Design Documents/UserManual/UM-SS-GameHelp.txt", "r");
+	char fileP[] = FILEPATH "UM-SS-GameHelp.txt";
+	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 
 	while(feof(fp) == 0)
