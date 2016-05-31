@@ -137,8 +137,8 @@ unsigned displayMainMenu()
 			case 'r'://DO WE WANNA RETURN A NUMBER VALUE FOR THIS AS WELL?
 				system("clear");
 				fclose(fp);
-				displayRules();
-				break;
+				retVal = 3;
+				return retVal;
 			case 'E':
 			case 'e'://IS THIS THE FUNCTION THAT WILL EXIT THE PROGRAM
 				fclose(fp);
