@@ -346,4 +346,6 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 				printf("Please enter a proper selection: ");
 		}
 	}
+
+	void displayProbability(double )
 }
