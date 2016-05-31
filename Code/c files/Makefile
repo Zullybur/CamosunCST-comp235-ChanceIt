@@ -3,8 +3,8 @@ all: ChanceItSub1
 ChanceItSub1: main.o game.o localTurn.o dice.o probability.o inputOutput.o getCon.o random.o computerPlayer.o
 	    gcc main.o game.o localTurn.o dice.o probability.o inputOutput.o getCon.o random.o computerPlayer.o -o ChanceItSub1
 
-main.o: main.c
-	    gcc -c main.c
+main.o: main.c ../interfaces/inputOutput.h ../interfaces/game.h ../interfaces/random.h
+	    gcc -c main.c 
 
 game.o: game.c ../interfaces/game.h ../interfaces/inputOutput.h ../interfaces/localTurn.h
 		gcc -c game.c

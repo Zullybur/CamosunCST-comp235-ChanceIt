@@ -4,6 +4,6 @@
 #define MAX    6
 
 int rollDie(){
-    int rollNum = getRandomInt(MIN, MAX);
+    int rollNum = getRandom(MIN, MAX);
     return rollNum;
 }
