@@ -36,7 +36,7 @@ unsigned getDecision(unsigned roundNumber, unsigned turnNumber,
         riskThreshold /= (RISK_MULTIPLIER * riskReductionMultiplier);
     }
 
-    // Return the roll recision based on risk threshold vs how many rolls have been made
+    // Return the roll decision based on risk threshold vs how many rolls have been made
     if (turnNumber < riskThreshold)
     {
         return 1;
