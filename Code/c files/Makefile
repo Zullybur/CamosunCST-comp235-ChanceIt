@@ -1,31 +1,31 @@
 all: ChanceItSub1
 
 ChanceItSub1: main.o game.o localTurn.o dice.o probability.o inputOutput.o getCon.o random.o computerPlayer.o
-	    gcc main.o game.o localTurn.o dice.o probability.o inputOutput.o getCon.o random.o computerPlayer.o -o ChanceItSub1
+	    gcc -std=c99 main.o game.o localTurn.o dice.o probability.o inputOutput.o getCon.o random.o computerPlayer.o -o ChanceItSub1
 
 main.o: main.c
-	    gcc -c main.c
+	    gcc -std=c99 -c main.c
 
 game.o: game.c ../interfaces/game.h ../interfaces/inputOutput.h ../interfaces/localTurn.h
-		gcc -c game.c
+		gcc -std=c99 -c game.c
 
 localTurn.o: localTurn.c ../interfaces/localTurn.h ../interfaces/probability.h ../interfaces/inputOutput.h ../interfaces/dice.h ../interfaces/computerPlayer.h
-		gcc -c localTurn.c
+		gcc -std=c99 -c localTurn.c
 
 dice.o: dice.c ../interfaces/dice.h ../interfaces/random.h
-		gcc -c dice.c
+		gcc -std=c99 -c dice.c
 
 probability.o: probability.c ../interfaces/probability.h
-		gcc -c probability.c
+		gcc -std=c99 -c probability.c
 
 inputOutput.o: inputOutput.c ../interfaces/inputOutput.h ../interfaces/getCon.h
-		gcc -c inputOutput.c
+		gcc -std=c99 -c inputOutput.c
 
 getCon.o: getCon.c ../interfaces/getCon.h
-		gcc -c getCon.c
+		gcc -std=c99 -c getCon.c
 
 random.o: random.c ../interfaces/random.h
-		gcc -c random.c
+		gcc -std=c99 -c random.c
 
 computerPlayer.o: computerPlayer.c ../interfaces/computerplayer.h
-		gcc -c computerPlayer.c
+		gcc -std=c99 -c computerPlayer.c
