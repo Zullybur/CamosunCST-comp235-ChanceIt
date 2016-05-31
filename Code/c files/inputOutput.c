@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "getCon.h"
-#include "inputOutput.h"
+#include "../interfaces/inputOutput.h"
 
 
 #define PRINT_LIM1	18
@@ -290,7 +290,7 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
                               unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer)
 {
 	printf("Active Player: %s\n", (activePlayer ? p1Name : p2Name));
-	printf("Current Round: %u \n", round);
+	printf("Current Round: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
 	printf("Round score: %s \n\n", roundScore);
