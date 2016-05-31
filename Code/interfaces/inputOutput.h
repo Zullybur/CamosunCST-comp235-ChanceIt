@@ -10,7 +10,7 @@
 // Param: score displays the player's score
 // Param: opponentScore displays the opponent's score
 // Returns: 1 for roll, 2 for stop, 3 for probability, 4 for help, 0 for forfeit
-unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore, unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer);
+unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore, unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer, unsigned turnCounter);
 
 // Pre: N/A
 // Post: The rules was displayed on the screen

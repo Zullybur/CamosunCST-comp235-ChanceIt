@@ -34,7 +34,9 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             break;
         }
     }
-    printf("TODO: Game over screen\n");
+    printf("%s's final score: %u\n", player1Name, p1Score);
+    printf("%s's final score: %u\n", player2Name, p2Score);
+    printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
 }
 
 static void playNetwork()
