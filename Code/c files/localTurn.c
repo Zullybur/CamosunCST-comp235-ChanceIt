@@ -41,7 +41,7 @@ printf("LOCAL TURN IS HAPPENING\n");
     // display/input loop
     while (1) {
       reRoll = 0;
-		  printf("Local turn Inner while loop\n");
+		  // printf("Local turn Inner while loop\n");
       // if player is AI, just assign values
       if (activePlayer && !humanFactor) {
         probability = getProbability(firstRoll);
