@@ -14,7 +14,7 @@ printf("LOCAL TURN IS HAPPENING\n");
   unsigned rollCounter = 1;
   unsigned firstRoll;
   unsigned roundScore;
-  unsigned turnScore;
+  unsigned turnScore = 0;
   unsigned die1;
   unsigned die2;
   unsigned response;

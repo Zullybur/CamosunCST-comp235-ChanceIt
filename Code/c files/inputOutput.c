@@ -60,7 +60,7 @@ void displayRules()
 	char buff[MAX_LINE_LEN];
 
 		
-	for(i = 0; i < PRINT_LIM1; i++ )
+	for(i = 0; i <= PRINT_LIM1; i++ )
 	{
 		fgets(buff,MAX_LINE_LEN, (FILE*)fp);
 		printf("%s", buff);
@@ -137,8 +137,8 @@ unsigned displayMainMenu()
 			case 'r'://DO WE WANNA RETURN A NUMBER VALUE FOR THIS AS WELL?
 				system("clear");
 				fclose(fp);
-				displayRules();
-				break;
+				retVal = 3;
+				return retVal;
 			case 'E':
 			case 'e'://IS THIS THE FUNCTION THAT WILL EXIT THE PROGRAM
 				fclose(fp);
@@ -302,7 +302,7 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 	printf("Current Round: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
-	printf("Round score: %u \n\n", roundScore);
+	printf("Turn score: %u \n\n", turnScore);
 	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
     printf("%s, score: %u \n", p1Name, p1Score);
     printf("%s, score: %u \n", p2Name, p2Score);
