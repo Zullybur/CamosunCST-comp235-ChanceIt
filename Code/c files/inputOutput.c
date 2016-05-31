@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "getCon.h"
-#include "inputOutput.h"
 
+#include "../interfaces/getCon.h"
+#include "../interfaces/inputOutput.h"
+#include "../interfaces/probability.h"
 
 #define PRINT_LIM1	18
 #define MAX_NAME_LEN 	16
@@ -290,7 +291,7 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
                               unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer)
 {
 	printf("Active Player: %s\n", (activePlayer ? p1Name : p2Name));
-	printf("Current Round: %u \n", round);
+	printf("Current Round: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
 	printf("Round score: %s \n\n", roundScore);
@@ -344,5 +345,12 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 			default: 
 				printf("Please enter a proper selection: ");
 		}
+	}
+
+	void displayProbability(double result){
+		char response;
+		printf("Probablity is :%f\n\n",result);
+		printf("Please press ENTER to go back to Game");
+		response = getch();
 	}
 }
