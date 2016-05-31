@@ -14,7 +14,7 @@
     rolls two six-sided dice and records the sum,
     called their first roll.
 ------------------------------------
-Press Enter to continue reading...
+Press the any key to continue reading...
 
 Chance-It Game Rules
 ------------------------------------
@@ -32,4 +32,4 @@ Chance-It Game Rules
     and their score for that turn is zero;
     otherwise, go to step 5.
 ------------------------------------
-Press Enter to return to the Main Menu 
+Press the any key to return to the Main Menu 
