@@ -41,14 +41,14 @@ printf("LOCAL TURN IS HAPPENING\n");
     while (1) {
 		printf("Local turn Inner while loop\n");
       // if player is AI, just assign values
-      if (humanFactor) {
+      if (activePlayer && !humanFactor) {
         probability = getProbability(firstRoll);
         response = getDecision(rollCounter, turnCounter, 
                               turnScore, p1Score, p2Score, probability);
         break;
       } 
       // if player is human, display roll screen
-      else if (!humanFactor) {
+      else if (humanFactor) {
         response = displayTurn(p1Name, p1Score, firstRoll, rollCounter, roundScore,
                               die1, die2, turnScore, p2Name, p2Score, activePlayer);
       } else {
