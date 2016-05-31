@@ -35,7 +35,7 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 		player1[i] = strName1[i];
 	}
 	
-	player1[i] = "\0";
+	player1[i] = '\0';
 	//NULL terminate first array
 	
 	if(opponentHuman)
@@ -44,7 +44,7 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 		{
 			player2[i] = strName2[i];
 		}
-		player2[i] = "\0";
+		player2[i] = '\0';
 	}
 	//NULL terminate second array
 	
