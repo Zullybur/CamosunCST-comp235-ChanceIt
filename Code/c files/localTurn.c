@@ -66,6 +66,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
         // get the probability
         case 3:
           probability = getProbability(firstRoll);
+		  displayProbability(probability);
           break;
         // get help/commands
         case 4:
