@@ -17,30 +17,58 @@
 
 void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 {
-	char strName1[MAX_NAME_LEN], strName2[MAX_NAME_LEN];
+	char input;
 	unsigned i;
 	
 	printf("Local Play Mode \n -----------------------------\n");
 	printf("Player 1 - enter name: \n");
-	scanf("%16s", strName1);
+	//scanf("%16s", strName1);
 
-	for(i = 0 ; i < strlen(strName1); i++)
-	{
-		player1[i] = strName1[i];
+	for (i = 0; i < MAX_NAME_LEN - 1; i++)
+	{ 
+		input = getc(stdin);
+		if (input == '\n') {
+			// End of input
+			break;
+		}
+		player1[i] = input;
+		
 	}
-
+	if (input != '\n')
+	{
+		char tmp;
+		do {
+			tmp = getc(stdin);
+		} while (tmp != '\n' && tmp != EOF);
+	}
+	
 	player1[i] = NULL_TERM;
  
 	if (opponentHuman)
 	{
 		printf("Player 2 - enter name: \n");
-		scanf("%16s",strName2);
-		printf("\n -----------------------------\n");
-
-		for(i = 0 ; i < strlen(strName2); i++)
-		{
-			player2[i] = strName2[i];
+		//scanf("%16s",strName2);
+		for (i = 0; i < MAX_NAME_LEN - 1; i++)
+		{	
+			
+			input = getc(stdin);
+			if (input == '\n') 
+			{
+				// End of input
+				break;
+			}
+			player1[i] = input;
 		}
+		
+		if (input != '\n')
+		{
+			char tmp;
+			do {
+				tmp = getc(stdin);
+			} while (tmp != '\n' && tmp != EOF);
+		}		
+		
+		printf("\n -----------------------------\n");
 		player2[i] = NULL_TERM;
 	}
 	system("clear");
