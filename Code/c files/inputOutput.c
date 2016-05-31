@@ -16,6 +16,24 @@
 #define MAX_PORT_LEN 	5
 #define NULL_TERM	'\0'
 
+void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
+{
+
+	system("clear");
+	
+	printf("--------------------\n");
+	printf("%s like Icarus, your hubris has cost you dearly.\n", playerName);
+	printf("You have re-rolled your first roll:  %s \n\n",firstRoll);
+	printf("Your score for the round is ZERO. Do not pass go, do not collect 200.\n");
+	printf("It is now %s turn. Do not repeat the mistakes of your opponent.\n",opponentName);
+	printf("Press any key to continue...\n");
+	printf("--------------------\n");
+
+	char response;
+	response = getch();
+
+}
+
 void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 {
 	char input;
@@ -124,6 +142,7 @@ void displayRules()
 
 unsigned displayMainMenu()
 {
+	system("clear");
 
 	FILE *fp;
 	char fileP[] = FILEPATH "UM-SS-MainPage.txt";
