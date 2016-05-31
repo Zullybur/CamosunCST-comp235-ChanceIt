@@ -60,7 +60,7 @@ void displayRules()
 	char buff[MAX_LINE_LEN];
 
 		
-	for(i = 0; i < PRINT_LIM1; i++ )
+	for(i = 0; i <= PRINT_LIM1; i++ )
 	{
 		fgets(buff,MAX_LINE_LEN, (FILE*)fp);
 		printf("%s", buff);
