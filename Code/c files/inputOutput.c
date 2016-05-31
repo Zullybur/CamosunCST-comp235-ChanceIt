@@ -16,6 +16,22 @@
 #define MAX_PORT_LEN 	5
 #define NULL_TERM	'\0'
 
+void displayStopTurn(char* playerName, unsigned score, char* opponentName)
+{
+	system("clear");
+
+	printf("--------------------\n");
+	printf("%s like the noble Kenny Rogers, you knew to fold em' rather than hold em'\n", playerName);
+	printf("Your score for the round is %u.\n\n",score);
+	printf("%s, hopefully you can show a modicum of judgement on your turn.\n");
+	printf("Press the any key to continue...\n");
+	printf("--------------------\n");
+
+	char response;
+	response = getch();
+
+}
+
 void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
 {
 
@@ -23,9 +39,9 @@ void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
 	
 	printf("--------------------\n");
 	printf("%s like Icarus, your hubris has cost you dearly.\n", playerName);
-	printf("You have re-rolled your first roll:  %s \n\n",firstRoll);
-	printf("Your score for the round is ZERO. Do not pass go, do not collect 200.\n");
-	printf("It is now %s turn. Do not repeat the mistakes of your opponent.\n",opponentName);
+	printf("You have re-rolled your first roll:  %u \n\n",firstRoll);
+	printf("Your score for the round is ZERO. Do not pass go, do not collect $200.\n");
+	printf("It is now %s's turn. Do not repeat the mistakes of your opponent.\n",opponentName);
 	printf("Press any key to continue...\n");
 	printf("--------------------\n");
 
@@ -36,6 +52,8 @@ void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
 
 void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 {
+
+	system("clear");
 	char input;
 	unsigned i;
 	
@@ -98,6 +116,8 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 
 void displayRules()
 {
+
+	system("clear");
 	FILE *fp;
 	unsigned i = 0;
 	
@@ -200,6 +220,7 @@ unsigned displayMainMenu()
 
 unsigned displayLocalSelectOpponent()
 {
+	system("clear");
 	FILE *fp;
 	char fileP[] = FILEPATH "UM-SS-LocalPlay.txt";
 	fp = fopen(fileP, "r");
@@ -250,6 +271,8 @@ unsigned displayLocalSelectOpponent()
 
 unsigned displayNetworkSelectMode()
 {
+
+	system("clear");
 	FILE *fp;
 	char fileP[] = FILEPATH "UM-SS-NetworkPlay.txt";
 	fp = fopen(fileP, "r");
@@ -300,6 +323,8 @@ unsigned displayNetworkSelectMode()
 
 void displayInGameHelpMenu() //Work in progress
 {
+
+	system("clear");
 	FILE *fp;
 	char fileP[] = FILEPATH "UM-SS-GameHelp.txt";
 	fp = fopen(fileP, "r");
@@ -318,6 +343,8 @@ void displayInGameHelpMenu() //Work in progress
 
 void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 {
+
+	system("clear");
 	
 	char strPort[5];
 	char *strIP = (char*)calloc(MAX_IP_LEN, sizeof(char));
@@ -345,15 +372,16 @@ void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore,
                               unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer, unsigned turnCounter)
 {
+	system("clear");
 	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
-    printf("Current Round: %u/20 \n", turnCounter);
+    	printf("Current Round: %u/20 \n", turnCounter);
 	printf("Current Roll: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
 	printf("Turn score: %u \n\n", turnScore);
 	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
-    printf("%s, score: %u \n", p1Name, p1Score);
-    printf("%s, score: %u \n", p2Name, p2Score);
+  	printf("%s, score: %u \n", p1Name, p1Score);
+    	printf("%s, score: %u \n", p2Name, p2Score);
 	printf("-----------------------------\n");
 	
 	printf("(R)oll \n");
@@ -405,8 +433,10 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 }
 
 void displayProbability(double result){
+	system("clear");
+
 	char response;
 	printf("Probablity is :%f\n\n",result);
-	printf("Please press ENTER to go back to Game");
+	printf("Please press any key to go back to game.\n");
 	response = getch();
 }
