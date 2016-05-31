@@ -13,6 +13,7 @@
 //#define MAX_RESP_LEN 	1
 #define MAX_IP_LEN 	45
 #define MAX_PORT_LEN 	5
+#define NULL_TERM	'\0'
 
 void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 {
@@ -21,32 +22,27 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 	
 	printf("Local Play Mode \n -----------------------------\n");
 	printf("Player 1 - enter name: \n");
-	scanf("%s", strName1);
- 
-	if (opponentHuman)
-	{
-	printf("Player 2 - enter name: \n");
-	scanf("%s",strName2);
-	printf("\n -----------------------------\n");
-	}
-	
+	scanf("%16s", strName1);
+
 	for(i = 0 ; i < strlen(strName1); i++)
 	{
 		player1[i] = strName1[i];
 	}
-	
-	player1[i] = '\0';
-	//NULL terminate first array
-	
-	if(opponentHuman)
+
+	player1[i] = NULL_TERM;
+ 
+	if (opponentHuman)
 	{
+		printf("Player 2 - enter name: \n");
+		scanf("%16s",strName2);
+		printf("\n -----------------------------\n");
+
 		for(i = 0 ; i < strlen(strName2); i++)
 		{
 			player2[i] = strName2[i];
 		}
-		player2[i] = '\0';
+		player2[i] = NULL_TERM;
 	}
-	//NULL terminate second array
 	
 }
 
