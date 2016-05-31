@@ -33,4 +33,3 @@ Chance-It Game Rules
     otherwise, go to step 5.
 ------------------------------------
 Press Enter to return to the Main Menu 
-Or press R to re-read the rules
