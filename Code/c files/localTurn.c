@@ -11,6 +11,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
 printf("LOCAL TURN IS HAPPENING\n");
   // local turn variables
   _Bool activePlayer = turnCounter % 2;
+  _Bool reRoll;
   unsigned rollCounter = 1;
   unsigned firstRoll;
   unsigned roundScore;
@@ -39,13 +40,15 @@ printf("LOCAL TURN IS HAPPENING\n");
 
     // display/input loop
     while (1) {
-		printf("Local turn Inner while loop\n");
+      reRoll = 0;
+		  printf("Local turn Inner while loop\n");
       // if player is AI, just assign values
       if (activePlayer && !humanFactor) {
         probability = getProbability(firstRoll);
+        printf("Got Probability: %f\n", probability);
         response = getDecision(rollCounter, turnCounter, 
                               turnScore, p1Score, p2Score, probability);
-        break;
+        printf("Computer says: %s\n", (response == 1) ? "Roll Again!" : "Stop.");
       } 
       // if player is human, display roll screen
       else {
@@ -60,7 +63,8 @@ printf("LOCAL TURN IS HAPPENING\n");
         // keep playing
         case 1:
           rollCounter++;
-		  printf("Roll counter inc");
+		      printf("Roll counter inc\n");
+          reRoll = 1;
           break;
         // stop your turn
         case 2:
@@ -75,10 +79,10 @@ printf("LOCAL TURN IS HAPPENING\n");
           break;
         // undesired input, ask again
         default:
-          printf("How did you manage to get here?");
+          printf("How did you manage to get here? (sanity check failed)\n");
           return -2;
       }
-	  break;
+      if (reRoll) break;
     }
   }
 }
