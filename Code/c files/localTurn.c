@@ -9,7 +9,7 @@
 int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
               unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
   // local turn variables
-  _Bool activePlayer = turnCounter % 2;
+  _Bool activePlayer = turnCounter % 2;  // False if player 1, True if plyer 2
   _Bool reRoll;
   unsigned rollCounter = 1;
   unsigned firstRoll;
@@ -19,7 +19,6 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
   unsigned die2;
   unsigned response;
   double probability;
-  printf("entering turn:\np1: %s\np2: %s\n", p1Name, p2Name);
 
   while (1) {
     // roll and calcualte
@@ -33,6 +32,11 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
 
     // if you lose by rolling
     if (roundScore == firstRoll && rollCounter > 1) {
+      if (!activePlayer) {
+        displayFailRoll(p1Name, firstRoll, p2Name);
+      } else {
+        displayFailRoll(p2Name, firstRoll, p1Name);
+      }
       turnScore = 0;
       return turnScore;
     }
@@ -63,6 +67,11 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
           break;
         // stop your turn
         case 2:
+          if (!activePlayer) {
+            displayStopTurn(p1Name, turnScore, p2Name);
+          } else {
+            displayStopTurn(p2Name, turnScore, p1Name);
+          }
           return turnScore;
         // get the probability
         case 3:

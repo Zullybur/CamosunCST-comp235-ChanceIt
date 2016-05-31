@@ -23,7 +23,7 @@ void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
 	
 	printf("--------------------\n");
 	printf("%s like Icarus, your hubris has cost you dearly.\n", playerName);
-	printf("You have re-rolled your first roll:  %s \n\n",firstRoll);
+	printf("You have re-rolled your first roll:  %u \n\n",firstRoll);
 	printf("Your score for the round is ZERO. Do not pass go, do not collect 200.\n");
 	printf("It is now %s turn. Do not repeat the mistakes of your opponent.\n",opponentName);
 	printf("Press any key to continue...\n");

@@ -43,7 +43,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
     }
     printf("\nReturning to main menu...\n");
-    sleep(1);
+    sleep(1.5);
     system("clear");
 }
 
