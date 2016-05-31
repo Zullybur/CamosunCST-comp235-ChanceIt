@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "../interfaces/getCon.h"
 #include "../interfaces/inputOutput.h"
@@ -36,6 +37,7 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 	}
 	if (input != '\n')
 	{
+		printf("Clearing...\n");
 		char tmp;
 		do {
 			tmp = getc(stdin);
@@ -57,9 +59,10 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 				// End of input
 				break;
 			}
-			player1[i] = input;
+			player2[i] = input;
+			printf("Input = %c P2 name %s\n",input ,player2);
 		}
-		
+		sleep(10);
 		if (input != '\n')
 		{
 			char tmp;
