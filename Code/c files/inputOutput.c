@@ -302,7 +302,7 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 	printf("Current Round: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
-	printf("Round score: %u \n\n", roundScore);
+	printf("Turn score: %u \n\n", turnScore);
 	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
     printf("%s, score: %u \n", p1Name, p1Score);
     printf("%s, score: %u \n", p2Name, p2Score);
