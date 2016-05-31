@@ -347,5 +347,8 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 		}
 	}
 
-	void displayProbability(double )
+	void displayProbability(double result){
+		printf("Probablity is :%f\n\n",result);
+		printf("Please ENTER a proper selection: ");
+	}
 }
