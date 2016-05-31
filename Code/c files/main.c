@@ -44,8 +44,7 @@ int main(int argc, char** argv){
                 }
                 break;
             case SHOW_RULES:
-                //displayRules();
-                //Done in the displayMainMenu();
+                displayRules();
                 break;
             case HIGH_SCORES:
                 //displayHighScore();

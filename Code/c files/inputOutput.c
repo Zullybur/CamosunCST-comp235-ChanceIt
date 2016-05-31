@@ -321,10 +321,11 @@ void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 
 
 unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore,
-                              unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer)
+                              unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer, unsigned turnCounter)
 {
 	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
-	printf("Current Round: %u \n", rollCounter);
+    printf("Current Round: %u/20 \n", turnCounter);
+	printf("Current Roll: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
 	printf("Turn score: %u \n\n", turnScore);
