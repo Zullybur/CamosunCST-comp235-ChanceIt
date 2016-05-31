@@ -59,7 +59,7 @@ void gameInit(_Bool opponentLocal, _Bool humanFactor)
     displayLocalPlayGetName(player1Name, player2Name, humanFactor);
 
     // Run local vs network game
-    if (opponentLocal)
+    if (!opponentLocal)
     {
         playLocal(humanFactor, player1Name, player2Name);
     } else {
