@@ -19,6 +19,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
   unsigned die2;
   unsigned response;
   double probability;
+  printf("entering turn:\np1: %s\np2: %s\n", p1Name, p2Name);
 
   while (1) {
     // roll and calcualte
@@ -66,7 +67,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
         // get the probability
         case 3:
           probability = getProbability(firstRoll);
-		  displayProbability(probability);
+		      displayProbability(probability);
           break;
         // get help/commands
         case 4:

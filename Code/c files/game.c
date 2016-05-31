@@ -43,7 +43,8 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
     }
     printf("\nReturning to main menu...\n");
-    sleep(2);
+    sleep(1);
+    system("clear");
 }
 
 static void playNetwork()
@@ -51,19 +52,32 @@ static void playNetwork()
     printf("Network Play has not been implemented.\n");
 }
 
+static void getName(char* name, _Bool isNetwork)
+{
+    if (isNetwork)
+    {
+        name[0] = 'N'; name[1] = 'e'; name[2] = 't'; name[3] = 'w';
+        name[4] = 'o'; name[5] = 'r'; name[6] = 'k'; name[7] = ' ';
+        name[8] = 'P'; name[9] = 'l'; name[10] = 'a'; name[11] = 'y';
+        name[12] = 'e'; name[13] = 'r'; name[14] = '\0';
+    } else {
+        name[0] = 'C'; name[1] = 'o'; name[2] = 'm'; name[3] = 'p';
+        name[4] = 'u'; name[5] = 't'; name[6] = 'e'; name[7] = 'r';
+        name[8] = ' '; name[9] = 'P'; name[10] = 'l'; name[11] = 'a';
+        name[12] = 'y'; name[13] = 'e'; name[14] = 'r'; name[15] = '\0';
+    }
+}
 void gameInit(_Bool opponentRemote, _Bool humanFactor)
 {
     // Prepare persistent arrays for player names
     char player1Name[MAX_NAME_LENGTH];
-    char* player2Name;
+    char player2Name[MAX_NAME_LENGTH];
     // Get Player Names
     if(opponentRemote)
     {
-        player2Name = "Network Player";
+        getName(player2Name, 1);
     } else if (!humanFactor) {
-        player2Name = "Computer AI";
-    } else {
-        player2Name[MAX_NAME_LENGTH];
+        getName(player2Name, 0);
     }
     displayLocalPlayGetName(player1Name, player2Name, humanFactor);
 
