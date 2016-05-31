@@ -43,6 +43,7 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 		}
 		player2[i] = NULL_TERM;
 	}
+	system("clear");
 	
 }
 
