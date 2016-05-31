@@ -25,7 +25,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         }
 		printf("%d\n", i);
         // Call second player's turn
-        tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
+        tmpResult = localTurn(!humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
         if (tmpResult >= 0)
         {
             p2Score += tmpResult;
@@ -42,13 +42,13 @@ static void playNetwork()
     printf("Network Play has not been implemented.\n");
 }
 
-void gameInit(_Bool opponentLocal, _Bool humanFactor)
+void gameInit(_Bool opponentRemote, _Bool humanFactor)
 {
     // Prepare persistent arrays for player names
     char player1Name[MAX_NAME_LENGTH];
     char player2Name[MAX_NAME_LENGTH];
     // Get Player Names
-    if(!opponentLocal)
+    if(opponentRemote)
     {
         char player2Name[] = "Network Player";
     } else if (!humanFactor) {
@@ -59,7 +59,7 @@ void gameInit(_Bool opponentLocal, _Bool humanFactor)
     displayLocalPlayGetName(player1Name, player2Name, humanFactor);
 
     // Run local vs network game
-    if (!opponentLocal)
+    if (!opponentRemote)
     {
         playLocal(humanFactor, player1Name, player2Name);
     } else {
