@@ -5,27 +5,26 @@
 #include "inputOutput.h"
 
 
-#define PRINT_LIM1		18
+#define PRINT_LIM1	18
 #define MAX_NAME_LEN 	16
 #define MAX_LINE_LEN 	50
 //#define MAX_RESP_LEN 	1
-#define MAX_IP_LEN 		45
+#define MAX_IP_LEN 	45
 #define MAX_PORT_LEN 	5
 
-void displayLocalPlayGetName(char* player1, char* player2, unsigned twoPlayer)
+void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 {
 	char strName1[MAX_NAME_LEN], strName2[MAX_NAME_LEN];
 	unsigned i;
 	
 	printf("Local Play Mode \n -----------------------------\n");
 	printf("Player 1 - enter name: \n");
-	fgets(strName1,MAX_NAME_LEN,stdin);
-
+	scanf("%s", strName1);
  
-	if (twoPlayer)
+	if (opponentHuman)
 	{
 	printf("Player 2 - enter name: \n");
-	fgets(strName2,MAX_NAME_LEN,stdin);
+	scanf("%s",strName2);
 	printf("\n -----------------------------\n");
 	}
 	
@@ -36,7 +35,7 @@ void displayLocalPlayGetName(char* player1, char* player2, unsigned twoPlayer)
 	
 	//NULL terminate first array
 	
-	if(twoPlayer)
+	if(opponentHuman)
 	{
 		for(i = 0 ; i < strlen(strName1); i++)
 		{
@@ -70,8 +69,8 @@ void displayRules()
 		fgets(buff,MAX_LINE_LEN,(FILE*)fp);
 		printf("%s", buff);
 	}
-		
-	fgets(response,MAX_RESP_LEN,stdin);
+	
+	response = getch();	
 	system("clear");
 	
 	//if (response == "\n")
@@ -103,7 +102,7 @@ unsigned displayMainMenu()
 		printf("%s",buff);
 	}	
 	
-	while (1 == 1)
+	while (1)
 	{
 		char response;
 		response = getch();
@@ -158,7 +157,7 @@ unsigned displayLocalSelectOpponent()
 		printf("%s",buff);
 	}	
 	
-	while(1 == 1)
+	while(1)
 	{
 		char response;
 		response = getch();
@@ -207,7 +206,7 @@ unsigned displayNetworkSelectMode()
 		printf("%s",buff);
 	}	
 	
-	while (1 == 1)
+	while (1)
 	{
 		char response;
 		response = getch();
@@ -286,16 +285,18 @@ void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 	
 }
 
-unsigned displayTurn(char* name, unsigned firstRoll, unsigned round, unsigned roundScore, unsigned die1, unsigned die2, unsigned gameScore, unsigned opponentScore)
-{
 
+unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore,
+                              unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer)
+{
+	printf("Active Player: %s\n", (activePlayer ? p1Name : p2Name));
 	printf("Current Round: %u \n", round);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
 	printf("Round score: %s \n\n", roundScore);
-	printf("Last roll: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
-	printf("Your score: %u \n", gameScore);
-	printf("Opponent score: %u \n", opponentScore);
+	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
+	printf("%s",p1Name," score: %u \n", p1Score);
+	printf("%s",p2Name," score: %u \n", p2Score);
 	printf("-----------------------------\n");
 	
 	printf("(R)oll \n");
@@ -304,7 +305,7 @@ unsigned displayTurn(char* name, unsigned firstRoll, unsigned round, unsigned ro
 	printf("(H)elp \n");
 	printf("(F)orfeit \n");
 	
-	while (1 == 1)
+	while (1)
 	{
 		char response;
 		response = getch();
