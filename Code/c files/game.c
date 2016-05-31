@@ -23,7 +23,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             printf("Player 1 Forfeits TODO: Game over screen\n");
             break;
         }
-
+		printf("%d\n", i);
         // Call second player's turn
         tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
         if (tmpResult >= 0)

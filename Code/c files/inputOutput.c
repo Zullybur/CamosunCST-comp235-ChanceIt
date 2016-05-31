@@ -8,7 +8,7 @@
 
 #define FILEPATH	"../../Design Documents/UserManual/"
 #define PRINT_LIM1	18
-#define MAX_NAME_LEN 	16
+#define MAX_NAME_LEN 	17
 #define MAX_LINE_LEN 	50
 //#define MAX_RESP_LEN 	1
 #define MAX_IP_LEN 	45
@@ -35,14 +35,16 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 		player1[i] = strName1[i];
 	}
 	
+	player1[i] = "\0";
 	//NULL terminate first array
 	
 	if(opponentHuman)
 	{
-		for(i = 0 ; i < strlen(strName1); i++)
+		for(i = 0 ; i < strlen(strName2); i++)
 		{
 			player2[i] = strName2[i];
 		}
+		player2[i] = "\0";
 	}
 	//NULL terminate second array
 	
@@ -143,7 +145,7 @@ unsigned displayMainMenu()
 				system("clear");
 				exit(0);
 			default: 
-				printf("Please enter a proper selection: ");
+				printf("\nPlease enter a proper selection: ");
 
 		}
 	}
@@ -194,7 +196,7 @@ unsigned displayLocalSelectOpponent()
 				system("clear");
 				exit(0);
 			default: 	
-				printf("Please enter a proper selection: ");
+				printf("\nPlease enter a proper selection: ");
 		}
 	}
 }
@@ -243,7 +245,7 @@ unsigned displayNetworkSelectMode()
 				system("clear");
 				exit(0);	
 			default: 
-				printf("Please enter a proper selection: ");
+				printf("\nPlease enter a proper selection: ");
 		
 		}
 	}
@@ -296,7 +298,7 @@ void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore,
                               unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer)
 {
-	printf("Active Player: %s\n", (activePlayer ? p1Name : p2Name));
+	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
 	printf("Current Round: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
@@ -349,7 +351,7 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 				retVal = 0;
 				return retVal;
 			default: 
-				printf("Please enter a proper selection: ");
+				printf("\nPlease enter a proper selection: ");
 		}
 	}
 }

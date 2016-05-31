@@ -8,7 +8,7 @@
 
 int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
               unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
-
+printf("LOCAL TURN IS HAPPENING\n");
   // local turn variables
   _Bool activePlayer = turnCounter % 2;
   unsigned rollCounter = 1;
@@ -21,6 +21,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
   double probability;
 
   while (1) {
+	  printf("Local turn Outer while loop\n");
     // roll and calcualte
     die1 = rollDie();
     die2 = rollDie();
@@ -31,22 +32,23 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
     turnScore += roundScore;
 
     // if you lose by rolling
-    if (roundScore == firstRoll) {
+    if (roundScore == firstRoll && rollCounter > 1) {
       turnScore = 0;
       return turnScore;
     }
 
     // display/input loop
     while (1) {
+		printf("Local turn Inner while loop\n");
       // if player is AI, just assign values
-      if (humanFactor == 0) {
+      if (humanFactor) {
         probability = getProbability(firstRoll);
         response = getDecision(rollCounter, turnCounter, 
                               turnScore, p1Score, p2Score, probability);
         break;
       } 
       // if player is human, display roll screen
-      else if (humanFactor == 1) {
+      else if (!humanFactor) {
         response = displayTurn(p1Name, p1Score, firstRoll, rollCounter, roundScore,
                               die1, die2, turnScore, p2Name, p2Score, activePlayer);
       } else {
@@ -61,6 +63,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
         // keep playing
         case 1:
           rollCounter++;
+		  printf("Roll counter inc");
           break;
         // stop your turn
         case 2:
@@ -78,6 +81,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
           printf("How did you manage to get here?");
           return -2;
       }
+	  break;
     }
   }
 }
