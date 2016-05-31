@@ -43,7 +43,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
     }
     printf("\nReturning to main menu...\n");
-    sleep(3);
+    sleep(2);
 }
 
 static void playNetwork()
@@ -65,8 +65,6 @@ void gameInit(_Bool opponentRemote, _Bool humanFactor)
     } else {
         player2Name[MAX_NAME_LENGTH];
     }
-    printf("GAME: Player 2 name is %s\n", player2Name);
-    sleep(2);
     displayLocalPlayGetName(player1Name, player2Name, humanFactor);
 
     // Run local vs network game
