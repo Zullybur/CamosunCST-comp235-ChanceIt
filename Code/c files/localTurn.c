@@ -48,7 +48,7 @@ printf("LOCAL TURN IS HAPPENING\n");
         break;
       } 
       // if player is human, display roll screen
-      else if (humanfactor) {
+      else if (humanFactor) {
         response = displayTurn(p1Name, p1Score, firstRoll, rollCounter, roundScore,
                               die1, die2, turnScore, p2Name, p2Score, activePlayer);
       } else {
