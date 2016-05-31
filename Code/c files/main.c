@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/game.h"
+#include "../interfaces/random.h"
 
 typedef enum
     {
@@ -16,6 +17,7 @@ typedef enum
 
 
 int main(int argc, char** argv){
+	randomInit();
     // Main Menu Game Loop
     int players;
     while (1)
