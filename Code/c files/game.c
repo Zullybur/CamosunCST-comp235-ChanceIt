@@ -2,87 +2,67 @@
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/localTurn.h"
 
-enum typedef
-    {
-        UNASSIGNED,
-        PLAY_LOCAL,
-        PLAY_NETWORK,
-        SHOW_RULES,
-        HIGH_SCORES,
-        EXIT_GAME
-    } MainMenuInput;
+#define MAX_NAME_LENGTH 16
+#define ROUNDS 20
 
-enum typedef
-    {
-        PREVIOUS_MENU,
-        SINGLE_PLAYER,
-        MULTIPLAYER
-    } LocalPlayInput;
-// Initiate a new game of Chance-It
-// Pre: randomInit() has been called once
-// Post: N/A
-// Clean-Up: N/A
-// Param: player is a pointer to an unsigned variable
-// Return: the winning score of the game
-unsigned gameInit()
+static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 {
-    // Main Menu Game Loop
-    while (true)
+    unsigned p1Score = 0;
+    unsigned p2Score = 0;
+    int tmpResult;
+
+    // Run <ROUNDS> turns for each player
+    for (unsigned i = 0; i < ROUNDS * 2; )
     {
-        // Request IO to display main menu
-        MainMenuInput result = (MainMenuInput)displayMainMenu();
-        switch (result)
+        // Call first player's turn
+        tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
+        if (tmpResult >= 0)
         {
-            case PLAY_LOCAL:
-                playLocal();
-                break;
-            case PLAY_NETWORK:
-                playNetwork();
-                break;
-            case SHOW_RULES:
-                displayRules();
-                break;
-            case HIGH_SCORES:
-                displayHighScore();
-                break;
-            case EXIT_GAME:
-                sys.exit(0);
-            default:
-                printf("Sanity check failed - game:gameInit:displayMainMenu:switch\n");
-                sys.exit(1);
+            p1Score += tmpResult;
+        } else {
+            printf("Player 1 Forfeits TODO: Game over screen\n");
+            break;
         }
 
-        
-
-        // While turns < 20, run turns
-            // If F, break
-
-        // Display win/lose page
-            // If ??? continue
-            // If ??? break
+        // Call second player's turn
+        tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
+        if (tmpResult >= 0)
+        {
+            p2Score += tmpResult;
+        } else {
+            printf("Player 2 Forfeits TODO: Game over screen\n");
+            break;
+        }
     }
-    // Thanks for playing bye.
-
-}
-
-static void playLocal()
-{
-    
-    // Play Mode Select
-    LocalPlayInput result = (LocalPlayInput)displayLocalSelectOpponent();
-    if (result == PREVIOUS_MENU)
-    {
-        return;
-    }
-    
-    
-        // Request IO to display play mode select
-            // If M, save state Multi-player
-            // If S, save state Multi-player
-            // Get player names
+    printf("TODO: Game over screen\n");
 }
 
 static void playNetwork()
 {
     printf("Network Play has not been implemented.\n");
+}
+
+void gameInit(_Bool opponentLocal, _Bool humanFactor)
+{
+    // Prepare persistent arrays for player names
+    char player1Name[MAX_NAME_LENGTH];
+    char player2Name[MAX_NAME_LENGTH];
+    // Get Player Names
+    if(!opponentLocal)
+    {
+        char player2Name[] = "Network Player";
+    } else if (!humanFactor) {
+        char player2Name[] = "Computer AI";
+    } else {
+        char player2Name[MAX_NAME_LENGTH];
+    }
+    displayLocalPlayGetName(player1Name, player2Name, humanFactor);
+
+    // Run local vs network game
+    if (opponentLocal)
+    {
+        playLocal(humanFactor, player1Name, player2Name);
+    } else {
+        playNetwork();
+    }
 }

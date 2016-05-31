@@ -6,28 +6,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-unsigned localTurn(unsigned player, char* playerName, char* opponentName,
-                  unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
-
-  // values passed via game module
-  unsigned playerGrandScore = p1Score;
-  unsigned opponentGrandScore = p2Score;
+int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
+              unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
 
   // local turn variables
-  unsigned roundCounter = 1;
+  _Bool activePlayer = turnCounter % 2
+  unsigned rollCounter = 1;
   unsigned firstRoll;
   unsigned roundScore;
   unsigned turnScore;
   unsigned die1;
   unsigned die2;
-  char response;
-  double prob;
+  unsigned response;
+  double probability;
 
-  do {
+  while (true) {
     // roll and calcualte
     die1 = rollDie();
     die2 = rollDie();
-    if (roundCounter == 1) {
+    if (rollCounter == 1) {
       firstRoll = die1 + die2;
     }
     roundScore = die1 + die2;
@@ -35,53 +32,55 @@ unsigned localTurn(unsigned player, char* playerName, char* opponentName,
 
     // if you lose by rolling
     if (roundScore == firstRoll) {
-      displayGameOver();
+      turnScore = 0;
       return turnScore;
     }
 
-    displayTurn(playerName, playerGrandScore, firstRoll, roundCounter, roundScore,
-                die1, die2, turnScore, opponentName, opponentGrandScore);
-    
-    // input loop
-    do {
-      if (player == 0) {
-        response = getInput();
-      }
-      else if (player == 1) {
-        prob = displayProbability();
-        response = getDecision(roundCounter, turnCounter, 
-                              turnScore, p1Score, p2Score, prob);
+    // display/input loop
+    while (true) {
+      // if player is AI, just assign values
+      if (humanFactor == 0) {
+        probability = getProbability();
+        response = getDecision(rollCounter, turnCounter, 
+                              turnScore, p1Score, p2Score, probability);
+        break;
+      } 
+      // if player is human, display roll screen
+      else if (humanFactor == 1) {
+        response = displayTurn(p1Name, p1Score, firstRoll, rollCounter, roundScore,
+                              die1, die2, turnScore, p2Name, p2Score, activePlayer);
       } else {
-        return 0;
+        // return error code if bad input
+        return -2;
       }
 
       switch (response) {
-        // keep playing
-        case 'r':
-          break;
         // forfeit the game
-        case 'f':
-          displayGameOver();
+        case 0:
+          return -1;
+        // keep playing
+        case 1:
+          break;
+        // stop your turn
+        case 2:
           return turnScore;
         // get the probability
-        case 'p':
-          prob = getProbability(firstRoll);
-          displayProbability(prob);
+        case 3:
+          probability = getProbability(firstRoll);
+          displayProbability(probability);
           break;
         // get help/commands
-        case 'h':
+        case 4:
           displayInGameHelpMenu();
           break;
         // undesired input, ask again
         default:
-          continue;
+          printf("How did you manage to get here?");
+          return -2;
       }
-    } while (response != 's');
+    }
 
     // increment and continue if applicable
-    roundCounter++;
-  } while (response == 'r');
-
-  // finish turn
-  return turnScore;
+    rollCounter++;
+  }
 }

@@ -102,7 +102,7 @@ unsigned displayMainMenu()
 		printf("%s",buff);
 	}	
 	
-	while (1 == 1)
+	while (1)
 	{
 		char response;
 		response = getch();
@@ -157,7 +157,7 @@ unsigned displayLocalSelectOpponent()
 		printf("%s",buff);
 	}	
 	
-	while(1 == 1)
+	while(1)
 	{
 		char response;
 		response = getch();
@@ -206,7 +206,7 @@ unsigned displayNetworkSelectMode()
 		printf("%s",buff);
 	}	
 	
-	while (1 == 1)
+	while (1)
 	{
 		char response;
 		response = getch();
@@ -285,16 +285,18 @@ void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 	
 }
 
-unsigned displayTurn(char* name, unsigned firstRoll, unsigned round, unsigned roundScore, unsigned die1, unsigned die2, unsigned gameScore, unsigned opponentScore)
-{
 
+unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore,
+                              unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer)
+{
+	printf("Active Player: %s\n", (activePlayer ? p1Name : p2Name));
 	printf("Current Round: %u \n", round);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
 	printf("Round score: %s \n\n", roundScore);
-	printf("Last roll: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
-	printf("Your score: %u \n", gameScore);
-	printf("Opponent score: %u \n", opponentScore);
+	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
+	printf("%s",p1Name," score: %u \n", p1Score);
+	printf("%s",p2Name," score: %u \n", p2Score);
 	printf("-----------------------------\n");
 	
 	printf("(R)oll \n");
@@ -303,7 +305,7 @@ unsigned displayTurn(char* name, unsigned firstRoll, unsigned round, unsigned ro
 	printf("(H)elp \n");
 	printf("(F)orfeit \n");
 	
-	while (1 == 1)
+	while (1)
 	{
 		char response;
 		response = getch();
