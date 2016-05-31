@@ -433,7 +433,7 @@ void displayProbability(double result){
 	system("clear");
 
 	char response;
-	printf("Probablity is :%f\n\n",result);
+	printf("Probablity is :%.2f\n\n",result);
 	printf("Please press any key to go back to game.\n");
 	response = getch();
 }
