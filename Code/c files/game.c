@@ -49,7 +49,8 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 
 static void playNetwork()
 {
-    printf("Network Play has not been implemented.\n");
+    printf("Sorry - Network Play has not been implemented.\n");
+    sleep(1.5);
 }
 
 static void getName(char* name, _Bool isNetwork)

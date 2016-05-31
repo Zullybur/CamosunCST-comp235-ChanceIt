@@ -49,9 +49,10 @@ int main(int argc, char** argv){
             case HIGH_SCORES:
                 //displayHighScore();
                 //Highscores is not implemented yet
-                printf("Highscores is still being made");
+                printf("Highscores is still being made\n");
                 break;
             case EXIT_GAME:
+                printf("Thanks for playing!\n");
                 exit(0);
             default:
                 printf("Sanity check failed - game:gameInit:displayMainMenu:switch\n");
