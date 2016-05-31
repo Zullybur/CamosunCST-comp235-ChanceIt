@@ -25,7 +25,7 @@ unsigned getDecision(unsigned roundNumber, unsigned turnNumber,
     ***************/
     int riskThreshold  = (int)((1 - probability) * MAX_ROLL_THRESHOLD);
 
-    double riskReductionMultiplier = (roundNumber > 9) ? 1.5 : 1
+    double riskReductionMultiplier = (roundNumber > 9) ? 1.5 : 1;
     
     // Take more risk if we are losing
     if (scoreGap < 0)

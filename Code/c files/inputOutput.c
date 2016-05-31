@@ -294,10 +294,10 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 	printf("Current Round: %u \n", rollCounter);
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
-	printf("Round score: %s \n\n", roundScore);
+	printf("Round score: %u \n\n", roundScore);
 	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
-	printf("%s",p1Name," score: %u \n", p1Score);
-	printf("%s",p2Name," score: %u \n", p2Score);
+    printf("%s, score: %u \n", p1Name, p1Score);
+    printf("%s, score: %u \n", p2Name, p2Score);
 	printf("-----------------------------\n");
 	
 	printf("(R)oll \n");
@@ -346,11 +346,11 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 				printf("Please enter a proper selection: ");
 		}
 	}
+}
 
-	void displayProbability(double result){
-		char response;
-		printf("Probablity is :%f\n\n",result);
-		printf("Please press ENTER to go back to Game");
-		response = getch();
-	}
+void displayProbability(double result){
+	char response;
+	printf("Probablity is :%f\n\n",result);
+	printf("Please press ENTER to go back to Game");
+	response = getch();
 }

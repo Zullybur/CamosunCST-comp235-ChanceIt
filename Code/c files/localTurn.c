@@ -2,7 +2,7 @@
 #include "../interfaces/probability.h"
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/dice.h"
-#include "../interfaces/computerplayer.h"
+#include "../interfaces/computerPlayer.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -10,7 +10,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
               unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
 
   // local turn variables
-  _Bool activePlayer = turnCounter % 2
+  _Bool activePlayer = turnCounter % 2;
   unsigned rollCounter = 1;
   unsigned firstRoll;
   unsigned roundScore;
@@ -20,7 +20,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
   unsigned response;
   double probability;
 
-  while (true) {
+  while (1) {
     // roll and calcualte
     die1 = rollDie();
     die2 = rollDie();
@@ -37,10 +37,10 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
     }
 
     // display/input loop
-    while (true) {
+    while (1) {
       // if player is AI, just assign values
       if (humanFactor == 0) {
-        probability = getProbability();
+        probability = getProbability(firstRoll);
         response = getDecision(rollCounter, turnCounter, 
                               turnScore, p1Score, p2Score, probability);
         break;
@@ -60,6 +60,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
           return -1;
         // keep playing
         case 1:
+          rollCounter++;
           break;
         // stop your turn
         case 2:
@@ -67,7 +68,6 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
         // get the probability
         case 3:
           probability = getProbability(firstRoll);
-          displayProbability(probability);
           break;
         // get help/commands
         case 4:
@@ -79,8 +79,5 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
           return -2;
       }
     }
-
-    // increment and continue if applicable
-    rollCounter++;
   }
 }

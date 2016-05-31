@@ -6,26 +6,26 @@ ChanceItSub1: main.o game.o localTurn.o dice.o probability.o inputOutput.o getCo
 main.o: main.c
 	    gcc -c main.c
 
-game.o: game.c
+game.o: game.c ../interfaces/game.h ../interfaces/inputOutput.h ../interfaces/localTurn.h
 		gcc -c game.c
 
-localTurn.o: localTurn.c
+localTurn.o: localTurn.c ../interfaces/localTurn.h ../interfaces/probability.h ../interfaces/inputOutput.h ../interfaces/dice.h ../interfaces/computerPlayer.h
 		gcc -c localTurn.c
 
-dice.o: dice.c
+dice.o: dice.c ../interfaces/dice.h ../interfaces/random.h
 		gcc -c dice.c
 
-probability.o: probability.c
+probability.o: probability.c ../interfaces/probability.h
 		gcc -c probability.c
 
-inputOutput.o: inputOutput.c
+inputOutput.o: inputOutput.c ../interfaces/inputOutput.h ../interfaces/getCon.h
 		gcc -c inputOutput.c
 
-getCon.o: getCon.c
+getCon.o: getCon.c ../interfaces/getCon.h
 		gcc -c getCon.c
 
-random.o: random.c
+random.o: random.c ../interfaces/random.h
 		gcc -c random.c
 
-computerPlayer.o: computerPlayer.c
+computerPlayer.o: computerPlayer.c ../interfaces/computerplayer.h
 		gcc -c computerPlayer.c
