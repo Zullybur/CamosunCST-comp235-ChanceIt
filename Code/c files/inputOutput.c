@@ -21,7 +21,7 @@ void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 	system("clear");
 
 	printf("--------------------\n");
-	printf("%s like the noble Kenny Rogers, you knew to fold em' rather than hold em'\n", playerName);
+	printf("%s like the noble Kenny Rogers, you knew to fold em' rather than hold em'.\n", playerName);
 	printf("Your score for the round is %u.\n\n",score);
 	printf("%s, hopefully you can show a modicum of judgement on your turn.\n",opponentName);
 	printf("Press the any key to continue...\n");
@@ -73,7 +73,6 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 	}
 	if (input != '\n')
 	{
-		printf("Clearing...\n");
 		char tmp;
 		do {
 			tmp = getc(stdin);
@@ -96,9 +95,7 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 				break;
 			}
 			player2[i] = input;
-			printf("Input = %c P2 name %s\n",input ,player2);
 		}
-		sleep(10);
 		if (input != '\n')
 		{
 			char tmp;
