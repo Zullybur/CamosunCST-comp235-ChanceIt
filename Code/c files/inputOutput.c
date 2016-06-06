@@ -6,6 +6,7 @@
 #include "../interfaces/getCon.h"
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/probability.h"
+#include "../interfaces/highScore.h"
 
 #define FILEPATH	"../../Design Documents/UserManual/"
 #define PRINT_LIM1	18
@@ -437,3 +438,14 @@ void displayProbability(double result){
 	printf("Please press any key to go back to game.\n");
 	response = getch();
 }
+
+
+void displayHighScore(){
+	char response;
+	system("clear");
+	getHighScore();
+	response = getch();
+}
+
+
+

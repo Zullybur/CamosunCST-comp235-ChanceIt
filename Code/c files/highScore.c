@@ -9,6 +9,7 @@
 
 
 void getHighScore(){
+	
 	FILE *f;
 	if( access( "highScore.txt", F_OK) != -1){
 		printf(" Top Ten Scores\n");
@@ -38,6 +39,7 @@ void getHighScore(){
 		printf("--------------------------------------------\n");
 		printf("Press Enter to return to the Main Menu.\n");
 		fclose(f);
+
 	}
 }
 
@@ -131,4 +133,5 @@ void amendHighScore(char* name, unsigned score){
 		fputs(line, f);
 	}
 	fclose(f);
+
 }
