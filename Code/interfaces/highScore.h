@@ -17,4 +17,4 @@ typedef struct Score{
 // Param:  date a pointer to the date of the game play
 // Param:  score takes in the value of the player’s score 
 // Returns: N/A
-void amendHighScore(Score newScore);
+void amendHighScore(char* name, unsigned score);
