@@ -1,3 +1,8 @@
+typedef struct Score{
+	char name[50];
+	char date[50];
+	unsigned score;
+} Score;
 // Pre: a file for highscore exists
 // Post: The highscore was displayed on screen
 // Clean up: N/A
@@ -12,4 +17,4 @@
 // Param:  date a pointer to the date of the game play
 // Param:  score takes in the value of the player’s score 
 // Returns: N/A
-void amendHighScore(char* name, char* date, unsigned score);
+void amendHighScore(Score newScore);
