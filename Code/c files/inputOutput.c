@@ -296,29 +296,35 @@ void displayHighScore()
                 printf("--------------------------------------------\n");
                 f = fopen(SCORE_FILEPATH, "r");
                 int i;
-                for (i = 1; i <= 10; i++){
-                        //if (feof(f))
-			//{
-			//	break;
-			//}
-			
+                //Loop through up to 10 times
+		for (i = 1; i <= 10; i++){
 			char name[50] = {0};
                         fscanf(f, "%s", name);
                         char date[50] = {0};
                         fscanf(f, "%s", date);
                         char score[50] = {0};
                         fscanf(f, "%s", score);
-                        if (feof(f)){
+                       //Kill loop if EOF is found
+			if (feof(f)){
                                 break;
                         }
+			//Display the ranking of player as number
+			//followed by one or two spaces and a |
+			//finally the date is displayed followed by a |
                         printf(" %d%s| %s | ",i, (i < 10 ? "  " : " "), date);
                         int j = 0;
+
+			//Display all the characters of the player name
+			//up to a maximum of 16 chars
                         for (; j < 16 && name[j]; j++){
                                 printf("%c", name[j]);
                         }
+			//If j has not hit 16 then print
+			//spaces until j hits 16
                         for (; j < 16; j++){
                                 printf(" ");
                         }
+			//Display | and then the score
                         printf(" | %s\n", score);
                 }
                 printf("--------------------------------------------\n");
