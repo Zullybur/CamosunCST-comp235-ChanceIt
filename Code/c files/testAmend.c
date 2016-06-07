@@ -17,7 +17,7 @@ int main()
 	amendHighScore(George, 500);
         amendHighScore(Joffrey, 800);
         amendHighScore(Chair, 1000);
-
+	
 	
 	return 1;
 
