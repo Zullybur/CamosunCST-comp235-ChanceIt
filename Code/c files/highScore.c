@@ -65,12 +65,20 @@ void amendHighScore(char* name, unsigned score){
 	newScore.date[3] = newScore.date[23];
 	newScore.date[11] = '\0';
 	newScore.date[10] = newScore.date[9];
-	newScore.date[9] = newScore.date[8];
+	//newScore.date[9] = newScore.date[8];
+	if (newScore.date[8] == ' ')
+        {
+                newScore.date[9] = '0';
+        } else
+        {
+                newScore.date[9] = newScore.date[8];
+        }
 	newScore.date[8] = '-';
 	newScore.date[7] = newScore.date[6];
 	newScore.date[6] = newScore.date[5];
 	newScore.date[5] = newScore.date[4];
 	newScore.date[4] = '-';
+	
 
 	int isAdded = 0;
 	Score highScores[11];

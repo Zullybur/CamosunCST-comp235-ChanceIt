@@ -4,13 +4,20 @@
 int main()
 {
 
-	char* Butt = "Boob";
-	char* Head = "Frog";
-	char* Knob = "Chair";
+	char* Butt = "Butt";
+	char* Head = "Head";
+	char* Knob = "Knobs";
+	char* George = "George";
+        char* Joffrey = "Joffrey";
+        char* Chair = "Chair";
+
 	amendHighScore(Butt, 200);
 	amendHighScore(Head, 600);
 	amendHighScore(Knob, 2000);
-	getHighScore();
+	amendHighScore(George, 500);
+        amendHighScore(Joffrey, 800);
+        amendHighScore(Chair, 1000);
+
 	
 	return 1;
 
