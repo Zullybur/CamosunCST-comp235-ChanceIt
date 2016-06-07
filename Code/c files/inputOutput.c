@@ -216,80 +216,6 @@ void displayHighScore()
 		
 	system("clear");
 
-	/*
-	FILE *fp;
-	fp = fopen(SCORE_FILEPATH, "r");
-        char buff[MAX_BUFF];
-        int c, i;
-	//char *displayName = calloc(16,sizeof(char));
-	//char *displayScore = calloc(4,sizeof(char));
-	//char *displayDate = calloc(11,sizeof(char));
-	
-	printf("Top Ten Scores\n%s\n",SCORE_BORDER);
-	
-        while((c = fgetc(fp)) != EOF)
-        {
-
-		fgets(buff,32,(FILE*)fp);
-		//displayName[0] = c;
-		printf("|%c", c);
-		for (i = 1; i < 16;i++)
-		{
-			
-			if (buff[i - 1] == NULL_TERM)
-			{
-				printf(" ");
-			} else 
-			{
-				printf("%c", buff[i]);
-			}
-			
-			//printf(" ");
-		}
-
-		printf("|");
-
-		fgets(buff,12,(FILE*)fp);
-		for (i = 0; i < 4; i++)
-		{
-			
-			if (buff[i] == NULL_TERM)
-			{
-				printf(" ");
-			} else
-			{
-				printf("%c",buff[i]);
-			}
-			
-			//printf(" ");
-		}	
-		
-		printf("|");
-		fgets(buff,26, (FILE*)fp);
-
-		for (i = 0; i < 11; i++)
-		{
-			//printf(" ");
-			
-			if (buff[i] == NULL_TERM)
-			{
-				printf(" "); 
-			} else 
-			{
-				printf("%c",buff[i]);
-			}
-			
-		}
-		printf("|\n");			
-
-        }
-	printf("%s\n",SCORE_BORDER);
-	printf("Press any key to return to previous screen\n");
-	char response;
-        response = getch();
-        fclose(fp);
-	*/
-
 	FILE *f;
         if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
                 printf(" Top Ten Scores\n");
@@ -569,8 +495,6 @@ void displayProbability(double result){
 	printf("--------------------\n");
 
 	char response;
-	//printf("Probablity is :%.2f\n\n",result);
-	//printf("Please press any key to go back to game.\n");
 	response = getch();
 }
 
