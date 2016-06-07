@@ -47,9 +47,8 @@ int main(int argc, char** argv){
                 displayRules();
                 break;
             case HIGH_SCORES:
-                //displayHighScore();
+                displayHighScore();
                 //Highscores is not implemented yet
-                printf("Highscores is still being made\n");
                 break;
             case EXIT_GAME:
                 printf("Thanks for playing!\n");

@@ -7,7 +7,9 @@
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/probability.h"
 
+#define SCORE_BORDER	"----------------------------------"
 #define FILEPATH	"../../Design Documents/UserManual/"
+#define SCORE_FILEPATH  "../../Design Documents/highScore.txt"
 #define PRINT_LIM1	18
 #define MAX_NAME_LEN 	17
 #define MAX_LINE_LEN 	50
@@ -15,6 +17,7 @@
 #define MAX_IP_LEN 	45
 #define MAX_PORT_LEN 	5
 #define NULL_TERM	'\0'
+
 
 void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 {
@@ -209,23 +212,112 @@ unsigned displayMainMenu()
 void displayHighScore()
 {
 
+		
 	system("clear");
 	FILE *fp;
-	char fileP[] = FILEPATH "";
-        fp = fopen(fileP, "r");
+	fp = fopen(SCORE_FILEPATH, "r");
         char buff[MAX_LINE_LEN];
-        int c;
-
+        int c, i;
+	//char *displayName = calloc(16,sizeof(char));
+	//char *displayScore = calloc(4,sizeof(char));
+	//char *displayDate = calloc(11,sizeof(char));
+	
+	printf("Top Ten Scores\n%s\n",SCORE_BORDER);
+	
         while((c = fgetc(fp)) != EOF)
         {
-                fgets(buff,MAX_LINE_LEN,(FILE*)fp);
-                printf("%c%s",c,buff);
+
+		fgets(buff,18,(FILE*)fp);
+		//displayName[0] = c;
+		printf("|%c", c);
+		for (i = 1; i < 16;i++)
+		{
+			
+			if (buff[i - 1] == NULL_TERM)
+			{
+				printf(" ");
+			} else 
+			{
+				printf("%c", buff[i]);
+			}
+			
+			//printf(" ");
+		}
+
+		printf("|");
+
+		fgets(buff,6,(FILE*)fp);
+		for (i = 0; i < 4; i++)
+		{
+			
+			if (buff[i] == NULL_TERM)
+			{
+				printf(" ");
+			} else
+			{
+				printf("%c",buff[i]);
+			}
+			
+			//printf(" ");
+		}	
+		
+		printf("|");
+		fgets(buff,13, (FILE*)fp);
+
+		for (i = 0; i < 11; i++)
+		{
+			//printf(" ");
+			
+			if (buff[i] == NULL_TERM)
+			{
+				printf(" "); 
+			} else 
+			{
+				printf("%c",buff[i]);
+			}
+			
+		}
+		printf("|\n");			
+
         }
-	printf("\n Press any key to return to previous screen\n");
+	printf("%s\n",SCORE_BORDER);
+	printf("Press any key to return to previous screen\n");
 	char response;
         response = getch();
-        fclose(fp); 	
+        fclose(fp);
+	/*
 
+	FILE *f;
+        if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
+                printf(" Top Ten Scores\n");
+                printf("--------------------------------------------\n");
+                f = fopen("highScore.txt", "r");
+                int i;
+                for (i = 1; i <= 10; i++){
+                        char name[50] = {0};
+                        fscanf(f, "%s", name);
+                        char date[50] = {0};
+                        fscanf(f, "%s", date);
+                        char score[50] = {0};
+                        fscanf(f, "%s", score);
+                        if (feof(f)){
+                                break;
+                        }
+                        printf(" %d%s| %s | ",i, (i < 10 ? "  " : " "), date);
+                        int j = 0;
+                        for (; j < 16 && name[j]; j++){
+                                printf("%c", name[j]);
+                        }
+                        for (; j < 16; j++){
+                                printf(" ");
+                        }
+                        printf(" | %s\n", score);
+                }
+                printf("--------------------------------------------\n");
+                printf("Press Enter to return to the Main Menu.\n");
+                fclose(f); 	
+	}
+	*/
 }
 
 unsigned displayLocalSelectOpponent()
@@ -455,11 +547,15 @@ void displayProbability(double result){
 
 	printf("--------------------\n");
 	printf("It is probably quite probable that the probability for you next roll is:.\n");
-	printf("%f...\n\n",result);
+	printf("%.2f...\n\n",result);
 	printf("Remember, knowledge is power!\n");
 	printf("Press the any key to continue...\n");
 	printf("--------------------\n");
 
 	char response;
+	//printf("Probablity is :%.2f\n\n",result);
+	//printf("Please press any key to go back to game.\n");
 	response = getch();
 }
+
+
