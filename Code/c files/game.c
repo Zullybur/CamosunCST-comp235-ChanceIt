@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/localTurn.h"
+#include "../interfaces/highScore.h"
 
 #define MAX_NAME_LENGTH 17
 #define ROUNDS 20
@@ -40,14 +41,33 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
     if (!forfeit) {
         printf("%s's final score: %u\n", player1Name, p1Score);
         printf("%s's final score: %u\n", player2Name, p2Score);
-        printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
+        _Bool isHighScore;
+        if (p1Score != p2Score) {
+            // Display winner and send score to high score table based on which score is higher
+            printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
+
+            isHighScore = submitScore(
+                (p1Score > p2Score) ? player1Name : player2Name,
+                (p1Score>p2Score) ? p1Score : p2Score
+            );
+
+        } else {
+            isHighScore = submitTieScore(player1Name, p1Score, player2Name, p2Score);
+            printf("The game was a tie. Ties are lame.\n");
+        }
+
+        if (isHighScore) {
+            printf("\nGood job! you got a high score!\n");
+        }
+        
     }
+
     printf("\nReturning to main menu...\n");
     sleep(1.5);
     system("clear");
 }
 
-static void playNetwork()
+static void playNetwork(_Bool humanFactor, char* player1Name, char* player2Name)
 {
     printf("Sorry - Network Play has not been implemented.\n");
     sleep(1.5);
