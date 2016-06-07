@@ -230,7 +230,7 @@ void displayHighScore()
         while((c = fgetc(fp)) != EOF)
         {
 
-		fgets(buff,18,(FILE*)fp);
+		fgets(buff,32,(FILE*)fp);
 		//displayName[0] = c;
 		printf("|%c", c);
 		for (i = 1; i < 16;i++)
@@ -249,7 +249,7 @@ void displayHighScore()
 
 		printf("|");
 
-		fgets(buff,6,(FILE*)fp);
+		fgets(buff,12,(FILE*)fp);
 		for (i = 0; i < 4; i++)
 		{
 			
@@ -265,7 +265,7 @@ void displayHighScore()
 		}	
 		
 		printf("|");
-		fgets(buff,13, (FILE*)fp);
+		fgets(buff,26, (FILE*)fp);
 
 		for (i = 0; i < 11; i++)
 		{
