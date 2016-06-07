@@ -11,7 +11,7 @@
 void getHighScore(){
 	
 	FILE *f;
-	if( access( "highScore.txt", F_OK) != -1){
+	if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
 		printf(" Top Ten Scores\n");
 		printf("--------------------------------------------\n");
 		f = fopen("highScore.txt", "r");
@@ -119,7 +119,7 @@ void amendHighScore(char* name, unsigned score){
 		i = 0;
 		highScores[0] = newScore;
 	}
-	f = fopen("highScore.txt", "w");
+	f = fopen("../../Design Documents/highScore.txt", "w");
 	unsigned j = 0;
 	char line[50];
 	for (; j <= i; j++){
