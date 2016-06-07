@@ -563,7 +563,7 @@ void displayProbability(double result){
 
 	printf("--------------------\n");
 	printf("It is probably quite probable that the probability for you next roll is:.\n");
-	printf("%.2f...\n\n",result);
+	printf("%.2f%/...\n\n",result);
 	printf("Remember, knowledge is power!\n");
 	printf("Press the any key to continue...\n");
 	printf("--------------------\n");
