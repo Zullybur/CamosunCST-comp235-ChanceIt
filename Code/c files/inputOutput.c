@@ -13,6 +13,7 @@
 #define PRINT_LIM1	18
 #define MAX_NAME_LEN 	17
 #define MAX_LINE_LEN 	50
+#define MAX_BUFF	2000
 //#define MAX_RESP_LEN 	1
 #define MAX_IP_LEN 	45
 #define MAX_PORT_LEN 	5
@@ -214,9 +215,11 @@ void displayHighScore()
 
 		
 	system("clear");
+
+	
 	FILE *fp;
 	fp = fopen(SCORE_FILEPATH, "r");
-        char buff[MAX_LINE_LEN];
+        char buff[MAX_BUFF];
         int c, i;
 	//char *displayName = calloc(16,sizeof(char));
 	//char *displayScore = calloc(4,sizeof(char));
@@ -291,18 +294,23 @@ void displayHighScore()
         if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
                 printf(" Top Ten Scores\n");
                 printf("--------------------------------------------\n");
-                f = fopen("highScore.txt", "r");
+                f = fopen("../../Design Documents/highScore.txt", "r");
                 int i;
                 for (i = 1; i <= 10; i++){
-                        char name[50] = {0};
+                        if (feof(f))
+			{
+				break;
+			}
+			
+			char name[50] = {0};
                         fscanf(f, "%s", name);
                         char date[50] = {0};
                         fscanf(f, "%s", date);
                         char score[50] = {0};
                         fscanf(f, "%s", score);
-                        if (feof(f)){
-                                break;
-                        }
+                        //if (feof(f)){
+                          //      break;
+                        //}
                         printf(" %d%s| %s | ",i, (i < 10 ? "  " : " "), date);
                         int j = 0;
                         for (; j < 16 && name[j]; j++){
