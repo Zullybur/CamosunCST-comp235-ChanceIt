@@ -121,9 +121,10 @@ void displayRules()
 	char fileP[] = FILEPATH "rules.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
-
+	int c;
 		
-	for(i = 0; i <= PRINT_LIM1; i++ )
+	for(i = 0; i < PRINT_LIM1; i++ )
+	
 	{
 		fgets(buff,MAX_LINE_LEN, (FILE*)fp);
 		printf("%s", buff);
@@ -131,29 +132,17 @@ void displayRules()
 
 	char response;
 	response = getch();
-		
-	while(feof(fp) == 0)
+	
+	
+	while((c = fgetc(fp)) != EOF)
 	{
 		fgets(buff,MAX_LINE_LEN,(FILE*)fp);
-		printf("%s", buff);
+		printf("%c%s", c,buff);
 	}
-	
+	fclose(fp);	
 	response = getch();	
 	system("clear");
 	
-	//if (response == "\n")
-	//{
-		//fclose(fp);
-		//system("clear");
-	//} 
-	
-	//else if (toupper(response[0]) == "R")
-	//{
-		//fclose(fp);
-		//system("clear");
-		//displayRules();	
-	//}
-	//TALK TO TEAMMEMBERS ABOOT DISPLAY RULES AGAIN WITH R			
 	
 }
 
@@ -165,12 +154,14 @@ unsigned displayMainMenu()
 	char fileP[] = FILEPATH "UM-SS-MainPage.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
-	
-	while(feof(fp) == 0)
+	int c;	
+
+	while((c = fgetc(fp)) != EOF)
 	{
 		fgets(buff,MAX_LINE_LEN,(FILE*)fp);
-		printf("%s",buff);
+		printf("%c%s",c,buff);
 	}	
+	printf("\n");
 	
 	while (1)
 	{
@@ -178,7 +169,6 @@ unsigned displayMainMenu()
 		response = getch();
 		unsigned retVal = 0;
 
-		//POSSIBLE ERROR WITH VALIDATION
 		switch(response){
 			case 'L':
 			case 'l':
@@ -196,23 +186,46 @@ unsigned displayMainMenu()
 			case 'v':
 				system("clear");
 				fclose(fp);
-				exit(0); //TO BE IMPLEMENTED
+				retVal = 4;
+				return retVal;
 			case 'R':
-			case 'r'://DO WE WANNA RETURN A NUMBER VALUE FOR THIS AS WELL?
+			case 'r':
 				system("clear");
 				fclose(fp);
 				retVal = 3;
 				return retVal;
 			case 'E':
-			case 'e'://IS THIS THE FUNCTION THAT WILL EXIT THE PROGRAM
+			case 'e':
 				fclose(fp);
 				system("clear");
 				exit(0);
 			default: 
-				printf("\nPlease enter a proper selection: ");
+				printf("Please enter a proper selection: \n");
 
 		}
 	}
+}
+
+void displayHighScore()
+{
+
+	system("clear");
+	FILE *fp;
+	char fileP[] = FILEPATH "";
+        fp = fopen(fileP, "r");
+        char buff[MAX_LINE_LEN];
+        int c;
+
+        while((c = fgetc(fp)) != EOF)
+        {
+                fgets(buff,MAX_LINE_LEN,(FILE*)fp);
+                printf("%c%s",c,buff);
+        }
+	printf("\n Press any key to return to previous screen\n");
+	char response;
+        response = getch();
+        fclose(fp); 	
+
 }
 
 unsigned displayLocalSelectOpponent()
@@ -222,11 +235,12 @@ unsigned displayLocalSelectOpponent()
 	char fileP[] = FILEPATH "UM-SS-LocalPlay.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
-	
-	while(feof(fp) == 0)
+	int c;	
+
+	while((c = fgetc(fp)) != EOF)
 	{
 		fgets(buff,MAX_LINE_LEN,(FILE*)fp);
-		printf("%s",buff);
+		printf("%c%s",c,buff);
 	}	
 	
 	while(1)
@@ -261,7 +275,7 @@ unsigned displayLocalSelectOpponent()
 				system("clear");
 				exit(0);
 			default: 	
-				printf("\nPlease enter a proper selection: ");
+				printf("Please enter a proper selection: \n");
 		}
 	}
 }
@@ -274,12 +288,15 @@ unsigned displayNetworkSelectMode()
 	char fileP[] = FILEPATH "UM-SS-NetworkPlay.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
-
-	while(feof(fp) == 0)
+	int c;
+	
+	while((c = fgetc(fp)) != EOF)
 	{
 		fgets(buff,MAX_LINE_LEN,(FILE*)fp);
-		printf("%s",buff);
-	}	
+		printf("%c%s",c,buff);
+	}
+
+	printf("\n");	
 	
 	while (1)
 	{
@@ -312,7 +329,7 @@ unsigned displayNetworkSelectMode()
 				system("clear");
 				exit(0);	
 			default: 
-				printf("\nPlease enter a proper selection: ");
+				printf("Please enter a proper selection: \n");
 		
 		}
 	}
@@ -326,13 +343,14 @@ void displayInGameHelpMenu() //Work in progress
 	char fileP[] = FILEPATH "UM-SS-GameHelp.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
+	int c;
 
-	while(feof(fp) == 0)
+	while((c = fgetc(fp)) != EOF)
 	{
 		fgets(buff,MAX_LINE_LEN,(FILE*)fp);
-		printf("%s",buff);
+		printf("%c%s",c,buff);
 	}	
-	
+	printf("\n");	
 	char response;
 	response = getch();
 	fclose(fp);
@@ -377,7 +395,14 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 	printf("First roll: %u \n", firstRoll);
 	printf("Turn score: %u \n\n", turnScore);
 	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
-  	printf("%s, score: %u \n", p1Name, p1Score);
+  	
+	//switch(die1)
+	//{
+	//	case 1:
+	//		printf();		
+	//}
+
+	printf("%s, score: %u \n", p1Name, p1Score);
     	printf("%s, score: %u \n", p2Name, p2Score);
 	printf("-----------------------------\n");
 	
@@ -392,10 +417,6 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 		char response;
 		response = getch();
 		unsigned retVal;
-		
-		//POSSIBLE ERROR WITH VALIDATION
-		//charAt[0] then cast to an integer to use in the switch statement
-		//char respVal = response;
 		
 		switch(response){
 			case 'R':
@@ -424,7 +445,7 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 				retVal = 0;
 				return retVal;
 			default: 
-				printf("\nPlease enter a proper selection: ");
+				printf("Please enter a proper selection: \n");
 		}
 	}
 }
@@ -432,8 +453,13 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 void displayProbability(double result){
 	system("clear");
 
+	printf("--------------------\n");
+	printf("It is probably quite probable that the probability for you next roll is:.\n");
+	printf("%f...\n\n",result);
+	printf("Remember, knowledge is power!\n");
+	printf("Press the any key to continue...\n");
+	printf("--------------------\n");
+
 	char response;
-	printf("Probablity is :%f\n\n",result);
-	printf("Please press any key to go back to game.\n");
 	response = getch();
 }
