@@ -216,7 +216,7 @@ void displayHighScore()
 		
 	system("clear");
 
-	
+	/*
 	FILE *fp;
 	fp = fopen(SCORE_FILEPATH, "r");
         char buff[MAX_BUFF];
@@ -288,19 +288,19 @@ void displayHighScore()
 	char response;
         response = getch();
         fclose(fp);
-	/*
+	*/
 
 	FILE *f;
         if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
                 printf(" Top Ten Scores\n");
                 printf("--------------------------------------------\n");
-                f = fopen("../../Design Documents/highScore.txt", "r");
+                f = fopen(SCORE_FILEPATH, "r");
                 int i;
                 for (i = 1; i <= 10; i++){
-                        if (feof(f))
-			{
-				break;
-			}
+                        //if (feof(f))
+			//{
+			//	break;
+			//}
 			
 			char name[50] = {0};
                         fscanf(f, "%s", name);
@@ -308,9 +308,9 @@ void displayHighScore()
                         fscanf(f, "%s", date);
                         char score[50] = {0};
                         fscanf(f, "%s", score);
-                        //if (feof(f)){
-                          //      break;
-                        //}
+                        if (feof(f)){
+                                break;
+                        }
                         printf(" %d%s| %s | ",i, (i < 10 ? "  " : " "), date);
                         int j = 0;
                         for (; j < 16 && name[j]; j++){
@@ -322,10 +322,12 @@ void displayHighScore()
                         printf(" | %s\n", score);
                 }
                 printf("--------------------------------------------\n");
-                printf("Press Enter to return to the Main Menu.\n");
-                fclose(f); 	
+                printf("Press any key to return to the Main Menu.\n");
+ 		char response;
+		response = getch();               
+		fclose(f); 	
 	}
-	*/
+	
 }
 
 unsigned displayLocalSelectOpponent()
