@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/localTurn.h"
@@ -47,12 +48,12 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
 
             isHighScore = submitScore(
-                (p1Score > p2Score) ? player1Name : player2Name,
-                (p1Score>p2Score) ? p1Score : p2Score
+                (p1Score>p2Score) ? p1Score : p2Score,
+                (p1Score > p2Score) ? player1Name : player2Name
             );
 
         } else {
-            isHighScore = submitTieScore(player1Name, p1Score, player2Name, p2Score);
+            isHighScore = submitTieScore(p1Score, player1Name, player2Name);
             printf("The game was a tie. Ties are lame.\n");
         }
 
@@ -108,6 +109,6 @@ void gameInit(_Bool opponentRemote, _Bool humanFactor)
     {
         playLocal(humanFactor, player1Name, player2Name);
     } else {
-        playNetwork();
+        playNetwork(humanFactor, player1Name, player2Name);
     }
 }
