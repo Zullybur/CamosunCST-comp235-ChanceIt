@@ -558,4 +558,14 @@ void displayProbability(double result){
 	response = getch();
 }
 
+// TODO: JAVADOCS
+_Bool submitScore(int score, char* name) {
+	return 0;
+}
+
+// TODO: JAVADOCS
+_Bool submitTieScore(int score, char* name1, char* name2) {
+	return 0;
+}
+
 
