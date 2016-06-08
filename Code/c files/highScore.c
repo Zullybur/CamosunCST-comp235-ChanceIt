@@ -7,6 +7,18 @@
 
 #define FILEPATH	"../../Design Documents/highScore.txt"
 
+
+_Bool submitScore(unsigned score, char* name){
+	return amendHighScore( name,  score); 
+}
+           
+_Bool submitTieScore(unsigned score, char* player1, char* player2){
+
+_Bool result = amendHighScore( player1,  score);
+	return amendHighScore( player2,  score) || result;
+}
+
+
 void getHighScore(){
 	
 	FILE *f;
@@ -42,7 +54,8 @@ void getHighScore(){
 	}
 }
 
-void amendHighScore(char* name, unsigned score){
+_Bool amendHighScore(char* name, unsigned score){
+	_Bool result = 0;
 	Score newScore;
 	strcpy(newScore.name, name);
 	newScore.score = score;
@@ -80,7 +93,6 @@ void amendHighScore(char* name, unsigned score){
 	unsigned i = 0;
 	FILE *f;
 	if( access( FILEPATH, F_OK) != -1){
-		printf("Fell into the file access if...");
 		f = fopen(FILEPATH, "r");
 		char line[50];
 		while(1){
@@ -108,6 +120,7 @@ void amendHighScore(char* name, unsigned score){
 			if (isAdded || nextScore.score >= newScore.score){
 				highScores[i] = nextScore;
 			}else{
+				result = 1;
 				highScores[i++] = newScore;
 				isAdded = !isAdded;
 				highScores[i] = nextScore;
@@ -140,5 +153,6 @@ void amendHighScore(char* name, unsigned score){
 		fputs(line, f);
 	}
 	fclose(f);
+	return result;
 
 }
