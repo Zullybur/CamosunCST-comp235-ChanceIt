@@ -6,9 +6,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
-              unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
+int localTurn(LocalTurnParams localTurnParams) {
   // local turn variables
+  _Bool humanFactor = localTurnParams.humanFactor;
+  char* p1Name = localTurnParams.player1Name;
+  char* p2Name = localTurnParams.player2Name;
+  unsigned p1Score = localTurnParams.p1Score;
+  unsigned p2Score = localTurnParams.p2Score;
+  unsigned turnCounter = localTurnParams.turnCount;
+
   _Bool activePlayer = turnCounter % 2;  // False if player 1, True if plyer 2
   _Bool reRoll;
   unsigned rollCounter = 1;
@@ -19,6 +25,8 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
   unsigned die2;
   unsigned response;
   double probability;
+  DisplayTurn turnData;
+  DecisionParams decisionParams;
 
   while (1) {
     // roll and calcualte
@@ -47,13 +55,33 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
       // if player is AI, just assign values
       if (activePlayer && !humanFactor) {
         probability = getProbability(firstRoll);
-        response = getDecision(rollCounter, turnCounter, 
-                              turnScore, p1Score, p2Score, probability);
+
+        decisionParams.roundNumber = turnCounter;
+        decisionParams.rollCounter = rollCounter;
+        decisionParams.turnScore = turnScore;
+        decisionParams.p1Score = p1Score;
+        decisionParams.p2Score = p2Score;
+        decisionParams.probability = probability;
+
+        response = getDecision(decisionParams);
       } 
       // if player is human, display roll screen
       else {
-        response = displayTurn(p1Name, p1Score, firstRoll, rollCounter, roundScore,
-                              die1, die2, turnScore, p2Name, p2Score, activePlayer, turnCounter/2);
+        // assign all struct values before sending to displayTurn
+        turnData.p1Name = p1Name;
+        turnData.p1Score = p1Score;
+        turnData.firstRoll = firstRoll;
+        turnData.rollCounter = rollCounter;
+        turnData.roundScore = roundScore;
+        turnData.die1 = die1;
+        turnData.die2 = die2;
+        turnData.turnScore = turnScore;
+        turnData.p2Name = p2Name;
+        turnData.p2Score = p2Score;
+        turnData.activePlayer = activePlayer;
+        turnData.turnCounter = (turnCounter/2)+1;
+
+        response = displayTurn(turnData);
       }
 
       switch (response) {
@@ -84,7 +112,7 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
           break;
         // undesired input, ask again
         default:
-          printf("How did you manage to get here? (sanity check failed)\n");
+          // bad input, this shouldn't get exectuted
           return -2;
       }
       if (reRoll) break;

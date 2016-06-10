@@ -33,7 +33,6 @@ void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 
 	char response;
 	response = getch();
-
 }
 
 void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
@@ -432,7 +431,7 @@ unsigned displayTurn(DisplayTurn turn)
 	unsigned p2Score = turn.p2Score;
 	_Bool activePlayer = turn.activePlayer;
 	unsigned turnCounter = turn.turnCounter;
-	
+
 	system("clear");
 	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
     	printf("Current Round: %u/20 \n", turnCounter);

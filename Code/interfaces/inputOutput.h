@@ -94,3 +94,12 @@ void displayInGameHelpMenu();
 // Param N/A
 // Returns N/A
 void displayProbability();
+
+// TODO JAVADOCS
+void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName);
+
+// TODO JAVADOCS
+void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName);
+
+// TODO JAVADOCS
+void displayStopTurn(char* playerName, unsigned score, char* opponentName);
