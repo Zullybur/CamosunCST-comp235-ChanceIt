@@ -94,3 +94,9 @@ void displayInGameHelpMenu();
 // Param N/A
 // Returns N/A
 void displayProbability();
+
+
+
+void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName);
+
+void displayStopTurn(char* playerName, unsigned score, char* opponentName);

@@ -52,8 +52,20 @@ int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
       } 
       // if player is human, display roll screen
       else {
-        response = displayTurn(p1Name, p1Score, firstRoll, rollCounter, roundScore,
-                              die1, die2, turnScore, p2Name, p2Score, activePlayer, turnCounter/2);
+        DisplayTurn turn;
+        turn.p1Name = p1Name;
+        turn.p1Score = p1Score;
+        turn.firstRoll = firstRoll;
+        turn.rollCounter = rollCounter;
+        turn.roundScore = roundScore;
+        turn.die1 = die1;
+        turn.die2 = die2;
+        turn.turnScore = turnScore;
+        turn.p2Name = p2Name;
+        turn.p2Score = p2Score;
+        turn.activePlayer = activePlayer;
+        turn.turnCounter = turnCounter;
+        response = displayTurn(turn);
       }
 
       switch (response) {
