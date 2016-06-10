@@ -5,7 +5,7 @@
 #include <time.h>
 #include <string.h>
 
-#define FILEPATH	"../../Design Documents/highScore.txt"
+#define FILEPATH	"../textFiles/highScore.txt"
 
 
 _Bool submitScore(unsigned score, char* name){
@@ -65,14 +65,14 @@ _Bool amendHighScore(char* name, unsigned score){
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 	strcpy(newScore.date, asctime(timeinfo));
-	//maybe in own function
+	//date to be displayed in the following format: YYYY-MMM-DD
 	newScore.date[0] = newScore.date[20];
 	newScore.date[1] = newScore.date[21];
 	newScore.date[2] = newScore.date[22];
 	newScore.date[3] = newScore.date[23];
 	newScore.date[11] = '\0';
 	newScore.date[10] = newScore.date[9];
-	//newScore.date[9] = newScore.date[8];
+	//checks if the value of day is a single digit, if so, add 0 in front of the number
 	if (newScore.date[8] == ' ')
         {
                 newScore.date[9] = '0';
