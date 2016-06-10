@@ -17,4 +17,15 @@ typedef struct Score{
 // Param:  date a pointer to the date of the game play
 // Param:  score takes in the value of the player’s score 
 // Returns: N/A
-void amendHighScore(char* name, unsigned score);
+_Bool amendHighScore(char* name, unsigned score);
+
+
+
+_Bool submitScore(unsigned score, char* name);
+
+
+
+
+_Bool submitTieScore(unsigned score, char* player1, char* player2);
+
+

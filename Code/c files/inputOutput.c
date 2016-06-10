@@ -216,109 +216,41 @@ void displayHighScore()
 		
 	system("clear");
 
-	/*
-	FILE *fp;
-	fp = fopen(SCORE_FILEPATH, "r");
-        char buff[MAX_BUFF];
-        int c, i;
-	//char *displayName = calloc(16,sizeof(char));
-	//char *displayScore = calloc(4,sizeof(char));
-	//char *displayDate = calloc(11,sizeof(char));
-	
-	printf("Top Ten Scores\n%s\n",SCORE_BORDER);
-	
-        while((c = fgetc(fp)) != EOF)
-        {
-
-		fgets(buff,32,(FILE*)fp);
-		//displayName[0] = c;
-		printf("|%c", c);
-		for (i = 1; i < 16;i++)
-		{
-			
-			if (buff[i - 1] == NULL_TERM)
-			{
-				printf(" ");
-			} else 
-			{
-				printf("%c", buff[i]);
-			}
-			
-			//printf(" ");
-		}
-
-		printf("|");
-
-		fgets(buff,12,(FILE*)fp);
-		for (i = 0; i < 4; i++)
-		{
-			
-			if (buff[i] == NULL_TERM)
-			{
-				printf(" ");
-			} else
-			{
-				printf("%c",buff[i]);
-			}
-			
-			//printf(" ");
-		}	
-		
-		printf("|");
-		fgets(buff,26, (FILE*)fp);
-
-		for (i = 0; i < 11; i++)
-		{
-			//printf(" ");
-			
-			if (buff[i] == NULL_TERM)
-			{
-				printf(" "); 
-			} else 
-			{
-				printf("%c",buff[i]);
-			}
-			
-		}
-		printf("|\n");			
-
-        }
-	printf("%s\n",SCORE_BORDER);
-	printf("Press any key to return to previous screen\n");
-	char response;
-        response = getch();
-        fclose(fp);
-	*/
-
 	FILE *f;
         if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
                 printf(" Top Ten Scores\n");
                 printf("--------------------------------------------\n");
                 f = fopen(SCORE_FILEPATH, "r");
                 int i;
-                for (i = 1; i <= 10; i++){
-                        //if (feof(f))
-			//{
-			//	break;
-			//}
-			
+                //Loop through up to 10 times
+		for (i = 1; i <= 10; i++){
 			char name[50] = {0};
                         fscanf(f, "%s", name);
                         char date[50] = {0};
                         fscanf(f, "%s", date);
                         char score[50] = {0};
                         fscanf(f, "%s", score);
-                        if (feof(f)){
+                       //Kill loop if EOF is found
+			if (feof(f)){
                                 break;
                         }
+			//Display the ranking of player as number
+			//followed by one or two spaces and a |
+			//finally the date is displayed followed by a |
                         printf(" %d%s| %s | ",i, (i < 10 ? "  " : " "), date);
                         int j = 0;
+
+			//Display all the characters of the player name
+			//up to a maximum of 16 chars
                         for (; j < 16 && name[j]; j++){
                                 printf("%c", name[j]);
                         }
+			//If j has not hit 16 then print
+			//spaces until j hits 16
                         for (; j < 16; j++){
                                 printf(" ");
                         }
+			//Display | and then the score
                         printf(" | %s\n", score);
                 }
                 printf("--------------------------------------------\n");
@@ -486,9 +418,21 @@ void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 }
 
 
-unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned rollCounter, unsigned roundScore,
-                              unsigned die1, unsigned die2, unsigned turnScore, char* p2Name, unsigned p2Score, _Bool activePlayer, unsigned turnCounter)
+unsigned displayTurn(DisplayTurn turn)
 {
+	char* p1Name = p1Name;
+	unsigned p1Score = p1Score;
+	unsigned firstRoll = firstRoll;
+	unsigned rollCounter = rollCounter;
+	unsigned roundScore = roundScore;
+	unsigned die1 = die1;
+	unsigned die2 = die2;
+	unsigned turnScore = turnScore;
+	char* p2Name = p2Name;
+	unsigned p2Score = p2Score;
+	_Bool activePlayer = activePlayer;
+	unsigned turnCounter = turnCounter;
+	
 	system("clear");
 	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
     	printf("Current Round: %u/20 \n", turnCounter);
@@ -554,17 +498,15 @@ unsigned displayTurn(char* p1Name,unsigned p1Score,unsigned firstRoll, unsigned 
 
 void displayProbability(double result){
 	system("clear");
-
+	char percent = '%';
 	printf("--------------------\n");
-	printf("It is probably quite probable that the probability for you next roll is:.\n");
-	printf("%.2f...\n\n",result);
+	printf("It is probably quite probable that the probability for your next roll is:\n");
+	printf("%.2f%c...\n\n",result,percent);
 	printf("Remember, knowledge is power!\n");
 	printf("Press the any key to continue...\n");
 	printf("--------------------\n");
 
 	char response;
-	//printf("Probablity is :%.2f\n\n",result);
-	//printf("Please press any key to go back to game.\n");
 	response = getch();
 }
 

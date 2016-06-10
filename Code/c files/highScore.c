@@ -5,15 +5,27 @@
 #include <time.h>
 #include <string.h>
 
+#define FILEPATH	"../../Design Documents/highScore.txt"
+
+
+_Bool submitScore(unsigned score, char* name){
+	return amendHighScore( name,  score); 
+}
+           
+_Bool submitTieScore(unsigned score, char* player1, char* player2){
+
+_Bool result = amendHighScore( player1,  score);
+	return amendHighScore( player2,  score) || result;
+}
 
 
 void getHighScore(){
 	
 	FILE *f;
-	if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
+	if( access( FILEPATH, F_OK) != -1){
 		printf(" Top Ten Scores\n");
 		printf("--------------------------------------------\n");
-		f = fopen("highScore.txt", "r");
+		f = fopen(FILEPATH, "r");
 		int i;
 		for (i = 1; i <= 10; i++){
 			char name[50] = {0};
@@ -42,13 +54,8 @@ void getHighScore(){
 	}
 }
 
-//_Bool submitScore(char* name, unsigned score )
-//{ 
-
-
-//}
-
-void amendHighScore(char* name, unsigned score){
+_Bool amendHighScore(char* name, unsigned score){
+	_Bool result = 0;
 	Score newScore;
 	strcpy(newScore.name, name);
 	newScore.score = score;
@@ -65,20 +72,28 @@ void amendHighScore(char* name, unsigned score){
 	newScore.date[3] = newScore.date[23];
 	newScore.date[11] = '\0';
 	newScore.date[10] = newScore.date[9];
-	newScore.date[9] = newScore.date[8];
+	//newScore.date[9] = newScore.date[8];
+	if (newScore.date[8] == ' ')
+        {
+                newScore.date[9] = '0';
+        } else
+        {
+                newScore.date[9] = newScore.date[8];
+        }
 	newScore.date[8] = '-';
 	newScore.date[7] = newScore.date[6];
 	newScore.date[6] = newScore.date[5];
 	newScore.date[5] = newScore.date[4];
 	newScore.date[4] = '-';
+	
 
 	int isAdded = 0;
 	Score highScores[11];
 
 	unsigned i = 0;
 	FILE *f;
-	if( access( "highScore.txt", F_OK) != -1){
-		f = fopen("highScore.txt", "r");
+	if( access( FILEPATH, F_OK) != -1){
+		f = fopen(FILEPATH, "r");
 		char line[50];
 		while(1){
 			Score nextScore;
@@ -105,6 +120,7 @@ void amendHighScore(char* name, unsigned score){
 			if (isAdded || nextScore.score >= newScore.score){
 				highScores[i] = nextScore;
 			}else{
+				result = 1;
 				highScores[i++] = newScore;
 				isAdded = !isAdded;
 				highScores[i] = nextScore;
@@ -123,7 +139,7 @@ void amendHighScore(char* name, unsigned score){
 		i = 0;
 		highScores[0] = newScore;
 	}
-	f = fopen("../../Design Documents/highScore.txt", "a");
+	f = fopen(FILEPATH, "w");
 	unsigned j = 0;
 	char line[50];
 	for (; j <= i; j++){
@@ -137,5 +153,6 @@ void amendHighScore(char* name, unsigned score){
 		fputs(line, f);
 	}
 	fclose(f);
+	return result;
 
 }
