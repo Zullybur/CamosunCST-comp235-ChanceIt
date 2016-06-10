@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <time.h>
 
 #include "../interfaces/getCon.h"
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/probability.h"
+#include "../interfaces/random.h"
 
 #define SCORE_BORDER	"----------------------------------"
 #define FILEPATH	"../../Design Documents/UserManual/"
@@ -18,7 +19,9 @@
 #define MAX_IP_LEN 	45
 #define MAX_PORT_LEN 	5
 #define NULL_TERM	'\0'
-
+#define DICE_PRINT	3
+#define RANDOM_ROLLS	10
+#define NANOSECONDS	500000000
 
 void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 {
@@ -412,11 +415,50 @@ void displayNetworkPlayInput(char* IPaddress, unsigned* port)
 		IPaddress[i] = strIP[i];
 	}
 	
+	IPaddress[i] = '\0';
 	free(strIP);
 	*port = atoi(strPort);
 	
 }
 
+void printDie(unsigned die1,unsigned die2)
+{
+	unsigned i;
+	char* die[9];
+	
+	//Create different lines for printing of dice horizontally 
+	die[0] = " __________  ";
+	die[1] = "|          | ";
+	die[2] = "|          | ";
+	die[3] = "|          | ";
+	die[4] = "|          | ";
+	die[5] = "|__________| ";
+
+	//Create lines for the divets on the die
+	die[6] = "|  O     O | ";
+	die[7] = "|     O    | ";
+	die[8] = "|        O | ";
+	die[9] = "|  O       | ";
+	
+	//Create array to hold unsigned integers that can be used
+	//to choose the proper line to print for the face of the die
+	//based off the line that needs to be printed and the die that
+	//was rolled 
+	unsigned diceRay[3][6] = {{2,9,9,6,6,6},
+	             		      {7,2,7,2,7,6},
+							  {2,8,8,6,6,6}};	
+
+	printf("%s%s\n", die[0]die[0]);
+	printf("%s%s\n", die[1],die[1]);
+		
+	for(i = 0; i < DICE_PRINT; j++)
+	{
+		printf("%s",die[diceRay[j][die1 - 1]]);
+		printf("%s\n",die[diceRay[j][die2 - 1]]);	
+	}
+
+	printf("%s%s\n", die[5],die[5]);
+}
 
 unsigned displayTurn(DisplayTurn turn)
 {
@@ -433,6 +475,15 @@ unsigned displayTurn(DisplayTurn turn)
 	_Bool activePlayer = activePlayer;
 	unsigned turnCounter = turnCounter;
 	
+	//Set up for the use of nanosleep
+	struct timespec request;
+	struct timespec remain;
+	request.tv_sec = 1;
+	request.tv_nsec = NANOSECONDS;
+		
+	//Generate random for use with dice roller 
+	randomInit();
+
 	system("clear");
 	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
     	printf("Current Round: %u/20 \n", turnCounter);
@@ -440,14 +491,23 @@ unsigned displayTurn(DisplayTurn turn)
 	printf("-----------------------------\n");
 	printf("First roll: %u \n", firstRoll);
 	printf("Turn score: %u \n\n", turnScore);
-	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
-  	
-	//switch(die1)
-	//{
-	//	case 1:
-	//		printf();		
-	//}
+	printf("You rolled: %u + %u = %u \n", die1, die2, roundScore);
+ 	
+	//Loop for printing off random die on display
+	for(i = 0; i < RANDOM_ROLLS; i++)
+	{
+		//Grab two random rolls to be displayed		
+		rRoll1 = getRandom(1,6);
+		rRoll2 = getRandom(1,6);
 
+		printDie(rRoll1,rRoll2);
+		//Sleep for half a second
+		nanosleep(&request,&remain);				
+			
+	} 	
+
+	printDie(die1,die2);
+	
 	printf("%s, score: %u \n", p1Name, p1Score);
     	printf("%s, score: %u \n", p2Name, p2Score);
 	printf("-----------------------------\n");
@@ -509,15 +569,3 @@ void displayProbability(double result){
 	char response;
 	response = getch();
 }
-
-// TODO: JAVADOCS
-_Bool submitScore(int score, char* name) {
-	return 0;
-}
-
-// TODO: JAVADOCS
-_Bool submitTieScore(int score, char* name1, char* name2) {
-	return 0;
-}
-
-

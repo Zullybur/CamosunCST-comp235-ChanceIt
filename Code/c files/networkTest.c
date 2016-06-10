@@ -8,153 +8,121 @@
 #include <sys/socket.h>
 #include "getCon.h"
 
-#define MAXRCVLEN 	200
-#define PORTNUM 	1099
-#define IP_CONN 	"52.38.98.137"
-#define STOP 		"stop\n"
-#define YES 		"Y\n"
-#define NO 		"n\n"
-#define HELLO 		"HELLO:C\n"
-#define BYE 		"GOODBYE:C\n"
+#define BUFF_SIZE   1024
+#define PORTNUM     1099
+#define IP_CONN     "52.38.98.137"
+#define STOP        "stop\n"
+#define YES         "Y\n"
+#define NO          "n\n"
+#define HELLO       "HELLO:John Malkovich\n"
+#define BYE         "GOODBYE:John Malkovich\n"
 
-char* readLine(char* text)
+static int mySocket;
+static char buffer[BUFF_SIZE];
+static int buf_pos = 0;
+static int buf_max = 0;
+static int goFirst;
+
+void connectToServer()
 {
+	struct sockaddr_in dest; 
+
+    mySocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    memset(&dest, 0, sizeof(dest));             //zero the struct
+    dest.sin_family = AF_INET;
+    dest.sin_addr.s_addr = inet_addr(IP_CONN);  //set destination IP number
+    dest.sin_port = htons(PORTNUM);             //set destination port number
 	
+	connect(mySocket, (struct sockaddr *)&dest, sizeof(struct sockaddr));
+}
+
+void registerWithServer()
+{
+	send(mySocket, HELLO, sizeof(HELLO), 0);
+}
+
+void unregisterWithServer()
+{
+	send(mySocket, BYE, sizeof(BYE), 0);
+}
+
+void writeToServer()
+{
+	char cmd = getche();
+	
+	switch(cmd)
+	{
+		case 'y':
+		send(mySocket, YES, sizeof(YES),0);
+		
+		case 'n':
+		send(mySocket, NO, sizeof(NO),0);
+		
+		case 's':
+		send(mySocket, STOP, sizeof(STOP),0);
+	}
+	
+}
+
+int readLine(char* lineBuffer)
+{
+	/*
+	buf_max += recv(mySocket, buffer, BUFF_SIZE, 0);
+	
+	if(strncmp(buffer, "IS IT", 5) == 0)
+	{
+		printf("%s", buffer);
+	}
+	else if(strncmp(buffer, "Opponent", 8) == 0)
+	{
+		printf("%s", buffer);
+	}
+	else if(strncmp(buffer, "Your", 4) == 0)
+	{
+		int myScore;
+		int opScore;
+		sscanf(buffer, "%d %d", myScore, opScore);
+		if (myScore > opScore)
+		{
+			goFirst = 1;
+		}
+		else
+		{
+			goFirst = 0;
+		}
+		printf("%s", buffer);
+	}
+	else if(strncmp(buffer, "Turn", 4))
+	{
+		printf("%s", buffer);
+	}
+	*/
+	int i = 0;
+	while(buf_pos < buf_max)
+	{
+		if(buffer[buf_pos] == '\n')
+		{
+			lineBuffer[i] = '\0';
+			buf_pos++;
+			return i;
+		}
+		else
+		{
+			lineBuffer[i++] = buffer[buf_pos++];
+		}
+	}
+	buf_max = recv(mySocket, buffer, 1024, 0);
+	buf_pos = 0;
+	return (i + readLine(&lineBuffer[i]));
 }
 
 int main()
 {
-    char buffer[MAXRCVLEN];
-    char wait[MAXRCVLEN];
-    char turnOrder[MAXRCVLEN];
-    char game[MAXRCVLEN];
-    char chanceIt[MAXRCVLEN];
-    char cmd;
-    int len, mySocket;
-    //int playing = 1;
-    struct sockaddr_in dest; 
-
-    mySocket = socket(AF_INET, SOCK_STREAM, 0);
-
-    memset(&dest, 0, sizeof(dest));				//zero the struct
-    dest.sin_family = AF_INET;
-    dest.sin_addr.s_addr = inet_addr(IP_CONN);	//set destination IP number
-    dest.sin_port = htons(PORTNUM);				//set destination port number
- 
-    connect(mySocket, (struct sockaddr *)&dest, sizeof(struct sockaddr));
-
-    send(mySocket, HELLO, sizeof(HELLO), 0);
-
-	//Receive "IS IT ME YOU'RE LOOKIN FOR?"
-	len = recv(mySocket, wait, MAXRCVLEN, 0);
-	printf("%s", wait);
-
-	//Receive "Opponent: [Opponent Name]"
-	len = recv(mySocket, buffer, MAXRCVLEN, 0);
-	printf("%s", buffer);
-
-	//Receive "Your roll was: [Roll Number]. Opponent roll was: [Roll Number]. [Name] goes first"
-	len = recv(mySocket, turnOrder, MAXRCVLEN, 0);
-	printf("%s", turnOrder);
-	
-    if(turnOrder[15] > turnOrder[37])
-    {
-        cmd = getche();		
-        if(cmd == 's')
-        {
-            if(send(mySocket, STOP, sizeof(STOP), 0) < 0)
-			{
-				printf("Send STOP error\n");
-			}
-			else
-			{
-				printf("STOP OCCURED IN IF\n");
-				//playing = 0;
-				close(mySocket);
-			}
-		}
-        else if(cmd == 'y' || cmd == 'Y')
-        {
-            if(send(mySocket, YES, sizeof(YES), 0) < 0)
-			{
-				printf("Send YES error\n");
-			}
-			else
-			{
-				printf("YES OCCURED IN IF\n");
-			}
-        }
-        else if(cmd == 'n' || cmd == 'N')
-        {
-            if(send(mySocket, NO, sizeof(NO), 0) < 0)
-			{
-				printf("Send NO error\n");
-			}
-			else
-			{
-				printf("NO OCCURED IN IF\n");
-			}
-        }
-    }
-    
-    //Receive Turn information
-    while(1)
-    {
-	    /* 
-		Receive
-		Turn Starting Score: [Score]-[Opponent Score]
-		Turn#: [Turn Number]
-		Roll#: [Roll Number]
-		You Rolled: [[Roll 1], [Roll 2]]
-		Running Turn Score: [Total Turn Score]
-		--
-		*/
-		len = recv(mySocket, game, MAXRCVLEN, 0);
-		printf("%s", game);
-	
-		//Receive "chance-it? [Y/n]"
-		len = recv(mySocket, chanceIt, MAXRCVLEN, 0);
-		printf("%s", chanceIt); 
-		
-        cmd = getche();
-	printf(YES);
-	printf(NO);		
-        if(cmd == 's')
-        {
-            if(send(mySocket, STOP, sizeof(STOP), 0) < 0)
-			{
-				printf("Send STOP error\n");
-			}
-			else
-			{
-				close(mySocket);
-				break;
-			}
-        }
-        else if(cmd == 'y' || cmd == 'Y')
-        {
-            if(send(mySocket, YES, sizeof(YES), 0) < 0)
-			{
-				printf("Send YES error\n");
-			}
-			else
-			{
-				printf("YES OCCURED IN LOOP\n");
-			}
-        }
-        else if(cmd == 'n' || cmd == 'N')
-        {
-            if(send(mySocket, NO, sizeof(NO), 0) < 0)
-			{
-				printf("Send NO error IN LOOP\n");
-			}
-			else
-			{
-				printf("NO OCCURED IN LOOP\n");
-			}
-        }
-
-    }
-    //close(mySocket);
-    return 1;
+char lineBuffer[1024];
+connectToServer();
+registerWithServer();
+readLine(lineBuffer);
+printf("%s", lineBuffer);
+close(mySocket);
 }
