@@ -8,6 +8,7 @@
 #define MAX_NAME_LENGTH 17
 #define ROUNDS 20
 #define FORFEIT -1
+#define NANO_TO_NORMAL 1000000000
 
 static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 {
@@ -40,7 +41,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         } else if (tmpResult < FORFEIT) {
             // Sanity check failed
             printf("Game error occured in turn logic - returning to main menu.\n");
-            sleep(1.5);
+            nanosleep(1.5 * NANO_TO_NORMAL);
             return;
         }
 
@@ -83,7 +84,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 
     // Return to main menu
     printf("\nReturning to main menu...\n");
-    sleep(1.5);
+    nanosleep(1.5 * NANO_TO_NORMAL);
     system("clear");
 }
 
