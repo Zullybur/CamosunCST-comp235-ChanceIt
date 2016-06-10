@@ -6,10 +6,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int localTurn(_Bool humanFactor, char* p1Name, char* p2Name,
-              unsigned p1Score, unsigned p2Score, unsigned turnCounter) {
+int localTurn(LocalTurnParams localTurnParams) {
   // local turn variables
-  _Bool activePlayer = turnCounter % 2;  // False if player 1, True if plyer 2
+  _Bool humanFactor = localTurnParams.humanFactor;
+  char* p1Name = localTurnParams.player1Name;
+  char* p2Name = localTurnParams.player2Name;
+  unsigned p1Score = localTurnParams.p1Score;
+  unsigned p2Score = localTurnParams.p2Score;
+  unsigned turnCounter = localTurnParams.turnCount;
+
+  _Bool activePlayer = localTurnParams.turnCounter % 2;  // False if player 1, True if plyer 2
   _Bool reRoll;
   unsigned rollCounter = 1;
   unsigned firstRoll;
