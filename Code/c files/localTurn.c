@@ -15,7 +15,7 @@ int localTurn(LocalTurnParams localTurnParams) {
   unsigned p2Score = localTurnParams.p2Score;
   unsigned turnCounter = localTurnParams.turnCount;
 
-  _Bool activePlayer = localTurnParams.turnCounter % 2;  // False if player 1, True if plyer 2
+  _Bool activePlayer = turnCounter % 2;  // False if player 1, True if plyer 2
   _Bool reRoll;
   unsigned rollCounter = 1;
   unsigned firstRoll;
@@ -56,8 +56,8 @@ int localTurn(LocalTurnParams localTurnParams) {
       if (activePlayer && !humanFactor) {
         probability = getProbability(firstRoll);
 
+        decisionParams.roundNumber = turnCounter;
         decisionParams.rollCounter = rollCounter;
-        decisionParams.turnCounter = turnCounter;
         decisionParams.turnScore = turnScore;
         decisionParams.p1Score = p1Score;
         decisionParams.p2Score = p2Score;

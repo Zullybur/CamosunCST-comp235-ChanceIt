@@ -12,7 +12,7 @@
 unsigned getDecision(DecisionParams params)
 {
     unsigned roundNumber = params.roundNumber;
-    unsigned turnNumber = params.turnNumber;
+    unsigned rollCounter = params.rollCounter;
     unsigned turnScore = params.turnScore;
     unsigned p1Score = params.p1Score;
     unsigned p2Score = params.p2Score;
@@ -38,7 +38,7 @@ unsigned getDecision(DecisionParams params)
     }
 
     // Return the roll decision based on risk threshold vs how many rolls have been made
-    if (turnNumber < riskThreshold)
+    if (rollCounter < riskThreshold)
     {
         return 1;
     }

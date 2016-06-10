@@ -27,10 +27,11 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         params.p2Score = p2Score;
         params.turnCount = i++;
         // Call first player's turn
-        tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
+        tmpResult = localTurn(params);
         if (tmpResult >= 0)
         {
             p1Score += tmpResult;
+            params.p1Score = p1Score;
         // Break the loop if a player forfeits
         } else if (tmpResult == FORFEIT) {
             printf("%s Forfeits!\n", player1Name);
@@ -42,8 +43,10 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             sleep(1.5);
             return;
         }
+
+        params.turnCount = i++;
         // Call second player's turn
-        tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
+        tmpResult = localTurn(params);
         if (tmpResult >= 0)
         {
             p2Score += tmpResult;
@@ -63,8 +66,8 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
 
             isHighScore = submitScore(
-                (p1Score>p2Score) ? p1Score : p2Score,
-                (p1Score > p2Score) ? player1Name : player2Name
+                ((p1Score>p2Score) ? p1Score : p2Score),
+                ((p1Score > p2Score) ? player1Name : player2Name)
             );
 
         } else {
