@@ -7,6 +7,7 @@
 
 #define MAX_NAME_LENGTH 17
 #define ROUNDS 20
+#define FORFEIT -1
 
 static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 {
@@ -18,15 +19,28 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
     // Run <ROUNDS> turns for each player
     for (unsigned i = 0; i < ROUNDS * 2; )
     {
+        LocalTurnParams params;
+        params.humanFactor = humanFactor;
+        params.player1Name = player1Name;
+        params.player2Name = player2Name;
+        params.p1Score = p1Score;
+        params.p2Score = p2Score;
+        params.turnCount = i++;
         // Call first player's turn
         tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
         if (tmpResult >= 0)
         {
             p1Score += tmpResult;
-        } else {
+        // Break the loop if a player forfeits
+        } else if (tmpResult == FORFEIT) {
             printf("%s Forfeits!\n", player1Name);
             forfeit = 1;
             break;
+        } else if (tmpResult < FORFEIT) {
+            // Sanity check failed
+            printf("Game error occured in turn logic - returning to main menu.\n");
+            sleep(1.5);
+            return;
         }
         // Call second player's turn
         tmpResult = localTurn(humanFactor, player1Name, player2Name, p1Score, p2Score, i++);
@@ -39,6 +53,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             break;
         }
     }
+    // Display results if the game completed
     if (!forfeit) {
         printf("%s's final score: %u\n", player1Name, p1Score);
         printf("%s's final score: %u\n", player2Name, p2Score);
@@ -63,6 +78,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         
     }
 
+    // Return to main menu
     printf("\nReturning to main menu...\n");
     sleep(1.5);
     system("clear");
@@ -70,8 +86,9 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 
 static void playNetwork(_Bool humanFactor, char* player1Name, char* player2Name)
 {
-    printf("Sorry - Network Play has not been implemented.\n");
-    sleep(1.5);
+    // printf("Sorry - Network Play has not been implemented.\n");
+    // sleep(1.5);
+
 }
 
 static void getName(char* name, _Bool isNetwork)

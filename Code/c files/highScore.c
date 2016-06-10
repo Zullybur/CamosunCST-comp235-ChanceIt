@@ -14,7 +14,7 @@ _Bool submitScore(unsigned score, char* name){
            
 _Bool submitTieScore(unsigned score, char* player1, char* player2){
 
-_Bool result = amendHighScore( player1,  score);
+	_Bool result = amendHighScore( player1,  score);
 	return amendHighScore( player2,  score) || result;
 }
 

@@ -95,8 +95,17 @@ void displayInGameHelpMenu();
 // Returns N/A
 void displayProbability();
 
+// TODO: JAVADOCS
+_Bool submitScore(int score, char* name);
 
+// TODO: JAVADOCS
+_Bool submitTieScore(int score, char* name1, char* name2);
 
+// TODO JAVADOCS
 void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName);
 
+// TODO JAVADOCS
+void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName);
+
+// TODO JAVADOCS
 void displayStopTurn(char* playerName, unsigned score, char* opponentName);

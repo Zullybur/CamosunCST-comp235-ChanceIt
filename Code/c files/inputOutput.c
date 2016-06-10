@@ -33,7 +33,6 @@ void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 
 	char response;
 	response = getch();
-
 }
 
 void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
