@@ -72,7 +72,7 @@ _Bool amendHighScore(char* name, unsigned score){
 	newScore.date[3] = newScore.date[23];
 	newScore.date[11] = '\0';
 	newScore.date[10] = newScore.date[9];
-	//checks if the value of day is a single digit, if so, add 0 in front of the number
+	//checks if the value of day is a single digit, if so, adds 0 in front of the number
 	if (newScore.date[8] == ' ')
         {
                 newScore.date[9] = '0';
@@ -92,7 +92,9 @@ _Bool amendHighScore(char* name, unsigned score){
 
 	unsigned i = 0;
 	FILE *f;
+	//checks if file exists
 	if( access( FILEPATH, F_OK) != -1){
+		//opens fil for reading
 		f = fopen(FILEPATH, "r");
 		char line[50];
 		while(1){
@@ -104,6 +106,7 @@ _Bool amendHighScore(char* name, unsigned score){
 			}
 			nextScore.name;
 			fscanf(f, "%s", nextScore.date);
+			//breaks out if end of file is reached
 			if (feof(f)){
 				i--;
 				break;
@@ -117,6 +120,7 @@ _Bool amendHighScore(char* name, unsigned score){
 				i--;
 				break;
 			}
+			//compares if newScore qualifies to be in the top ten
 			if (isAdded || nextScore.score >= newScore.score){
 				highScores[i] = nextScore;
 			}else{
@@ -139,9 +143,11 @@ _Bool amendHighScore(char* name, unsigned score){
 		i = 0;
 		highScores[0] = newScore;
 	}
+	//opens highScore.txt for writing
 	f = fopen(FILEPATH, "w");
 	unsigned j = 0;
 	char line[50];
+	//start adding data to file
 	for (; j <= i; j++){
 		fputs(highScores[j].name, f);
 		fprintf(f, "\n");
