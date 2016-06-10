@@ -6,8 +6,8 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include "..interfaces/getCon.h"
-#include "..interfaces/socket.h"
+#include "getCon.h"
+#include "socket.h"
 
 #define PORTNUM     1092
 #define IP_CONN     "52.38.98.137"
@@ -36,7 +36,7 @@ char* whoIsOpp(char* lineBuffer)
 }
 
 //Begins the network game
-void game()
+int main()
 {
 	char printBuf[30];
 	char* oppName;
