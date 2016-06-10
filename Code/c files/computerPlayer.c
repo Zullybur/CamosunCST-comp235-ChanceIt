@@ -1,4 +1,5 @@
 #include "../interfaces/computerPlayer.h"
+
 #define RISK_REDUCTION_LIMITER 1.5
 #define RISK_MULTIPLIER 2
 #define MAX_ROLL_THRESHOLD 10
@@ -8,16 +9,16 @@
 // Post: N/A
 // Return 2 for stop, or 1 for roll again
 // Cleanup N/A
-unsigned getDecision(unsigned roundNumber, unsigned turnNumber, 
-                     unsigned turnScore, unsigned p1Score,
-                     unsigned p2Score, unsigned probability)
+unsigned getDecision(DecisionParams params)
 {
-    /***** Notes *****
-    -- 
-    -- is turn number the number of rolls this turn
-    ******************/
-    int scoreGap = p1Score - p2Score + turnScore;
+    unsigned roundNumber = params.roundNumber;
+    unsigned rollCounter = params.rollCounter;
+    unsigned turnScore = params.turnScore;
+    unsigned p1Score = params.p1Score;
+    unsigned p2Score = params.p2Score;
+    unsigned probability = params.probability;
 
+    int scoreGap = p1Score - p2Score + turnScore;
 
     /**** e.g. ****
     probability is .735245r345
@@ -37,7 +38,7 @@ unsigned getDecision(unsigned roundNumber, unsigned turnNumber,
     }
 
     // Return the roll decision based on risk threshold vs how many rolls have been made
-    if (turnNumber < riskThreshold)
+    if (rollCounter < riskThreshold)
     {
         return 1;
     }

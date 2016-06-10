@@ -95,6 +95,16 @@ void displayInGameHelpMenu();
 // Returns N/A
 void displayProbability();
 
+
 //Post: Dice are displayed on screen
-//Params: Two unsigned numbers that are > 1 && < 6
+//Params: Two unsigned numbers that are >= 1 && =< 6
 void printDie(unsigned die1, unsigned die2);
+
+//Post: fail message is displayed to screen
+//Params: active player name, an unsigned int >= 1 && =< 6 and the name of the inactive player
+void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName);
+
+//Post: stop round screen is displayed
+//Params: active player name, an unsigned int representing score for the round and the name of the inactive player
+void displayStopTurn(char* playerName, unsigned score, char* opponentName);
+
