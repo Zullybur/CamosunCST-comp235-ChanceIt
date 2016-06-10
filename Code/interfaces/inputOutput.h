@@ -94,3 +94,7 @@ void displayInGameHelpMenu();
 // Param N/A
 // Returns N/A
 void displayProbability();
+
+//Post: Dice are displayed on screen
+//Params: Two unsigned numbers that are > 1 && < 6
+void printDie(unsigned die1, unsigned die2);
