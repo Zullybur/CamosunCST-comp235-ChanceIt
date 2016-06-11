@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/localTurn.h"
 #include "../interfaces/highScore.h"

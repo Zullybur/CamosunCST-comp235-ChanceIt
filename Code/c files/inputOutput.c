@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "../interfaces/getCon.h"
 #include "../interfaces/inputOutput.h"
@@ -21,7 +22,7 @@
 #define NULL_TERM	'\0'
 #define DICE_PRINT	3
 #define RANDOM_ROLLS	10
-#define NANOSECONDS	500000000
+#define U_SECONDS	500000
 
 void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 {
@@ -443,17 +444,15 @@ void printDie(unsigned die1,unsigned die2)
 	//to choose the proper line to print for the face of the die
 	//based off the line that needs to be printed and the die that
 	//was rolled 
-	unsigned diceRay[3][6] = {{2,9,9,6,6,6},
-	             		      {7,2,7,2,7,6},
-							  {2,8,8,6,6,6}};	
+	unsigned diceRay[3][6] = { {2,9,9,6,6,6} , {7,2,7,2,7,6}, {2,8,8,6,6,6} };	
 
-	printf("%s%s\n", die[0]die[0]);
+	printf("%s%s\n", die[0],die[0]);
 	printf("%s%s\n", die[1],die[1]);
 		
-	for(i = 0; i < DICE_PRINT; j++)
+	for(i = 0; i < DICE_PRINT; i++)
 	{
-		printf("%s",die[diceRay[j][die1 - 1]]);
-		printf("%s\n",die[diceRay[j][die2 - 1]]);	
+		printf("%s",die[diceRay[i][die1 - 1]]);
+		printf("%s\n",die[diceRay[i][die2 - 1]]);	
 	}
 
 	printf("%s%s\n", die[5],die[5]);
@@ -461,27 +460,9 @@ void printDie(unsigned die1,unsigned die2)
 
 unsigned displayTurn(DisplayTurn turn)
 {
-	char* p1Name = p1Name;
-	unsigned p1Score = p1Score;
-	unsigned firstRoll = firstRoll;
-	unsigned rollCounter = rollCounter;
-	unsigned roundScore = roundScore;
-	unsigned die1 = die1;
-	unsigned die2 = die2;
-	unsigned turnScore = turnScore;
-	char* p2Name = p2Name;
-	unsigned p2Score = p2Score;
-	_Bool activePlayer = activePlayer;
-	unsigned turnCounter = turnCounter;
-	
-	//Set up for the use of nanosleep
-	struct timespec request;
-	struct timespec remain;
-	request.tv_sec = 1;
-	request.tv_nsec = NANOSECONDS;
-		
 	//Generate random for use with dice roller 
 	randomInit();
+	
 	char* p1Name = turn.p1Name;
 	unsigned p1Score = turn.p1Score;
 	unsigned firstRoll = turn.firstRoll;
@@ -494,6 +475,7 @@ unsigned displayTurn(DisplayTurn turn)
 	unsigned p2Score = turn.p2Score;
 	_Bool activePlayer = turn.activePlayer;
 	unsigned turnCounter = turn.turnCounter;
+	unsigned i, rRoll1, rRoll2;
 
 	system("clear");
 	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
@@ -504,19 +486,20 @@ unsigned displayTurn(DisplayTurn turn)
 	printf("Turn score: %u \n\n", turnScore);
 	printf("You rolled: %u + %u = %u \n", die1, die2, roundScore);
  	
+	
 	//Loop for printing off random die on display
 	for(i = 0; i < RANDOM_ROLLS; i++)
 	{
 		//Grab two random rolls to be displayed		
-		rRoll1 = getRandom(1,6);
-		rRoll2 = getRandom(1,6);
+		rRoll1 = getRandomInt(1,6);
+		rRoll2 = getRandomInt(1,6);
 
 		printDie(rRoll1,rRoll2);
 		//Sleep for half a second
-		nanosleep(&request,&remain);				
+		sleep(1);				
 			
 	} 	
-
+	
 	printDie(die1,die2);
 	
 	printf("%s, score: %u \n", p1Name, p1Score);
