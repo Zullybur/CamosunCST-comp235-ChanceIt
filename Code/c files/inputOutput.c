@@ -58,19 +58,19 @@ void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
 
 }
 
-void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
+void displayLocalPlayGetName(char* player1, char* player2, _Bool opponentHuman)
 {
 
 	system("clear");
 	char input;
 	unsigned i;
 	
-	printf("Local Play Mode \n -----------------------------\n");
-	printf("Player 1 - enter name: \n");
-	//scanf("%16s", strName1);
-
+	printf("\n -----------------------------\n");
+	printf("Player 1 - enter name:\n");
+	printf("where da clear at 1\n");
 	for (i = 0; i < MAX_NAME_LEN - 1; i++)
 	{ 
+		printf("where da loop clear at %u\n", i);
 		input = getc(stdin);
 		if (input == '\n') {
 			// End of input
@@ -79,6 +79,7 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 		player1[i] = input;
 		
 	}
+	printf("where da clear at 2\n");
 	if (input != '\n')
 	{
 		char tmp;
@@ -86,7 +87,7 @@ void displayLocalPlayGetName(char* player1, char* player2,_Bool opponentHuman)
 			tmp = getc(stdin);
 		} while (tmp != '\n' && tmp != EOF);
 	}
-	
+	printf("where da clear at 3\n");
 	player1[i] = NULL_TERM;
  
 	if (opponentHuman)

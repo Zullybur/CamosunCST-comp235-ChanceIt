@@ -46,8 +46,6 @@ char* buildName(char* helloName, char* localPlayer, unsigned length) {
 void getHumanResponse(char* printBuf) {
 	char cmd;
 
-	printf("%s\n", printBuf);
-
 	LOOP:cmd = getche();
 	printf("\n");
 	
@@ -121,6 +119,7 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 				if (getDecision(params) == 2) {
 					printf("gonna say no to that\n");
 					sendToServer(NO);
+					printf("Waiting for opponent... \n");
 				} else {
 					printf("Eva wants your body...\n");
 					sendToServer(YES);
@@ -150,8 +149,8 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 			sscanf(printBuf, "Running Turn Score: %d[4]", &params.turnScore);
 		}
 		// printf("DEBUG: entering 'grab more lines'\n");
-		printf("%s\n", printBuf);
 		readLine(printBuf);
+		printf("%s\n", printBuf);
 	}
 	closeConnection();
 }
