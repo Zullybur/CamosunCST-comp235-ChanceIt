@@ -9,7 +9,7 @@ main.o: main.c ../interfaces/inputOutput.h ../interfaces/game.h ../interfaces/ra
 game.o: game.c ../interfaces/game.h ../interfaces/inputOutput.h ../interfaces/localTurn.h
 		gcc -std=c99 -c game.c
 
-protocol.o: protocol.c ../interfaces/protocol.h ../interfaces/socket.h ../interfaces/inputOutput.h ../interfaces/getCon.h
+protocol.o: protocol.c ../interfaces/protocol.h ../interfaces/socket.h ../interfaces/inputOutput.h ../interfaces/getCon.h ../interfaces/probability.h ../interfaces/computerPlayer.h
 		gcc -std=c99 -c protocol.c
 
 socket.o: socket.c ../interfaces/socket.h
