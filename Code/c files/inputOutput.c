@@ -1,3 +1,4 @@
+#define _BSD_SOURCE
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -22,7 +23,7 @@
 #define NULL_TERM	'\0'
 #define DICE_PRINT	3
 #define RANDOM_ROLLS	10
-#define U_SECONDS	500000
+#define U_SECONDS	250000
 
 void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 {
@@ -476,33 +477,42 @@ unsigned displayTurn(DisplayTurn turn)
 	_Bool activePlayer = turn.activePlayer;
 	unsigned turnCounter = turn.turnCounter;
 	unsigned i, rRoll1, rRoll2;
-
-	system("clear");
-	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
-    	printf("Current Round: %u/20 \n", turnCounter);
-	printf("Current Roll: %u \n", rollCounter);
-	printf("-----------------------------\n");
-	printf("First roll: %u \n", firstRoll);
-	printf("Turn score: %u \n\n", turnScore);
-	printf("You rolled: %u + %u = %u \n", die1, die2, roundScore);
- 	
 	
 	//Loop for printing off random die on display
 	for(i = 0; i < RANDOM_ROLLS; i++)
 	{
+		
+        	system("clear");
+        	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
+        	printf("Current Round: %u/20 \n", turnCounter);
+        	printf("Current Roll: %u \n", rollCounter);
+        	printf("-----------------------------\n");
+		printf("First roll: \n");
+        	printf("Turn score: \n\n");
+        	printf("You rolled: \n");
 		//Grab two random rolls to be displayed		
 		rRoll1 = getRandomInt(1,6);
 		rRoll2 = getRandomInt(1,6);
 
 		printDie(rRoll1,rRoll2);
 		//Sleep for half a second
-		sleep(1);				
-			
+		//sleep(1);
+		usleep(U_SECONDS);
 	} 	
+
+
+        system("clear");
+        printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
+        printf("Current Round: %u/20 \n", turnCounter);
+        printf("Current Roll: %u \n", rollCounter);
+        printf("-----------------------------\n");
+        printf("First roll: %u \n", firstRoll);
+        printf("Turn score: %u \n\n", turnScore);
+        printf("You rolled: %u + %u = %u \n", die1, die2, roundScore);
 	
 	printDie(die1,die2);
 	
-	printf("%s, score: %u \n", p1Name, p1Score);
+	printf("\n%s, score: %u \n", p1Name, p1Score);
     	printf("%s, score: %u \n", p2Name, p2Score);
 	printf("-----------------------------\n");
 	
