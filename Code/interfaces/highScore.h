@@ -20,12 +20,8 @@ typedef struct Score{
 _Bool amendHighScore(char* name, unsigned score);
 
 
-
 _Bool submitScore(unsigned score, char* name);
 
 
-
-
 _Bool submitTieScore(unsigned score, char* player1, char* player2);
-
 

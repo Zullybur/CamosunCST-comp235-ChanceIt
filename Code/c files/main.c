@@ -40,7 +40,11 @@ int main(int argc, char** argv){
             case PLAY_NETWORK:
                 //playNetwork();
                 players = displayNetworkSelectMode();
+                displayNetworkPlayInput(ip, &port);
                 if (players == 1){
+                    connect(ip, port);
+                    gameInit(1,0);
+                }else if(players == 2){
                     gameInit(1,1);
                 }else if(players == 2){
                     gameInit(1,0);

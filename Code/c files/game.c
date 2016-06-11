@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/localTurn.h"
 #include "../interfaces/highScore.h"
@@ -66,10 +67,10 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             // Display winner and send score to high score table based on which score is higher
             printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
 
-            isHighScore = submitScore(
-                ((p1Score>p2Score) ? p1Score : p2Score),
-                ((p1Score > p2Score) ? player1Name : player2Name)
-            );
+           isHighScore = submitScore(
+               ((p1Score>p2Score) ? p1Score : p2Score),
+               ((p1Score > p2Score) ? player1Name : player2Name)
+           );
 
         } else {
             isHighScore = submitTieScore(p1Score, player1Name, player2Name);

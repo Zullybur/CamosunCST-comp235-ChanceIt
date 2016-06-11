@@ -1,11 +1,14 @@
+#define _BSD_SOURCE
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "../interfaces/getCon.h"
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/probability.h"
+#include "../interfaces/random.h"
 
 #define SCORE_BORDER	"----------------------------------"
 #define FILEPATH	"../../Design Documents/UserManual/"
@@ -18,7 +21,9 @@
 #define MAX_IP_LEN 	45
 #define MAX_PORT_LEN 	5
 #define NULL_TERM	'\0'
-
+#define DICE_PRINT	3
+#define RANDOM_ROLLS	10
+#define U_SECONDS	250000
 
 void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 {
@@ -399,7 +404,7 @@ void displayNetworkPlayInput(char* IPaddress, int* port)
 	unsigned i;
 	
 	printf("Network Play Mode \n -----------------------------\n");
-	printf("Enter Server Information: \n Port: \n");
+	printf("Enter Server Information: \nPort: \n");
 	scanf("%s", strPort);
 	
 	printf("Address: \n");
@@ -411,14 +416,54 @@ void displayNetworkPlayInput(char* IPaddress, int* port)
 		IPaddress[i] = strIP[i];
 	}
 	
+	IPaddress[i] = '\0';
 	free(strIP);
 	*port = atoi(strPort);
 	
 }
 
+void printDie(unsigned die1,unsigned die2)
+{
+	unsigned i;
+	char* die[9];
+	
+	//Create different lines for printing of dice horizontally 
+	die[0] = " __________  ";
+	die[1] = "|          | ";
+	die[2] = "|          | ";
+	die[3] = "|          | ";
+	die[4] = "|          | ";
+	die[5] = "|__________| ";
+
+	//Create lines for the divets on the die
+	die[6] = "|  O     O | ";
+	die[7] = "|     O    | ";
+	die[8] = "|        O | ";
+	die[9] = "|  O       | ";
+	
+	//Create array to hold unsigned integers that can be used
+	//to choose the proper line to print for the face of the die
+	//based off the line that needs to be printed and the die that
+	//was rolled 
+	unsigned diceRay[3][6] = { {2,9,9,6,6,6} , {7,2,7,2,7,6}, {2,8,8,6,6,6} };	
+
+	printf("%s%s\n", die[0],die[0]);
+	printf("%s%s\n", die[1],die[1]);
+		
+	for(i = 0; i < DICE_PRINT; i++)
+	{
+		printf("%s",die[diceRay[i][die1 - 1]]);
+		printf("%s\n",die[diceRay[i][die2 - 1]]);	
+	}
+
+	printf("%s%s\n", die[5],die[5]);
+}
 
 unsigned displayTurn(DisplayTurn turn)
 {
+	//Generate random for use with dice roller 
+	randomInit();
+	
 	char* p1Name = turn.p1Name;
 	unsigned p1Score = turn.p1Score;
 	unsigned firstRoll = turn.firstRoll;
@@ -431,23 +476,43 @@ unsigned displayTurn(DisplayTurn turn)
 	unsigned p2Score = turn.p2Score;
 	_Bool activePlayer = turn.activePlayer;
 	unsigned turnCounter = turn.turnCounter;
+	unsigned i, rRoll1, rRoll2;
+	
+	//Loop for printing off random die on display
+	for(i = 0; i < RANDOM_ROLLS; i++)
+	{
+		
+        	system("clear");
+        	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
+        	printf("Current Round: %u/20 \n", turnCounter);
+        	printf("Current Roll: %u \n", rollCounter);
+        	printf("-----------------------------\n");
+		printf("First roll: \n");
+        	printf("Turn score: \n\n");
+        	printf("You rolled: \n");
+		//Grab two random rolls to be displayed		
+		rRoll1 = getRandomInt(1,6);
+		rRoll2 = getRandomInt(1,6);
 
-	system("clear");
-	printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
-    	printf("Current Round: %u/20 \n", turnCounter);
-	printf("Current Roll: %u \n", rollCounter);
-	printf("-----------------------------\n");
-	printf("First roll: %u \n", firstRoll);
-	printf("Turn score: %u \n\n", turnScore);
-	printf("You rolled: %u + %u = %u \n\n PLACE HOLDER HERE. SORRY, NO DICE. \n\n", die1, die2, roundScore);
-  	
-	//switch(die1)
-	//{
-	//	case 1:
-	//		printf();		
-	//}
+		printDie(rRoll1,rRoll2);
+		//Sleep for half a second
+		//sleep(1);
+		usleep(U_SECONDS);
+	} 	
 
-	printf("%s, score: %u \n", p1Name, p1Score);
+
+        system("clear");
+        printf("Active Player: %s\n", (activePlayer ? p2Name : p1Name));
+        printf("Current Round: %u/20 \n", turnCounter);
+        printf("Current Roll: %u \n", rollCounter);
+        printf("-----------------------------\n");
+        printf("First roll: %u \n", firstRoll);
+        printf("Turn score: %u \n\n", turnScore);
+        printf("You rolled: %u + %u = %u \n", die1, die2, roundScore);
+	
+	printDie(die1,die2);
+	
+	printf("\n%s, score: %u \n", p1Name, p1Score);
     	printf("%s, score: %u \n", p2Name, p2Score);
 	printf("-----------------------------\n");
 	
@@ -508,15 +573,3 @@ void displayProbability(double result){
 	char response;
 	response = getch();
 }
-
-// TODO: JAVADOCS
-_Bool submitScore(int score, char* name) {
-	return 0;
-}
-
-// TODO: JAVADOCS
-_Bool submitTieScore(int score, char* name1, char* name2) {
-	return 0;
-}
-
-
