@@ -25,7 +25,7 @@ void connectToServer(char* ip, int port)
     memset(&dest, 0, sizeof(dest));             //zero the struct
     dest.sin_family = AF_INET;
     dest.sin_addr.s_addr = inet_addr(ip);  //set destination IP number
-    dest.sin_port = htons(PORTNUM);             //set destination port number
+    dest.sin_port = htons(port);             //set destination port number
 	
 	connect(mySocket, (struct sockaddr *)&dest, sizeof(struct sockaddr));
 }

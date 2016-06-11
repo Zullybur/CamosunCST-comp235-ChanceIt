@@ -389,7 +389,7 @@ void displayInGameHelpMenu() //Work in progress
 	fclose(fp);
 }
 
-void displayNetworkPlayInput(char* IPaddress, unsigned* port)
+void displayNetworkPlayInput(char* IPaddress, int* port)
 {
 
 	system("clear");

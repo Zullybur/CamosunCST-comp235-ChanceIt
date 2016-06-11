@@ -6,8 +6,9 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include "..interfaces/getCon.h"
-#include "..interfaces/socket.h"
+#include "../interfaces/getCon.h"
+#include "../interfaces/socket.h"
+#include "../interfaces/inputOutput.h"
 
 #define STOP        "stop\n"
 #define YES         "Y\n"
@@ -16,8 +17,7 @@
 #define BYE         "GOODBYE:\0"
 
 //Check if the game is over
-int isGameOver(char* response)
-{
+int isGameOver(char* response) {
 	if(strncmp(response, "You Win!", 8) == 0 || strncmp(response, "You Lose", 8) == 0)
 	{
 		return 1;
@@ -26,15 +26,14 @@ int isGameOver(char* response)
 }
 
 //Returns the name of the opponent
-char* whoIsOpp(char* lineBuffer)
-{
+char* whoIsOpp(char* lineBuffer) {
 	char* reply;
 	sscanf(lineBuffer, "Opponent: %s", reply);
 	return reply;
 }
 
 // Build the initial name submission for the server
-char* buildName(char* localPlayer, unsigned length) {
+char* buildName(char* helloName, char* localPlayer, unsigned length) {
     strlcpy(helloName, HELLO, length);
     //printf("TEST1: %s", helloName);
     strlcat(helloName, localPlayer, length);
@@ -45,28 +44,27 @@ char* buildName(char* localPlayer, unsigned length) {
 }
 
 //Begins the network game
-void playNetwork(_Bool humanFactor, char* localPlayer)
-{
+void playNetwork(_Bool humanFactor, char* localPlayer) {
 	char printBuf[30];
 	char* oppName;
 	char cmd;
 	int goFirst;
 	char IP[45];
-	unsigned port;
+	int port;
 	
 	// Get server information
-	displayNetworkPlayInput(IP, &port)
+	displayNetworkPlayInput(IP, &port);
 
 	//Connect to the server
 	connectToServer(IP, port);
 
 	// Calculate array length based on strings + 1, and an extra for \n
 	unsigned length = strlen(HELLO) + 1 + strlen(localPlayer) + 1 + 1;
-	char helloName[length]
-	buildName(helloName, length);
+	char helloName[length];
+	buildName(helloName, localPlayer, length);
 
 	sendToServer(helloName);			//Send the register command
-	
+
 	readLine(printBuf);					//Receive from server
 	printf("%s\n", printBuf);			//Print the received text
 	readLine(printBuf);

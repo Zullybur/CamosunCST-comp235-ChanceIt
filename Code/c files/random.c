@@ -7,7 +7,7 @@ void randomInit()
 	srand((unsigned)time(NULL));
 }
 
-int getRandom(int min, int max)
+int getRandomInt(int min, int max)
 {
 	int delta = max - min;
 

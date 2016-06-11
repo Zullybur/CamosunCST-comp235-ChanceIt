@@ -9,7 +9,6 @@
 #define MAX_NAME_LENGTH 17
 #define ROUNDS 20
 #define FORFEIT -1
-#define NANO_TO_NORMAL 1000000000
 
 static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 {
@@ -42,7 +41,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         } else if (tmpResult < FORFEIT) {
             // Sanity check failed
             printf("Game error occured in turn logic - returning to main menu.\n");
-            nanosleep(1.5 * NANO_TO_NORMAL);
+            sleep(1);
             return;
         }
 
@@ -85,7 +84,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 
     // Return to main menu
     printf("\nReturning to main menu...\n");
-    nanosleep(1.5 * NANO_TO_NORMAL);
+    sleep(1);
     system("clear");
 }
 
@@ -96,13 +95,6 @@ static void getComputerName(char* name)
 }
 void gameInit(_Bool opponentRemote, _Bool humanFactor)
 {
-    // Prepare persistent arrays for player names
-    
-    char player2Name[MAX_NAME_LENGTH];
-
-    // Get Player Names
-    displayLocalPlayGetName(player1Name, player2Name, humanFactor);
-
     // If opponent is remote, start a network game and then return to main menu
     if(opponentRemote)
     {
@@ -117,16 +109,16 @@ void gameInit(_Bool opponentRemote, _Bool humanFactor)
         
         playNetwork(humanFactor, localPlayer);
         return;
-    }
-
-    // Otherwise, if player 2 is a computer player, set the name
-    if (!humanFactor) {
-        getName(player2Name);
-    }
-
-    // Finally, run local game if not network
-    if (!opponentRemote)
-    {
+    } else {
+        char player1Name[MAX_NAME_LENGTH];
+        char player2Name[MAX_NAME_LENGTH];
+        // Otherwise, if player 2 is a computer player, set the name
+        if (!humanFactor) {
+            getComputerName(player2Name);
+        }
+        displayLocalPlayGetName(player1Name, player2Name, humanFactor);
         playLocal(humanFactor, player1Name, player2Name);
     }
+
+    
 }
