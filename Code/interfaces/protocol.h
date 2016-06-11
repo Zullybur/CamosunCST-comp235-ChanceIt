@@ -2,4 +2,4 @@ int isGameOver(char* response);
 
 char* whoIsOpp(char* lineBuffer);
 
-void game();
+void playNetwork(_Bool humanFactor, char* localPlayer);

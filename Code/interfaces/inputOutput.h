@@ -62,7 +62,7 @@ unsigned displayNetworkSelectMode();
 // Param: IPaddress pointer to the variable holding the ipaddress 
 // Param: port pointer to the variable holding the port
 // Returns: N/A
-void displayNetWorkPlayInput(char* IPaddress, unsigned* port);
+void displayNetworkPlayInput(char* IPaddress, int* port);
 
 // Pre: N/A
 // Post: The Local Play mode was displayed on screen
