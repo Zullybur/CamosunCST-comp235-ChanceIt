@@ -404,7 +404,7 @@ void displayNetworkPlayInput(char* IPaddress, int* port)
 	unsigned i;
 	
 	printf("Network Play Mode \n -----------------------------\n");
-	printf("Enter Server Information: \n Port: \n");
+	printf("Enter Server Information: \nPort: \n");
 	scanf("%s", strPort);
 	
 	printf("Address: \n");
