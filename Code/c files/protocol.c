@@ -6,14 +6,9 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-<<<<<<< HEAD
 #include "../interfaces/getCon.h"
 #include "../interfaces/socket.h"
 #include "../interfaces/inputOutput.h"
-=======
-#include "getCon.h"
-#include "socket.h"
->>>>>>> 1052d38659df739359478b2b97eeb77cf5782dcf
 
 #define STOP        "stop\n"
 #define YES         "Y\n"
@@ -54,11 +49,14 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 	char* oppName;
 	char cmd;
 	int goFirst;
-	char IP[45];
+	//char IP[45];
 	int port;
 	
 	// Get server information
-	displayNetworkPlayInput(IP, &port);
+	//displayNetworkPlayInput(IP, &port);
+	// TEST PURPOSES:
+	char* IP = "52.38.98.137";
+	port = 1092;
 
 	//Connect to the server
 	connectToServer(IP, port);
@@ -70,16 +68,22 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 
 	sendToServer(helloName);			//Send the register command
 
-	readLine(printBuf);					//Receive from server
+	readLine(printBuf);					//Receive IS IT ME YOU'RE LOOKING FOR
 	printf("%s\n", printBuf);			//Print the received text
-	readLine(printBuf);
-	
+	readLine(printBuf);					//Receive Opponent: <name>
+
+	// Save and print opponent name
+	oppName = whoIsOpp(printBuf);
+	printf("%s\n", printBuf);
+
+
 	while(1)
 	{
+		// printf("got here test 1\n");
+		
 		//send the server a response
 		if(!strncmp(printBuf, "chance-it?", 10))
 		{
-			printf("%s\n", printBuf);
 			printf("\n");
 			cmd = getch();
 			
@@ -106,11 +110,6 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 			readLine(printBuf);
 			printf("%s\n", printBuf);
 			break;
-		}
-		//Get the opponent name
-		else if(!strncmp(printBuf, "Opponent:",9)){
-			printf("%s\n", printBuf);
-			oppName = whoIsOpp(printBuf);
 		}
 		//Print lines
 		else
