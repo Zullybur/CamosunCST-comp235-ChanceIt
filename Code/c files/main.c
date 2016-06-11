@@ -4,6 +4,7 @@
 #include "../interfaces/inputOutput.h"
 #include "../interfaces/game.h"
 #include "../interfaces/random.h"
+#include "../interfaces/socket.h"
 
 typedef enum
     {
@@ -15,6 +16,8 @@ typedef enum
         EXIT_GAME
     } MainMenuInput;
 
+static char ip[45]
+static unsigned port
 
 int main(int argc, char** argv){
 	randomInit();
@@ -37,7 +40,9 @@ int main(int argc, char** argv){
             case PLAY_NETWORK:
                 //playNetwork();
                 players = displayNetworkSelectMode();
+				displayNetworkPlayInput(ip, &port);
                 if (players == 1){
+					connect(ip, port)
                     gameInit(1,0);
                 }else if(players == 2){
                     gameInit(1,1);

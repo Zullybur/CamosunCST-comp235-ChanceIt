@@ -6,9 +6,14 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+<<<<<<< HEAD
 #include "../interfaces/getCon.h"
 #include "../interfaces/socket.h"
 #include "../interfaces/inputOutput.h"
+=======
+#include "getCon.h"
+#include "socket.h"
+>>>>>>> 1052d38659df739359478b2b97eeb77cf5782dcf
 
 #define STOP        "stop\n"
 #define YES         "Y\n"
