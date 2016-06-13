@@ -70,11 +70,13 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         // printf("%s's final score: %u\n", player2Name, p2Score);
         
         _Bool isHighScore;
+        // TODO: Call for tie and not for tie
         isHighScore = submitScore
         (
                ((p1Score > p2Score) ? p1Score     : p2Score),
                ((p1Score > p2Score) ? player1Name : player2Name)
         );
+        // 
 
         // Display end game screen
         endGameScreen(player1Name, p1Score, player2Name, p2Score, isHighScore);
