@@ -49,15 +49,15 @@ void endGameScreen(char* playerName, unsigned p1Score, char* opponentName, unsig
 	}
 
 	printf("Final Scores:\n");
-	printf("%s: %u\n%s: %u\n",playerName, p1Score,opponentName,opScore);
+	printf("%s: %u\n%s: %u\n\n",playerName, p1Score,opponentName,opScore);
         
 	if(isHighScore && (p1Score > opScore))
 	{
-		printf("\n%s, not only did you steal the game and your opponent's dignity but\n",playerName);
+		printf("%s, not only did you steal the game and your opponent's dignity but\n",playerName);
 		printf("you also got a high score! Congrats! Your existence is now validated!\n");
 	} else if (isHighScore && (p1Score < opScore))
 	{
-		printf("\n%s, not only did you fail in a way that I would describe as pornographic\n",playerName);
+		printf("%s, not only did you fail in a way that I would describe as pornographic\n",playerName);
 		printf("in its excess, but your opponent, %s, also got a high score. Shame %s.\n",opponentName, playerName);
 	}
 	printf("-------------------------\n");
