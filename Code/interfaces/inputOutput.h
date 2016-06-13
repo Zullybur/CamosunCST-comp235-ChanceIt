@@ -116,3 +116,9 @@ void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName);
 //Return: N/A
 void displayStopTurn(char* playerName, unsigned score, char* opponentName);
 
+//Pre: N/A
+//Post: Endgame screen is displayed
+//Clean-up: N/A
+//Params: first player name, their int score, their opponent's name, opponent's score
+//Return: N/A
+void endGameScreen(char* playerName, unsigned p1Score, char* opponentName, unsigned opScore, _Bool isHighscore);
