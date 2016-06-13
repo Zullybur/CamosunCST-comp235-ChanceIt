@@ -35,7 +35,7 @@ void endGameScreen(char* playerName, unsigned p1Score, char* opponentName, unsig
 	if (p1Score > opScore)
 	{
 		printf("%s, you stand over the charred ashes that are the remains of your former opponent.\n",playerName);
-		printf("The wind picks up, and your enemy, %s, is but dust in the wind.\n");
+		printf("The wind picks up, and your enemy, %s, is but dust in the wind.\n", opponentName);
 		printf("%s, get gud scrub.",opponentName);
 	} else if (p1Score < opScore)
 	{
@@ -110,7 +110,6 @@ void displayLocalPlayGetName(char* player1, char* player2, _Bool opponentHuman)
 	
 	printf("\n -----------------------------\n");
 	printf("Player 1 - enter name:\n");
-	printf("where da clear at 1\n");
 	for (i = 0; i < MAX_NAME_LEN - 1; i++)
 	{ 
 		input = getc(stdin);
