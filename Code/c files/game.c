@@ -39,6 +39,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         // Break the loop if a player forfeits
         } else if (tmpResult == FORFEIT) {
             printf("%s Forfeits!\n", player1Name);
+            sleep(1);
             forfeit = 1;
             break;
         } else if (tmpResult < FORFEIT) {
@@ -67,9 +68,6 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
     // Display results if the game completed
     TESTIT:
     if (!forfeit) {
-        // printf("%s's final score: %u\n", player1Name, p1Score);
-        // printf("%s's final score: %u\n", player2Name, p2Score);
-        
         _Bool isHighScore = 0;
         // TODO: Call for tie and not for tie
         if (p1Score == p2Score) {
