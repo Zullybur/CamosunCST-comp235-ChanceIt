@@ -9,7 +9,7 @@
 
    Welcome to Chance It!
 
-Created By: CMMS Systems
+Created By: CMMDS Systems
 
 What would you like to do?
 ------------------------------------
