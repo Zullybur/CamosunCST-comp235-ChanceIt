@@ -466,7 +466,7 @@ void displayNetworkPlayInput(char* IPaddress, int* port)
 void printDie(unsigned die1,unsigned die2)
 {
 	unsigned i;
-	char* die[9];
+	char* die[10];
 	
 	//Create different lines for printing of dice horizontally 
 	die[0] = " __________  ";
@@ -494,7 +494,7 @@ void printDie(unsigned die1,unsigned die2)
 	for(i = 0; i < DICE_PRINT; i++)
 	{
 		printf("%s",die[diceRay[i][die1 - 1]]);
-		printf("%s\n",die[diceRay[i][die2 - 1]]);	
+		printf("%s\n",die[diceRay[i][die2 - 1]]);
 	}
 
 	printf("%s%s\n", die[5],die[5]);
