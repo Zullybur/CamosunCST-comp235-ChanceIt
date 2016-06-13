@@ -38,14 +38,11 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
             params.p1Score = p1Score;
         // Break the loop if a player forfeits
         } else if (tmpResult == FORFEIT) {
-            printf("%s Forfeits!\n", player1Name);
-            sleep(1);
             forfeit = 1;
             break;
         } else if (tmpResult < FORFEIT) {
             // Sanity check failed
             printf("Game error occured in turn logic - returning to main menu.\n");
-            sleep(1);
             return;
         }
 
@@ -55,14 +52,13 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         if (tmpResult >= 0)
         {
             p2Score += tmpResult;
-        } else {
-            printf("%s Forfeits!\n", player2Name);
+        } else if (tmpResult == FORFEIT) {
             forfeit = 1;
-            // Return to main menu
-            printf("\nReturning to main menu...\n");
-            sleep(1);
-            system("clear");
             break;
+        }else if (tmpResult < FORFEIT) {
+            // Sanity check failed
+            printf("Game error occured in turn logic - returning to main menu.\n");
+            return;
         }
     }
     // Display results if the game completed
