@@ -111,6 +111,7 @@ void displayLocalPlayGetName(char* player1, char* player2, _Bool opponentHuman)
 	char input;
 	unsigned i;
 	
+	printf("Please enter player name(s)\n");
 	printf("\n -----------------------------\n");
 	printf("Player 1 - enter name:\n");
 	for (i = 0; i < MAX_NAME_LEN - 1; i++)
