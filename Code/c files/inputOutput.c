@@ -25,6 +25,45 @@
 #define RANDOM_ROLLS	10
 #define U_SECONDS	250000
 
+void endGameScreen(char* playerName, unsigned p1Score, char* opponentName, unsigned opScore, _Bool isHighScore)
+{
+	
+	printf("Game Over!\n");
+	printf("-------------------------\n");
+        
+	if (p1Score > opScore)
+	{
+		printf("%s, you stand over the charred ashes that are the remains of your former opponent.\n",playerName);
+		printf("The wind picks up, and your enemy, %s, is but dust in the wind.\n");
+		printf("%s, get gud scrub.",opponentName);
+	} else if (p1Score < opScore)
+	{
+		printf("%s, you fought hard, but your best wasn't good enough. %s trounced you.\n",playerName,opponentName);
+		printf("%s, your holdings, your title, and your pride belongs to %s now.\n",playerName,opponentName);
+		printf("You have brought great shame to your family.\n\n");
+	} else 
+	{
+		printf("Listen up %s and %s. The only thing worse than losing a contest of this\n", playerName,opponentName);
+		printf("magnitude is having things end with a tie. Seriously, you both suck.\n\n");
+	}
+
+	printf("Final Scores:\n");
+	printf("%s: %u\n%s: %u\n",playerName, p1Score,opponentName,opScore);
+        
+	if(isHighScore && (p1Score > opScore))
+	{
+		printf("\n%s, not only did you steal the game and your opponent's dignity but\n",playerName);
+		printf("you also got a high score! Congrats! Your existence is now validated!");
+	} else if (isHighScore && (p1Score < opScore))
+	{
+		printf("\n%s, not only did you fail in a way that I would describe as pornographic\n",playerName);
+		printf("in its excess, but your opponent, %s, also got a high score. Shame %s.",opponentName, playerName);
+	}
+	printf("-------------------------\n");
+
+	
+}
+
 void displayStopTurn(char* playerName, unsigned score, char* opponentName)
 {
 	system("clear");
