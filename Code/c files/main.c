@@ -16,8 +16,9 @@ typedef enum
         EXIT_GAME
     } MainMenuInput;
 
-static char ip[45];
-static unsigned port;
+// static char ip[45];
+char* ip = "52.38.98.137";
+static int port = 1092;
 
 int main(int argc, char** argv){
 	randomInit();
@@ -40,12 +41,13 @@ int main(int argc, char** argv){
             case PLAY_NETWORK:
                 //playNetwork();
                 players = displayNetworkSelectMode();
-		displayNetworkPlayInput(ip, &port);
+                // displayNetworkPlayInput(ip, &port);
+                // human playing:
                 if (players == 1){
-		    connect(ip, port);
-                    gameInit(1,0);
-                }else if(players == 2){
                     gameInit(1,1);
+                // computer playing:
+                }else if(players == 2){
+                    gameInit(1,0);
                 }
                 break;
             case SHOW_RULES:

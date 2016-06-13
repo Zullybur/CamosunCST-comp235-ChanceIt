@@ -6,8 +6,8 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include "getCon.h"
-#include "socket.h"
+#include "../interfaces/getCon.h"
+#include "../interfaces/socket.h"
 
 #define BUFF_SIZE 1024
 
