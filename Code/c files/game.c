@@ -18,6 +18,8 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
     unsigned p2Score = 0;
     int tmpResult;
 
+    //DEBUG:
+    goto TESTIT;
     // Run <ROUNDS> turns for each player
     for (unsigned i = 0; i < ROUNDS * 2; )
     {
@@ -63,9 +65,9 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         }
     }
     // Display results if the game completed
-    if (!forfeit) {
-        printf("%s's final score: %u\n", player1Name, p1Score);
-        printf("%s's final score: %u\n", player2Name, p2Score);
+    TESTIT:if (!forfeit) {
+        // printf("%s's final score: %u\n", player1Name, p1Score);
+        // printf("%s's final score: %u\n", player2Name, p2Score);
         
         _Bool isHighScore = submitScore
         (
@@ -74,6 +76,7 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         );
 
         // Display end game screen
+        printf("end game screen coming");
         endGameScreen(player1Name, p1Score, player2Name, p2Score, isHighScore);
     }
 }
