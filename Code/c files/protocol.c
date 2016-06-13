@@ -33,12 +33,12 @@ void whoIsOpp(char* lineBuffer, char* reply) {
 
 // Build the initial name submission for the server
 char* buildName(char* helloName, char* localPlayer, unsigned length) {
-    strlcpy(helloName, HELLO, length);
-    //printf("TEST1: %s", helloName);
-    strlcat(helloName, localPlayer, length);
-    //printf("TEST2: %s", helloName);
-    strlcat(helloName, "\n\0", length);
-    //printf("TEST3: %s", helloName);
+    strncpy(helloName, HELLO, length);
+    // printf("TEST1: %s", helloName);
+    strncat(helloName, localPlayer, length);
+    // printf("TEST2: %s", helloName);
+    strncat(helloName, "\n\0", length);
+    printf("TEST3: %s", helloName);
     return helloName;
 }
 
@@ -95,12 +95,14 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 	char helloName[length];
 	buildName(helloName, localPlayer, length);
 
-	sendToServer(helloName);			//Send the register command
+	sendToServer(helloName);					//Send the register command
 
-	readLine(printBuf);					//Receive IS IT ME YOU'RE LOOKING FOR
-	printf("Waiting for opponent...\n\n");			//Print the received text
-	readLine(printBuf);					//Receive Opponent: <name>
+	readLine(printBuf);							//Receive IS IT ME YOU'RE LOOKING FOR
+	printf("%s\n", printBuf);
+	printf("Waiting for opponent...\n\n");		//Print the received text
+	readLine(printBuf);							//Receive Opponent: <name>
 	// Save and print opponent name
+	printf("Are we here yet?\n");
 	char oppName[17];
 	whoIsOpp(printBuf, oppName);
 
