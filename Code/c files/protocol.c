@@ -38,7 +38,7 @@ char* buildName(char* helloName, char* localPlayer, unsigned length) {
     strncat(helloName, localPlayer, length);
     // printf("TEST2: %s", helloName);
     strncat(helloName, "\n\0", length);
-    printf("TEST3: %s", helloName);
+    // printf("TEST3: %s", helloName);
     return helloName;
 }
 
