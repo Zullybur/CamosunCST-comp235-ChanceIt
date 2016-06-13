@@ -143,6 +143,7 @@ _Bool amendHighScore(char* name, unsigned score){
 	}else{
 		i = 0;
 		highScores[0] = newScore;
+		result = 1;
 	}
 	//opens highScore.txt for writing
 	f = fopen(FILEPATH, "w");
