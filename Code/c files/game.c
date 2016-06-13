@@ -14,8 +14,8 @@
 static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
 {
     _Bool forfeit = 0;
-    unsigned p1Score = 0;
-    unsigned p2Score = 0;
+    unsigned p1Score = 2;
+    unsigned p2Score = 2;
     int tmpResult;
 
     //DEBUG:
@@ -69,14 +69,14 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         // printf("%s's final score: %u\n", player1Name, p1Score);
         // printf("%s's final score: %u\n", player2Name, p2Score);
         
-        _Bool isHighScore = submitScore
+        _Bool isHighScore;
+        isHighScore = submitScore
         (
                ((p1Score > p2Score) ? p1Score     : p2Score),
                ((p1Score > p2Score) ? player1Name : player2Name)
         );
 
         // Display end game screen
-        printf("end game screen coming");
         endGameScreen(player1Name, p1Score, player2Name, p2Score, isHighScore);
     }
 }
