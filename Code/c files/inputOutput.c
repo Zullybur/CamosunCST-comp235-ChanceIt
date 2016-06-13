@@ -28,6 +28,7 @@
 void endGameScreen(char* playerName, unsigned p1Score, char* opponentName, unsigned opScore, _Bool isHighScore)
 {
 	
+	system("clear");
 	printf("Game Over!\n");
 	printf("-------------------------\n");
         
@@ -60,7 +61,10 @@ void endGameScreen(char* playerName, unsigned p1Score, char* opponentName, unsig
 		printf("in its excess, but your opponent, %s, also got a high score. Shame %s.",opponentName, playerName);
 	}
 	printf("-------------------------\n");
+	printf("Press any key to return to main menu\n");
 
+	char response;
+	response = getch();		
 	
 }
 
