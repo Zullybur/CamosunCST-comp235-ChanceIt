@@ -607,12 +607,14 @@ unsigned displayTurn(DisplayTurn turn)
 void displayProbability(double result){
 	system("clear");
 	char percent = '%';
+	printf("Probability!\n");
 	printf("--------------------\n");
-	printf("It is probably quite probable that the probability for your next roll is:\n");
+	printf("It is probably quite probable that the probability of re-rolling your first roll is:\n");
 	printf("%.2f%c...\n\n",result,percent);
 	printf("Remember, knowledge is power!\n");
-	printf("Press the any key to continue...\n");
 	printf("--------------------\n");
+	printf("Press the any key to continue...\n");
+	
 
 	char response;
 	response = getch();
