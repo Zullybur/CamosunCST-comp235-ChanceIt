@@ -137,6 +137,7 @@ _Bool amendHighScore(char* name, unsigned score){
 		}
 		if (!isAdded && i < 9){
 			highScores[++i] = newScore;
+			result = 1;
 		}
 		fclose(f);
 	}else{
