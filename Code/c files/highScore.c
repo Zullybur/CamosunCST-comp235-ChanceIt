@@ -5,7 +5,7 @@
 #include <time.h>
 #include <string.h>
 
-#define FILEPATH	"../textFiles/highScore.txt"
+#define FILEPATH	"../../Resources/highScore.txt"
 
 
 _Bool submitScore(unsigned score, char* name){
