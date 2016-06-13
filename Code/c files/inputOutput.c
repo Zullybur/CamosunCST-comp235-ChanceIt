@@ -265,7 +265,7 @@ void displayHighScore()
 	system("clear");
 
 	FILE *f;
-        if( access( "../../Design Documents/highScore.txt", F_OK) != -1){
+        if( access( SCORE_FILEPATH, F_OK) != -1){
                 printf(" Top Ten Scores\n");
                 printf("--------------------------------------------\n");
                 f = fopen(SCORE_FILEPATH, "r");
