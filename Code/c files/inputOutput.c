@@ -59,6 +59,9 @@ void endGameScreen(char* playerName, unsigned p1Score, char* opponentName, unsig
 	{
 		printf("%s, not only did you fail in a way that I would describe as pornographic\n",playerName);
 		printf("in its excess, but your opponent, %s, also got a high score. Shame %s.\n",opponentName, playerName);
+	} else if (isHighScore){
+		printf("Oh look, %s and %s, you both got high scores but neither of you won the game.\n", playerName, opponentName);
+		printf("How bout you two losers go get married now so you can be losers together?\n");
 	}
 	printf("-------------------------\n");
 	printf("Press any key to return to main menu\n");
