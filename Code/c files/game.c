@@ -55,6 +55,10 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
         } else {
             printf("%s Forfeits!\n", player2Name);
             forfeit = 1;
+            // Return to main menu
+            printf("\nReturning to main menu...\n");
+            sleep(1);
+            system("clear");
             break;
         }
     }
@@ -62,31 +66,16 @@ static void playLocal(_Bool humanFactor, char* player1Name, char* player2Name)
     if (!forfeit) {
         printf("%s's final score: %u\n", player1Name, p1Score);
         printf("%s's final score: %u\n", player2Name, p2Score);
-        _Bool isHighScore;
-        if (p1Score != p2Score) {
-            // Display winner and send score to high score table based on which score is higher
-            printf("The winner is: %s!\n", (p1Score>p2Score) ? player1Name : player2Name);
-
-           isHighScore = submitScore(
-               ((p1Score>p2Score) ? p1Score : p2Score),
-               ((p1Score > p2Score) ? player1Name : player2Name)
-           );
-
-        } else {
-            isHighScore = submitTieScore(p1Score, player1Name, player2Name);
-            printf("The game was a tie. Ties are lame.\n");
-        }
-
-        if (isHighScore) {
-            printf("\nGood job! you got a high score!\n");
-        }
         
-    }
+        _Bool isHighScore = submitScore
+        (
+               ((p1Score > p2Score) ? p1Score     : p2Score),
+               ((p1Score > p2Score) ? player1Name : player2Name)
+        );
 
-    // Return to main menu
-    printf("\nReturning to main menu...\n");
-    sleep(1);
-    system("clear");
+        // Display end game screen
+        endGameScreen(player1Name, p1Score, player2Name, p2Score, isHighScore);
+    }
 }
 
 static void getComputerName(char* name)
