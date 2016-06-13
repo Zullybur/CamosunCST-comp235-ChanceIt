@@ -12,7 +12,7 @@
 
 #define SCORE_BORDER	"----------------------------------"
 #define FILEPATH	"../../Design Documents/UserManual/"
-#define SCORE_FILEPATH  "../../Design Documents/highScore.txt"
+#define SCORE_FILEPATH  "../../Resources/highScore.txt"
 #define PRINT_LIM1	18
 #define MAX_NAME_LEN 	17
 #define MAX_LINE_LEN 	50
