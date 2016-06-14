@@ -20,9 +20,9 @@
 
 //Check if the game is over
 int gameOver(char* response) {
-	printf("%s\n", response);
-	readLine(response);
 	// printf("%s\n", response);
+	readLine(response);
+	printf("%s\n", response);
 }
 
 //Returns the name of the opponent
