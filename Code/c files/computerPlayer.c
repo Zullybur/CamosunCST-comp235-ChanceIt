@@ -11,37 +11,35 @@
 // Cleanup N/A
 unsigned getDecision(DecisionParams params)
 {
-    unsigned roundNumber = params.roundNumber;
-    unsigned rollCounter = params.rollCounter;
-    unsigned turnScore = params.turnScore;
-    unsigned p1Score = params.p1Score;
-    unsigned p2Score = params.p2Score;
-    unsigned probability = params.probability;
+    unsigned avgBust[13] = {0,0,35,17,11,8,6,5,6,8,11,17,35};
+    double risk = 0.0;
 
-    int scoreGap = p1Score - p2Score + turnScore;
-
-    /**** e.g. ****
-    probability is .735245r345
-    threshold = (1-.735...) * 10 = 3
-    ***************/
-    int riskThreshold  = (int)((1 - probability) * MAX_ROLL_THRESHOLD);
-
-    double riskReductionMultiplier = (roundNumber > 9) ? 1.5 : 1;
-    
+    // Take less risk at start of game
+    if (params.roundNumber < 10) {
+        risk = 0.20;
     // Take more risk if we are losing
-    if (scoreGap < 0)
-    {
-        riskThreshold *= RISK_MULTIPLIER;
-    // Take less risk if we are ahead significantly
-    } else if (scoreGap > p1Score * RISK_REDUCTION_LIMITER) {
-        riskThreshold /= (RISK_MULTIPLIER * riskReductionMultiplier);
+    } else if (params.roundNumber < 15 && params.p1Score < params.p2Score) {
+        risk = 0.40;
+    // If it is the last round, roll until we win
+    } else if (params.roundNumber == 20) {
+        return (params.p1Score + params.turnScore < params.p2Score) ? 1 : 2;
+    // If we are past round 15 and still losing, take lots of risks!
+    } else if (params.p1Score < params.p2Score) {
+        risk = 0.60;
+    } else {
+        risk = 0.25;
     }
+    // printf("AI 1 State:\n\trnd: %u \n\troll: %u \n\tturnScr: %u \n\tdiff: %u \n\trisk: %f\n",
+    //     params.roundNumber, params.rollCounter, params.turnScore, params.p1Score - params.p2Score, risk);
 
-    // Return the roll decision based on risk threshold vs how many rolls have been made
-    if (rollCounter < riskThreshold)
-    {
+    unsigned maxRolls = (unsigned)(risk * avgBust[params.firstRoll]);
+    // printf("\tmax: %u\n", maxRolls);
+
+    if (maxRolls > params.rollCounter){
+        // printf("\tROLL AGAIN!\n\n");
         return 1;
+    } else {
+        // printf("\tSTOP :(\n\n");
+        return 2;
     }
-
-    return 2;
 }

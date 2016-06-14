@@ -22,7 +22,7 @@
 int gameOver(char* response) {
 	printf("%s\n", response);
 	readLine(response);
-	printf("%s\n", response);
+	// printf("%s\n", response);
 }
 
 //Returns the name of the opponent
@@ -119,11 +119,11 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 			// 		params.p1Score, params.p2Score, params.probability);
 
 				if (getDecision(params) == 2) {
-					printf("gonna say no to that\n");
+					// printf("gonna say no to that\n");
 					sendToServer(NO);
 					printf("Waiting for opponent... \n");
 				} else {
-					printf("Eva wants your body...\n");
+					// printf("Eva wants your body...\n");
 					sendToServer(YES);
 				}
 			}
@@ -144,7 +144,7 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 			if (params.roundNumber == 1) {
 				sscanf(printBuf, "You Rolled: [%d,%d]", &die1, &die2);
 				firstRoll = die1 + die2;
-				params.probability = getProbability(firstRoll);
+				params.firstRoll = firstRoll;
 			}
 		// Parse out current round total
 		} else if (!strncmp(printBuf, "Running Turn Score: ", 20)) {

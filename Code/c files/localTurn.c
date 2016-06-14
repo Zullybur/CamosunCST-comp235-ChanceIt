@@ -61,7 +61,7 @@ int localTurn(LocalTurnParams localTurnParams) {
         decisionParams.turnScore = turnScore;
         decisionParams.p1Score = p1Score;
         decisionParams.p2Score = p2Score;
-        decisionParams.probability = probability;
+        decisionParams.firstRoll = firstRoll;
 
         response = getDecision(decisionParams);
       } 

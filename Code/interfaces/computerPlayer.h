@@ -4,7 +4,7 @@ typedef struct DesicionParams {
     unsigned turnScore;
     unsigned p1Score;
     unsigned p2Score;
-    double probability;
+    unsigned firstRoll;
 } DecisionParams;
 // Determines the computer player's decision to roll or stop.
 // Pre: N/A
