@@ -78,7 +78,7 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 	unsigned firstRoll, die1, die2, evaSays;
 	int goFirst;
 	DecisionParams params;
-	//char IP[45];
+	char IP[45];
 	int port;
 	
 	// Get server information
