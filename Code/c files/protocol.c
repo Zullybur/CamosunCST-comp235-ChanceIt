@@ -82,10 +82,10 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 	int port;
 	
 	// Get server information
-	//displayNetworkPlayInput(IP, &port);
+	displayNetworkPlayInput(IP, &port);
 	// TEST PURPOSES:
-	char* IP = "52.38.98.137";
-	port = 1092;
+	// char* IP = "52.38.98.137";
+	// port = 1092;
 
 	//Connect to the server
 	connectToServer(IP, port);

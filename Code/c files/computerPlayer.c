@@ -24,8 +24,8 @@ unsigned getDecision(DecisionParams params)
     } else if (params.roundNumber == 20) {
         return (params.p1Score + params.turnScore < params.p2Score) ? 1 : 2;
     // If we are past round 15 and still losing, take lots of risks!
-    } else if (params.p1Score < params.p2Score) {
-        risk = 0.60;
+    } else if (params.p1Score + params.turnScore < params.p2Score) {
+        risk = 0.50;
     } else {
         risk = 0.25;
     }
