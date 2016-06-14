@@ -107,31 +107,38 @@ void displayFailRoll(char* playerName, unsigned firstRoll, char* opponentName)
 
 void displayLocalPlayGetName(char* player1, char* player2, _Bool opponentHuman)
 {
-	_Bool error1 = false;
-	_Bool error2 = false;
+	_Bool error1 = 0;
+	_Bool error2 = 0;
 	RESTART:
 	system("clear");
-	char input;
+	char input = 0;
 	unsigned i;
 	
 	printf("Please enter player name(s)\n");
-	if (error1) {
-		printf("*** You entered an invalid character! ***\n*** No spaces or tabs allowed. ***\n");
-		error1 = false;
-	}
 	printf("-----------------------------\n");
 	printf("Player 1 - enter name:\n");
+	if (error1) {
+		printf("*** You entered an invalid character! ***\n***     No spaces or tabs allowed     ***\n");
+		error1 = 0;
+	}
+
 	if (error2) {
 		printf("%s\n", player1);
 	} else {
 		for (i = 0; i < MAX_NAME_LEN - 1; i++)
 		{ 
 			input = getc(stdin);
+			// printf("DEBUG: Input is %d\n", input);
 			if (input == '\n') {
 				// End of input
 				break;
 			} else if (input == ' ' || input == (char)TAB) {
-				error1 = true;
+				error1 = 1;
+				// printf("Restart\n");
+				char tmp;
+				do {
+					tmp = getc(stdin);
+				} while (tmp != '\n' && tmp != EOF);
 				goto RESTART;
 			}
 			player1[i] = input;
@@ -150,21 +157,26 @@ void displayLocalPlayGetName(char* player1, char* player2, _Bool opponentHuman)
 	if (opponentHuman)
 	{
 		printf("Player 2 - enter name: \n");
-		if (error1) {
-		printf("*** You entered an invalid character! ***\n*** No spaces or tabs allowed. ***\n");
-		error2 = false;
+		if (error2) {
+			printf("*** You entered an invalid character! ***\n*** No spaces or tabs allowed. ***\n");
+			error2 = 0;
 		}
 
 		for (i = 0; i < MAX_NAME_LEN - 1; i++)
 		{	
 			
 			input = getc(stdin);
+			// printf("DEBUG: Input is %d\n", input);
 			if (input == '\n') 
 			{
 				// End of input
 				break;
 			} else if (input == ' ' || input == (char)TAB) {
-				error2 = true;
+				error2 = 1;
+				char tmp;
+				do {
+					tmp = getc(stdin);
+				} while (tmp != '\n' && tmp != EOF);
 				goto RESTART;
 			}
 			player2[i] = input;
