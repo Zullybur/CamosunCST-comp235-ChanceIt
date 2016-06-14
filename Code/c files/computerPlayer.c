@@ -12,7 +12,7 @@
 unsigned getDecision(DecisionParams params)
 {
     unsigned avgBust[13] = {0,0,35,17,11,8,6,5,6,8,11,17,35};
-    double risk = 0.6;
+    double risk = 0.9;
 
     // // Take less risk at start of game
     // if (params.roundNumber < 10) {
