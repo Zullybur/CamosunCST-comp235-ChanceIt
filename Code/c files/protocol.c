@@ -78,14 +78,14 @@ void playNetwork(_Bool humanFactor, char* localPlayer) {
 	unsigned firstRoll, die1, die2, evaSays;
 	int goFirst;
 	DecisionParams params;
-	// char IP[45];
+	char IP[45];
 	int port;
 	
 	// Get server information
-	// displayNetworkPlayInput(IP, &port);
+	displayNetworkPlayInput(IP, &port);
 	// TEST PURPOSES:
-	char* IP = "52.38.98.137";
-	port = 1092;
+	// char* IP = "52.38.98.137";
+	// port = 1092;
 
 	//Connect to the server
 	connectToServer(IP, port);
