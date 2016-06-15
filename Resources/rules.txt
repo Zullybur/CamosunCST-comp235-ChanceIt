@@ -1,0 +1,35 @@
+﻿Chance-It Game Rules
+------------------------------------
+1.  A game of Chance-It involves two players.
+    The object of the game is to be the player
+    with the highest score after completing 20
+    rounds of play.
+
+2.  During a round, each player takes a turn.
+    A player’s total score is the sum of their
+    turn scores. At the beginning of the game,
+    each player rolls a die: high goes first.
+
+3.  At the beginning of their turn, a player
+    rolls two six-sided dice and records the sum,
+    called their first roll.
+------------------------------------
+Press the any key to continue reading...
+
+Chance-It Game Rules
+------------------------------------
+4.  After their first roll, a player must decide
+    whether to stop or continue (i.e., chance-it).
+
+5.  If a player decides to stop, then their turn
+    ends and their score for that turn is the sum
+    of all rolls during that turn; if the player
+    decides to continue, they roll the dice again.
+
+6.  If in re-rolling the dice, a player re-rolls
+    their first roll (any combination of dice that
+    results in the same sum), then their turn ends
+    and their score for that turn is zero;
+    otherwise, go to step 5.
+------------------------------------
+Press any key to continue... 

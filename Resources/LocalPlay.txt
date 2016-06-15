@@ -1,0 +1,12 @@
+Local Play Mode
+------------------------------------
+
+Select mode:
+
+(S)ingle Player
+(M)ultiplayer
+
+(P)revious Menu
+(E)xit
+
+------------------------------------

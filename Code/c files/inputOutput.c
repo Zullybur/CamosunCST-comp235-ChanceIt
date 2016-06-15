@@ -11,7 +11,7 @@
 #include "../interfaces/random.h"
 
 #define SCORE_BORDER	"----------------------------------"
-#define FILEPATH	"../../Design Documents/UserManual/"
+#define FILEPATH	"../../Resources/"
 #define SCORE_FILEPATH  "../../Resources/highScore.txt"
 #define PRINT_LIM1	18
 #define MAX_NAME_LEN 	17
@@ -236,7 +236,7 @@ unsigned displayMainMenu()
 	system("clear");
 
 	FILE *fp;
-	char fileP[] = FILEPATH "UM-SS-MainPage.txt";
+	char fileP[] = FILEPATH "MainPage.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 	int c;	
@@ -347,7 +347,7 @@ unsigned displayLocalSelectOpponent()
 {
 	system("clear");
 	FILE *fp;
-	char fileP[] = FILEPATH "UM-SS-LocalPlay.txt";
+	char fileP[] = FILEPATH "LocalPlay.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 	int c;	
@@ -400,7 +400,7 @@ unsigned displayNetworkSelectMode()
 
 	system("clear");
 	FILE *fp;
-	char fileP[] = FILEPATH "UM-SS-NetworkPlay.txt";
+	char fileP[] = FILEPATH "NetworkPlay.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 	int c;
@@ -455,7 +455,7 @@ void displayInGameHelpMenu() //Work in progress
 
 	system("clear");
 	FILE *fp;
-	char fileP[] = FILEPATH "UM-SS-GameHelp.txt";
+	char fileP[] = FILEPATH "GameHelp.txt";
 	fp = fopen(fileP, "r");
 	char buff[MAX_LINE_LEN];
 	int c;
